@@ -39,6 +39,10 @@ add_executable(rover_w
 src/rover_w.cpp 
 src/lidar.cpp
 src/pwm.cpp
+
+# http files
+# src/server.cpp
+# src/cgi.cpp
 )
 
 pico_set_program_name(rover_w "rover_w")
@@ -50,19 +54,27 @@ pico_enable_stdio_usb(rover_w 1)
 
 # Add the standard library to the build
 target_link_libraries(rover_w
-        pico_stdlib)
+        pico_stdlib
+        pico_cyw43_arch_lwip_threadsafe_background
+        hardware_i2c
+        hardware_pwm
+
+        # http includes
+        # pico_lwip_http
+        # pico_httpd_content
+)
 
 # Add the standard include files to the build
 target_include_directories(rover_w PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/include
+    ${CMAKE_CURRENT_LIST_DIR}/include
+    ${CMAKE_CURRENT_LIST_DIR}/
+    ${CMAKE_CURRENT_LIST_DIR}
 )
-
-# Add any user requested libraries
-target_link_libraries(rover_w 
-        hardware_i2c
-        hardware_pwm
-        pico_cyw43_arch_lwip_threadsafe_background
-        )
 
 pico_add_extra_outputs(rover_w)
 
+# http extras
+# pico_add_library(pico_httpd_content NOFLAG)
+# pico_set_lwip_httpd_content(pico_httpd_content INTERFACE
+#     ${CMAKE_CURRENT_LIST_DIR}/web_files/index.shtml
+# )

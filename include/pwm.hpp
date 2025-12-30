@@ -23,7 +23,7 @@ class PWM_Channel {
     uint get_channel() { return channel_; }
 
    private:
-    uint pin_;
+    const uint pin_;
     uint slice_;
     uint channel_;
 

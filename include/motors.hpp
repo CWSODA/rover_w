@@ -41,7 +41,7 @@ class Motor {
 
    private:
     PWM_Channel pwm_channel;
-    uint dir_pin;
+    const uint dir_pin;
 };
 
 class MotorControl {

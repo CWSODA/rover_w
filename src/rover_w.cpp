@@ -5,9 +5,11 @@
 #include "hardware/uart.h"
 
 // self headers
-#include "wifi.hpp"
 #include "motors.hpp"
 #include "lidar.hpp"
+
+// #include "tcp.hpp"
+#include "help.hpp"
 
 // UART debug
 // screen /dev/tty.usbserial-FTU7C2WR 115200
@@ -18,25 +20,29 @@
 int main() {
     stdio_init_all();
 
-    // Initialise the Wi-Fi chip
-    if (cyw43_arch_init()) {
-        printf("Wi-Fi chip init failed\n");
-        return -1;
+    // wait for usb to connect
+    while (!stdio_usb_connected()) {
+        sleep_ms(10);
     }
 
-    // turn on LED
-    cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, true);
-
     // INIT MOTORS
-    MotorControl motors;
+    // MotorControl motors;
 
     // INIT LIDAR
-    init_lidar_rx(LIDAR_RX_PIN);
+    // init_lidar_rx(LIDAR_RX_PIN);
+
+    test();
+
+    // init_server_chip();
+    // if (init_tcp() != 0) {
+    //     return -1;
+    // }
 
     while (true) {
-        char c = uart_getc(uart1);
-        printf(" %02X ", c);
+        // char c = uart_getc(uart1);
+        // printf(" %02X ", c);
         // motors.update_motors();
-        // sleep_ms(4000);
+        sleep_ms(10000);
+        printf("ALIVE\n");
     }
 }
