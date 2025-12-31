@@ -33,16 +33,11 @@ project(rover_w C CXX ASM)
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
-# Add executable. Default name is the project name, version 0.1
-
+# Add executable
 add_executable(rover_w 
-src/rover_w.cpp 
-src/lidar.cpp
-src/pwm.cpp
-
-# http files
-# src/server.cpp
-# src/cgi.cpp
+    src/rover_w.cpp 
+    src/lidar.cpp
+    src/pwm.cpp
 )
 
 pico_set_program_name(rover_w "rover_w")
@@ -52,29 +47,19 @@ pico_set_program_version(rover_w "0.1")
 pico_enable_stdio_uart(rover_w 0)
 pico_enable_stdio_usb(rover_w 1)
 
+# Add the standard include files to the build
+target_include_directories(rover_w PRIVATE
+    ${CMAKE_CURRENT_LIST_DIR}
+    ${CMAKE_CURRENT_LIST_DIR}/include
+    ${CMAKE_CURRENT_LIST_DIR}/..
+)
+
 # Add the standard library to the build
 target_link_libraries(rover_w
         pico_stdlib
         pico_cyw43_arch_lwip_threadsafe_background
         hardware_i2c
         hardware_pwm
-
-        # http includes
-        # pico_lwip_http
-        # pico_httpd_content
 )
 
-# Add the standard include files to the build
-target_include_directories(rover_w PRIVATE
-    ${CMAKE_CURRENT_LIST_DIR}/include
-    ${CMAKE_CURRENT_LIST_DIR}/
-    ${CMAKE_CURRENT_LIST_DIR}
-)
-
-pico_add_extra_outputs(rover_w)
-
-# http extras
-# pico_add_library(pico_httpd_content NOFLAG)
-# pico_set_lwip_httpd_content(pico_httpd_content INTERFACE
-#     ${CMAKE_CURRENT_LIST_DIR}/web_files/index.shtml
-# )
+pico_add_extra_outputs(rover_w) 

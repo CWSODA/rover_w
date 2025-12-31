@@ -1,7 +1,6 @@
 #include "lidar.hpp"
 
 #include "pico/stdlib.h"
-#include "pico/cyw43_arch.h"
 #include "hardware/uart.h"
 
 // initiate UART RX ONLY
@@ -66,7 +65,7 @@ void LidarParser::parse_byte(uint8_t byte) {
             break;
         case (State::CHECKSUM):
             if (checksum_buf.insert(byte)) {
-                assert(checksum_total == checksum_buffer.to_uint16());
+                assert(checksum_total == checksum_buf.val());
                 advance_state();
             }
             break;

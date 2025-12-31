@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
-#include "hardware/i2c.h"
-#include "pico/cyw43_arch.h"
-#include "hardware/uart.h"
+// #include "hardware/i2c.h"
+// #include "pico/cyw43_arch.h"
+// #include "hardware/uart.h"
 
 // self headers
-#include "motors.hpp"
-#include "lidar.hpp"
+// #include "motors.hpp"
+// #include "lidar.hpp"
 
 // #include "tcp.hpp"
-#include "help.hpp"
+// #include "help.hpp"
 
 // UART debug
 // screen /dev/tty.usbserial-FTU7C2WR 115200
@@ -30,13 +30,6 @@ int main() {
 
     // INIT LIDAR
     // init_lidar_rx(LIDAR_RX_PIN);
-
-    test();
-
-    // init_server_chip();
-    // if (init_tcp() != 0) {
-    //     return -1;
-    // }
 
     while (true) {
         // char c = uart_getc(uart1);
