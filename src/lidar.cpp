@@ -70,22 +70,24 @@ void LidarParser::parse_byte(uint8_t byte) {
             }
             state = State::DATA_LENGTH;
             break;
-        case (State::DATA_LENGTH):
-            if (data_len_buf.insert(byte)) {
-                // remember to reset data state to intial rot speed
-                data_state = DataState::ROT_SPEED;
-                if (is_valid_data)
-                    state = State::DATA;
-                else
-                    state = State::HEALTH;
+        case (State::DATA_LENGTH): {
+            if (!data_len_buf.insert(byte)) break;
 
-                // ensures data length is consistent with frame length
-                // data length should be 1+2+1+1+1+2 = 8 bytes shorter
-                // printf("Data length: %d, Frame Length: %d\n",
-                //        data_len_buf.val(), frame_len_buf.val());
-                assert(data_len_buf.val() == frame_len_buf.val() - 8);
-            }
+            // remember to reset data state to intial rot speed
+            data_state = DataState::ROT_SPEED;
+            if (is_valid_data)
+                state = State::DATA;
+            else
+                state = State::HEALTH;
+
+            // ensures data length is consistent with frame length
+            // data length should be 1+2+1+1+1+2 = 8 bytes shorter
+            // printf("Data length: %d, Frame Length: %d\n",
+            //        data_len_buf.val(), frame_len_buf.val());
+            assert(data_len_buf.val() == frame_len_buf.val() - 8);
+
             break;
+        }
         case (State::DATA):
             if (parse_data(byte)) state = State::CHECKSUM;
             break;
@@ -121,57 +123,61 @@ bool LidarParser::parse_data(uint8_t byte) {
         case (DataState::ANGLE):
             if (angle_buf.insert(byte)) DataState::START_ANGLE;
             break;
-        case (DataState::START_ANGLE):
-            if (start_angle_buf.insert(byte)) {
-                start_angle = start_angle_buf.val() * 0.01f;
-                temp_point.angle = start_angle;
-                data_state = DataState::END_ANGLE;
-            }
-            break;
-        case (DataState::END_ANGLE):
-            if (end_angle_buf.insert(byte)) {
-                end_angle = end_angle_buf.val() * 0.01f;
-                uint16_t n_measurements = (data_len_buf.val() - 7) / 3;
-                assert(n_measurements != 0);  // should not have zero data
-                delta_angle = (end_angle - start_angle) / n_measurements;
-                data_state = DataState::SIG_STRENGTH;
+        case (DataState::START_ANGLE): {
+            if (!start_angle_buf.insert(byte)) break;
 
-                // debug angle data
-                printf("Start angle: %f\n", start_angle);
-                printf("End angle: %f\n", end_angle);
-                printf("Delta angle: %f\n", delta_angle);
-            }
+            start_angle = start_angle_buf.val() * 0.01f;
+            temp_point.angle = start_angle;
+            data_state = DataState::END_ANGLE;
+
             break;
+        }
+        case (DataState::END_ANGLE): {
+            if (!end_angle_buf.insert(byte)) break;
+
+            end_angle = end_angle_buf.val() * 0.01f;
+            uint16_t n_measurements = (data_len_buf.val() - 7) / 3;
+            assert(n_measurements != 0);  // should not have zero data
+            delta_angle = (end_angle - start_angle) / n_measurements;
+            data_state = DataState::SIG_STRENGTH;
+
+            // debug angle data
+            printf("Start angle: %f\n", start_angle);
+            printf("End angle: %f\n", end_angle);
+            printf("Delta angle: %f\n", delta_angle);
+
+            break;
+        }
         // parts below loop
         case (DataState::SIG_STRENGTH):
             temp_point.sig_strength = byte;
             data_state = DataState::DIST;
             break;
-        case (DataState::DIST):
-            if (dist_buf.insert(byte)) {
-                // byte finished processing
-                // save data to vector
-                // increments of 0.25mm = 0.00025 m
-                temp_point.distance = dist_buf.val() * 0.00025f;
+        case (DataState::DIST): {
+            if (dist_buf.insert(byte)) break;
+            // byte finished processing
+            // save data to vector
+            // increments of 0.25mm = 0.00025 m
+            temp_point.distance = dist_buf.val() * 0.00025f;
 
-                // data_vec.push_back(temp_point);
+            // data_vec.push_back(temp_point);
 
 #ifdef SEND_LIDAR_DATA
-                // send opcode L (lidar)
-                // send sig_str, dist, angle
-                send_byte('$');
-                send_byte('L');
-                send_byte(temp_point.sig_strength);
-                send_float(temp_point.distance);
-                send_float(temp_point.angle);
+            // send opcode L (lidar)
+            // send sig_str, dist, angle
+            send_byte('$');
+            send_byte('L');
+            send_byte(temp_point.sig_strength);
+            send_float(temp_point.distance);
+            send_float(temp_point.angle);
 #endif
 
-                // increment angle for next insert
-                temp_point.angle += delta_angle;
+            // increment angle for next insert
+            temp_point.angle += delta_angle;
 
-                data_state = DataState::SIG_STRENGTH;
-            }
+            data_state = DataState::SIG_STRENGTH;
             break;
+        }
     }
     if (data_byte_count == data_len_buf.val()) return true;
     return false;
