@@ -45,18 +45,18 @@ void LidarParser::parse_byte(uint8_t byte) {
     switch (state) {
         case (State::START):
             assert(byte == 0xAA);
-            advance_state();
+            state = State::FRAME_LENGTH;
             break;
         case (State::FRAME_LENGTH):
-            if (frame_len_buf.insert(byte)) advance_state();
+            if (frame_len_buf.insert(byte)) state = State::VERSION;
             break;
         case (State::VERSION):
             // assert(byte == 0x10); // not true
-            advance_state();
+            state = State::TYPE;
             break;
         case (State::TYPE):
             assert(byte == 0x61);
-            advance_state();
+            state = State::COMMAND;
             break;
         case (State::COMMAND):
             if (byte == 0xAD) {
@@ -68,10 +68,11 @@ void LidarParser::parse_byte(uint8_t byte) {
             } else {  // unknown command???
                 assert(false);
             }
-            advance_state();
+            state = State::DATA_LENGTH;
             break;
         case (State::DATA_LENGTH):
             if (data_len_buf.insert(byte)) {
+                // remember to reset data state to intial rot speed
                 data_state = DataState::ROT_SPEED;
                 if (is_valid_data)
                     state = State::DATA;
@@ -86,18 +87,19 @@ void LidarParser::parse_byte(uint8_t byte) {
             }
             break;
         case (State::DATA):
-            if (parse_data(byte)) advance_state();
+            if (parse_data(byte)) state = State::CHECKSUM;
             break;
         case (State::HEALTH):
             // assert(data_len_buf.val() == 1);
             data_byte_count++;
             rotation_speed = byte * 0.05f;
-            advance_state();
+            state = State::CHECKSUM;
             break;
         case (State::CHECKSUM):
             // enforce checksum
             if (checksum_buf.insert(byte)) {
-                advance_state();
+                // TODO
+                reset_state();
             }
             break;
     }
@@ -114,16 +116,16 @@ bool LidarParser::parse_data(uint8_t byte) {
         case (DataState::ROT_SPEED):
             rotation_speed = byte * 0.05f;
             // assert(rotation_speed != 0);  // shouldnt be 0 in here
-            advance_d_state();
+            data_state = DataState::ANGLE;
             break;
         case (DataState::ANGLE):
-            if (angle_buf.insert(byte)) advance_d_state();
+            if (angle_buf.insert(byte)) DataState::START_ANGLE;
             break;
         case (DataState::START_ANGLE):
             if (start_angle_buf.insert(byte)) {
                 start_angle = start_angle_buf.val() * 0.01f;
                 temp_point.angle = start_angle;
-                advance_d_state();
+                data_state = DataState::END_ANGLE;
             }
             break;
         case (DataState::END_ANGLE):
@@ -132,14 +134,18 @@ bool LidarParser::parse_data(uint8_t byte) {
                 uint16_t n_measurements = (data_len_buf.val() - 7) / 3;
                 assert(n_measurements != 0);  // should not have zero data
                 delta_angle = (end_angle - start_angle) / n_measurements;
+                data_state = DataState::SIG_STRENGTH;
+
+                // debug angle data
+                printf("Start angle: %f\n", start_angle);
+                printf("End angle: %f\n", end_angle);
                 printf("Delta angle: %f\n", delta_angle);
-                advance_d_state();
             }
             break;
         // parts below loop
         case (DataState::SIG_STRENGTH):
             temp_point.sig_strength = byte;
-            advance_d_state();
+            data_state = DataState::DIST;
             break;
         case (DataState::DIST):
             if (dist_buf.insert(byte)) {
@@ -163,7 +169,7 @@ bool LidarParser::parse_data(uint8_t byte) {
                 // increment angle for next insert
                 temp_point.angle += delta_angle;
 
-                advance_d_state();
+                data_state = DataState::SIG_STRENGTH;
             }
             break;
     }
@@ -171,45 +177,25 @@ bool LidarParser::parse_data(uint8_t byte) {
     return false;
 }
 
-void LidarParser::advance_state() {
-    if (state == State::CHECKSUM) {
-        // resets state machine
-        state = State::START;
+void LidarParser::reset_state() {
+    state = State::START;
 
 // ensure data is correct
 #define DEBUG_LENGTH false
 #if DEBUG_LENGTH
-        printf("CS > tot: %d, exp: %d\n", checksum_total, checksum_buf.val());
-        printf("FL > tot: %d, exp: %d\n", frame_byte_count,
-               frame_len_buf.val());
-        printf("DL > tot: %d, exp: %d\n", data_byte_count, data_len_buf.val());
+    printf("CS > tot: %d, exp: %d\n", checksum_total, checksum_buf.val());
+    printf("FL > tot: %d, exp: %d\n", frame_byte_count, frame_len_buf.val());
+    printf("DL > tot: %d, exp: %d\n", data_byte_count, data_len_buf.val());
 #endif
-        // assert(checksum_total == checksum_buf.val());
-        // assert(frame_byte_count == frame_len_buf.val());
-        // assert(data_byte_count == data_len_buf.val());
+    // assert(checksum_total == checksum_buf.val());
+    // assert(frame_byte_count == frame_len_buf.val());
+    // assert(data_byte_count == data_len_buf.val());
 
-        // reset values
-        frame_byte_count = 0;
-        data_byte_count = 0;
-        checksum_total = 0;
-        return;
-    } else if (state == State::HEALTH) {
-        // printf("HS: %f\n", rotation_speed);
-        state = State::CHECKSUM;
-        return;
-    }
-
-    state = static_cast<State>(static_cast<int>(state) + 1);
-}
-
-void LidarParser::advance_d_state() {
-    // loops between sig_strength and dist for subsequent measurements
-    if (data_state == DataState::DIST) {
-        data_state = DataState::SIG_STRENGTH;
-        return;
-    }
-
-    data_state = static_cast<DataState>(static_cast<int>(data_state) + 1);
+    // reset values
+    frame_byte_count = 0;
+    data_byte_count = 0;
+    checksum_total = 0;
+    return;
 }
 
 void LidarParser::print_state() {

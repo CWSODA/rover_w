@@ -104,10 +104,8 @@ class LidarParser {
         DIST
     };
 
-    // handles moving to next state
-    void advance_state();
-    // advance data state
-    void advance_d_state();
+    // handles resetting vars
+    void reset_state();
 
     // returns true once all data bytes have been parsed
     bool parse_data(uint8_t byte);
