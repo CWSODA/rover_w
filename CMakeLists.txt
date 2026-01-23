@@ -33,25 +33,26 @@ project(rover_w C CXX ASM)
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
+file(GLOB_RECURSE SRC CONFIGURE_DEPENDS
+    src/*.cpp
+)
+
 # Add executable
 add_executable(rover_w 
-    src/rover_w.cpp 
-    src/lidar.cpp
-    src/pwm.cpp
+    ${SRC}
 )
 
 pico_set_program_name(rover_w "rover_w")
 pico_set_program_version(rover_w "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(rover_w 0)
-pico_enable_stdio_usb(rover_w 1)
+pico_enable_stdio_uart(rover_w 1)
+pico_enable_stdio_usb(rover_w 0)
 
 # Add the standard include files to the build
 target_include_directories(rover_w PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}
     ${CMAKE_CURRENT_LIST_DIR}/include
-    ${CMAKE_CURRENT_LIST_DIR}/..
 )
 
 # Add the standard library to the build
@@ -60,6 +61,7 @@ target_link_libraries(rover_w
         pico_cyw43_arch_lwip_threadsafe_background
         hardware_i2c
         hardware_pwm
+        hardware_irq
 )
 
 pico_add_extra_outputs(rover_w) 

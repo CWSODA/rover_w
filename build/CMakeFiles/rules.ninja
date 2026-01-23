@@ -97,6 +97,15 @@ rule RERUN_CMAKE
 
 
 #############################################
+# Rule for re-checking globbed directories.
+
+rule VERIFY_GLOBS
+  command = /Users/admin/.pico-sdk/cmake/v3.31.5/CMake.app/Contents/bin/cmake -P /Users/admin/rover/rover_wifi/rover_w/build/CMakeFiles/VerifyGlobs.cmake
+  description = Re-checking globbed directories...
+  generator = 1
+
+
+#############################################
 # Rule for cleaning all built files.
 
 rule CLEAN

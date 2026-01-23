@@ -1,15 +1,10 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
-// #include "hardware/i2c.h"
-// #include "pico/cyw43_arch.h"
-// #include "hardware/uart.h"
 
 // self headers
+#include "sender.hpp"
 // #include "motors.hpp"
-// #include "lidar.hpp"
-
-// #include "tcp.hpp"
-// #include "help.hpp"
+#include "lidar.hpp"
 
 // UART debug
 // screen /dev/tty.usbserial-FTU7C2WR 115200
@@ -18,24 +13,20 @@
 // screen /dev/tty.usbmodem11101
 
 int main() {
-    stdio_init_all();
-
-    // wait for usb to connect
-    while (!stdio_usb_connected()) {
-        sleep_ms(10);
-    }
+    init_data_sending();
+    printf("Rover Starting...\n");
 
     // INIT MOTORS
     // MotorControl motors;
 
     // INIT LIDAR
-    // init_lidar_rx(LIDAR_RX_PIN);
+    init_lidar_rx();
 
     while (true) {
         // char c = uart_getc(uart1);
         // printf(" %02X ", c);
         // motors.update_motors();
-        sleep_ms(10000);
-        printf("ALIVE\n");
+        // sleep_ms(500);
+        // printf("ALIVE\n");
     }
 }

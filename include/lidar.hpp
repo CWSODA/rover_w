@@ -1,7 +1,9 @@
 #pragma once
 #define LIDAR_RX_PIN 5
 
+#include "pico/stdlib.h"  // used for type definitions uint16 etc
 #include <vector>
+
 // code for the delta-2D lidar
 
 // data comes from UART TX pin from the lidar
@@ -30,7 +32,7 @@
 // 1 byte unsigned signal strength
 // 2 byte unsigned distance in 0.25mm
 
-#include "pico/stdlib.h"
+void init_lidar_rx();
 
 // helper class to buffer 2 byte / 16-bit data
 class TwoByteBuffer {
@@ -66,6 +68,7 @@ struct DataPoint {
     float distance;
     float angle;
 
+    DataPoint() {}
     DataPoint(float dist, float angle, uint8_t sig_strength) {
         this->sig_strength = sig_strength;
         this->distance = dist;
@@ -74,6 +77,7 @@ struct DataPoint {
 };
 
 class LidarParser {
+   public:
     void parse_byte(uint8_t byte);
 
    private:
@@ -88,6 +92,8 @@ class LidarParser {
         CHECKSUM,
         HEALTH,
     };
+
+    void print_state();
 
     enum class DataState {
         ROT_SPEED = 0,
@@ -109,7 +115,7 @@ class LidarParser {
     // state vars
     State state = State::START;
     DataState data_state = DataState::ROT_SPEED;
-    bool is_valid_data;
+    bool is_valid_data = false;
     uint16_t checksum_total = 0;
     uint16_t frame_byte_count = 0;
     uint16_t data_byte_count = 0;
@@ -131,5 +137,3 @@ class LidarParser {
     DataPoint temp_point;                       // temp
     std::vector<DataPoint> data_vec;
 };
-
-void init_lidar_rx(uint rx_pin);
