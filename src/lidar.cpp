@@ -7,26 +7,37 @@
 
 #include "global.h"
 #include "sender.hpp"
+#include "uart1_ringbuf.h"  // has uart1_rx_handler
 
 #define SEND_LIDAR_DATA
 
 #define DEBUG_STATES false
+#define DEBUG_LENGTH false
 
-void uart1_rx_handler() {
-    while (uart_is_readable(uart1)) {
-        uint8_t ch = uart_getc(uart1);
+const int LIDAR_RX_BAUDRATE = 115200;
 
-        // echo on printf
-        // printf("RX: %02X\n", ch);
+void lidar_update() {
+    static uint16_t n = 0;
+    if (n != 0) return;
 
-        lidar_parser.parse_byte(ch);
+    uint8_t byte;
+    while (ringbuf_pop(&byte)) {
+        // send_hex(byte);
+        lidar_parser.parse_byte(byte);
+    }
+
+    uint16_t overflow_count = ringbuf_get_overflow_count();
+    if (n != overflow_count) {
+        DBG("OVERFLOWED %d TIMES!\n", overflow_count);
+        n = overflow_count;
     }
 }
 
 // initiate UART RX ONLY
 void init_lidar_rx() {
     gpio_set_function(LIDAR_RX_PIN, GPIO_FUNC_UART);
-    uart_init(uart1, 115200);
+    uart_init(uart1, LIDAR_RX_BAUDRATE);
+    uart_set_format(uart1, 8, 1, UART_PARITY_NONE);
 
     uart_set_translate_crlf(uart1, false);  // disable translations
 
@@ -42,23 +53,32 @@ void LidarParser::parse_byte(uint8_t byte) {
         ++frame_byte_count;
     }
 
+    // debug state
+#if DEBUG_STATES
+    print_state();
+#endif
+
     switch (state) {
-        case (State::START):
+        case (State::START): {
             assert(byte == 0xAA);
             state = State::FRAME_LENGTH;
             break;
-        case (State::FRAME_LENGTH):
+        }
+        case (State::FRAME_LENGTH): {
             if (frame_len_buf.insert(byte)) state = State::VERSION;
             break;
-        case (State::VERSION):
+        }
+        case (State::VERSION): {
             // assert(byte == 0x10); // not true
             state = State::TYPE;
             break;
-        case (State::TYPE):
+        }
+        case (State::TYPE): {
             assert(byte == 0x61);
             state = State::COMMAND;
             break;
-        case (State::COMMAND):
+        }
+        case (State::COMMAND): {
             if (byte == 0xAD) {
                 // normal, parse data
                 is_valid_data = true;
@@ -70,59 +90,61 @@ void LidarParser::parse_byte(uint8_t byte) {
             }
             state = State::DATA_LENGTH;
             break;
+        }
         case (State::DATA_LENGTH): {
             if (!data_len_buf.insert(byte)) break;
 
-            // remember to reset data state to intial rot speed
-            data_state = DataState::ROT_SPEED;
-            if (is_valid_data)
+            if (is_valid_data) {
+                // remember to reset data state to intial rot speed
+                data_state = DataState::ROT_SPEED;
+                data_byte_count = 0;
                 state = State::DATA;
-            else
+            } else
                 state = State::HEALTH;
 
             // ensures data length is consistent with frame length
             // data length should be 1+2+1+1+1+2 = 8 bytes shorter
-            // printf("Data length: %d, Frame Length: %d\n",
+            // DBG("Data length: %d, Frame Length: %d\n",
             //        data_len_buf.val(), frame_len_buf.val());
             assert(data_len_buf.val() == frame_len_buf.val() - 8);
 
             break;
         }
-        case (State::DATA):
+        case (State::DATA): {
             if (parse_data(byte)) state = State::CHECKSUM;
             break;
-        case (State::HEALTH):
+        }
+        case (State::HEALTH): {
             // assert(data_len_buf.val() == 1);
-            data_byte_count++;
+            ++data_byte_count;
             rotation_speed = byte * 0.05f;
             state = State::CHECKSUM;
             break;
-        case (State::CHECKSUM):
+        }
+        case (State::CHECKSUM): {
             // enforce checksum
             if (checksum_buf.insert(byte)) {
                 // TODO
                 reset_state();
             }
             break;
+        }
     }
-
-// debug state
-#if DEBUG_STATES
-    print_state();
-#endif
 }
 
 bool LidarParser::parse_data(uint8_t byte) {
     ++data_byte_count;
     switch (data_state) {
-        case (DataState::ROT_SPEED):
+        case (DataState::ROT_SPEED): {
             rotation_speed = byte * 0.05f;
             // assert(rotation_speed != 0);  // shouldnt be 0 in here
             data_state = DataState::ANGLE;
             break;
-        case (DataState::ANGLE):
-            if (angle_buf.insert(byte)) DataState::START_ANGLE;
+        }
+        case (DataState::ANGLE): {
+            if (angle_buf.insert(byte)) data_state = DataState::START_ANGLE;
             break;
+        }
         case (DataState::START_ANGLE): {
             if (!start_angle_buf.insert(byte)) break;
 
@@ -136,15 +158,24 @@ bool LidarParser::parse_data(uint8_t byte) {
             if (!end_angle_buf.insert(byte)) break;
 
             end_angle = end_angle_buf.val() * 0.01f;
+
+            // data length includes 1+2+2+2 header for rot speed and angles
+            // each data point has 1+2 bytes for strength(1) and distance(2)
             uint16_t n_measurements = (data_len_buf.val() - 7) / 3;
             assert(n_measurements != 0);  // should not have zero data
             delta_angle = (end_angle - start_angle) / n_measurements;
             data_state = DataState::SIG_STRENGTH;
 
             // debug angle data
-            printf("Start angle: %f\n", start_angle);
-            printf("End angle: %f\n", end_angle);
-            printf("Delta angle: %f\n", delta_angle);
+            DBG("---\n");
+            DBG("Offset angle: %f\n", angle_buf.val() * 0.01f);
+            DBG("Start angle: %f\n", start_angle);
+            DBG("End angle: %f\n", end_angle);
+            DBG("DL: %d\n", data_len_buf.val());
+            DBG("DP float: %f\n", (data_len_buf.val() - 7.0f) / 3.0f);
+            DBG("Data points: %d\n", n_measurements);
+            DBG("Delta angle: %f\n", delta_angle);
+            DBG("---\n");
 
             break;
         }
@@ -179,27 +210,33 @@ bool LidarParser::parse_data(uint8_t byte) {
             break;
         }
     }
-    if (data_byte_count == data_len_buf.val()) return true;
+    if (data_byte_count == data_len_buf.val()) {
+        if (data_state == DataState::SIG_STRENGTH) {
+            DBG("Broken at sig\n");
+        } else if (data_state == DataState::DIST) {
+            DBG("Broken at dist\n");
+        } else {
+            DBG("Broken at invalid\n");
+        }
+        return true;
+    }
     return false;
 }
 
 void LidarParser::reset_state() {
     state = State::START;
 
-// ensure data is correct
-#define DEBUG_LENGTH false
 #if DEBUG_LENGTH
-    printf("CS > tot: %d, exp: %d\n", checksum_total, checksum_buf.val());
-    printf("FL > tot: %d, exp: %d\n", frame_byte_count, frame_len_buf.val());
-    printf("DL > tot: %d, exp: %d\n", data_byte_count, data_len_buf.val());
+    DBG("CS > tot: %d, exp: %d\n", checksum_total, checksum_buf.val());
+    DBG("FL > tot: %d, exp: %d\n", frame_byte_count, frame_len_buf.val());
+    DBG("DL > tot: %d, exp: %d\n", data_byte_count, data_len_buf.val());
 #endif
+    // ensure data is correct
     // assert(checksum_total == checksum_buf.val());
     // assert(frame_byte_count == frame_len_buf.val());
-    // assert(data_byte_count == data_len_buf.val());
 
     // reset values
     frame_byte_count = 0;
-    data_byte_count = 0;
     checksum_total = 0;
     return;
 }
@@ -207,51 +244,51 @@ void LidarParser::reset_state() {
 void LidarParser::print_state() {
     switch (state) {
         case (State::START):
-            printf("START\n");
+            DBG("START\n");
             break;
         case (State::FRAME_LENGTH):
-            printf("FRAME LENGTH\n");
+            DBG("FRAME LENGTH\n");
             break;
         case (State::VERSION):
-            printf("VERSION\n");
+            DBG("VERSION\n");
             break;
         case (State::TYPE):
-            printf("TYPE\n");
+            DBG("TYPE\n");
             break;
         case (State::COMMAND):
-            printf("COMMAND\n");
+            DBG("COMMAND\n");
             break;
         case (State::DATA_LENGTH):
-            printf("DATA LENGTH\n");
+            DBG("DATA LENGTH\n");
             break;
         case (State::DATA):
             switch (data_state) {
                 case (DataState::ROT_SPEED):
-                    printf("DATA: ROT SPEED\n");
+                    DBG("DATA: ROT SPEED\n");
                     break;
                 case (DataState::ANGLE):
-                    printf("DATA: ANGLE\n");
+                    DBG("DATA: ANGLE\n");
                     break;
                 case (DataState::START_ANGLE):
-                    printf("DATA: START ANGLE\n");
+                    DBG("DATA: START ANGLE\n");
                     break;
                 case (DataState::END_ANGLE):
-                    printf("DATA: END ANGLE\n");
+                    DBG("DATA: END ANGLE\n");
                     break;
                 // parts below loop
                 case (DataState::SIG_STRENGTH):
-                    printf("DATA: SIGNAL STRENGTH\n");
+                    DBG("DATA: SIGNAL STRENGTH\n");
                     break;
                 case (DataState::DIST):
-                    printf("DATA: DISTANCE\n");
+                    DBG("DATA: DISTANCE\n");
                     break;
             }
             break;
         case (State::HEALTH):
-            printf("HEALTH\n");
+            DBG("HEALTH\n");
             break;
         case (State::CHECKSUM):
-            printf("CHECKSUM\n");
+            DBG("CHECKSUM\n");
             break;
     }
 }

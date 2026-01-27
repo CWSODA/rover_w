@@ -12,9 +12,9 @@ void init_debug_uart() {
 
     uart_set_translate_crlf(uart0, false);  // disable translations
 
-    irq_set_exclusive_handler(UART0_IRQ, debug_uart_handler);
-    irq_set_enabled(UART0_IRQ, true);
-    uart_set_irqs_enabled(uart0, true, false);  // enable rx interrupts
+    // irq_set_exclusive_handler(UART0_IRQ, debug_uart_handler);
+    // irq_set_enabled(UART0_IRQ, true);
+    // uart_set_irqs_enabled(uart0, true, false);  // enable rx interrupts
 }
 
 void debug_uart_handler() {

@@ -5,6 +5,7 @@
 #include "sender.hpp"
 // #include "motors.hpp"
 #include "lidar.hpp"
+#include "global.h"
 
 // UART debug
 // screen /dev/tty.usbserial-FTU7C2WR 115200
@@ -14,7 +15,8 @@
 
 int main() {
     init_data_sending();
-    printf("Rover Starting...\n");
+    sleep_ms(100);
+    DBG("Rover Starting...\n");
 
     // INIT MOTORS
     // MotorControl motors;
@@ -27,6 +29,7 @@ int main() {
         // printf(" %02X ", c);
         // motors.update_motors();
         // sleep_ms(500);
-        // printf("ALIVE\n");
+        // DBG("ALIVE\n");
+        lidar_update();
     }
 }

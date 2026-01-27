@@ -10,6 +10,7 @@ set(OLD_GLOB
   "/Users/admin/rover/rover_wifi/rover_w/src/rover_w.cpp"
   "/Users/admin/rover/rover_wifi/rover_w/src/sender.cpp"
   "/Users/admin/rover/rover_wifi/rover_w/src/serial_debug.cpp"
+  "/Users/admin/rover/rover_wifi/rover_w/src/uart1_ringbuf.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")

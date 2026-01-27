@@ -33,6 +33,7 @@
 // 2 byte unsigned distance in 0.25mm
 
 void init_lidar_rx();
+void lidar_update();
 
 // helper class to buffer 2 byte / 16-bit data
 class TwoByteBuffer {

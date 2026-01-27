@@ -47,3 +47,10 @@ void send_float(const float val) {
     send_byte(bytes[2]);
     send_byte(bytes[3]);
 }
+
+static const char hex_table[] = "0123456789ABCDEF";
+void send_hex(const uint8_t byte) {
+    send_byte(hex_table[byte >> 4]);
+    send_byte(hex_table[byte & 0x0F]);
+    send_byte('\n');
+}

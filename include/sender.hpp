@@ -9,3 +9,5 @@ void init_data_sending();
 void send_byte(const char c);
 
 void send_float(const float val);
+
+void send_hex(const uint8_t byte);
