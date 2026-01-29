@@ -167,17 +167,28 @@ Discarded input sections
                 0x00000000       0xdb /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/crt0.o
  .ARM.attributes
                 0x00000000       0x1b /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/crt0.o
+ .text          0x00000000        0x0 CMakeFiles/rover_w.dir/src/dir.cpp.o
+ .data          0x00000000        0x0 CMakeFiles/rover_w.dir/src/dir.cpp.o
+ .bss           0x00000000        0x0 CMakeFiles/rover_w.dir/src/dir.cpp.o
+ .text._Z8calc_vecv
+                0x00000000        0x4 CMakeFiles/rover_w.dir/src/dir.cpp.o
+ .debug_info    0x00000000       0x3d CMakeFiles/rover_w.dir/src/dir.cpp.o
+ .debug_abbrev  0x00000000       0x2d CMakeFiles/rover_w.dir/src/dir.cpp.o
+ .debug_aranges
+                0x00000000       0x20 CMakeFiles/rover_w.dir/src/dir.cpp.o
+ .debug_rnglists
+                0x00000000       0x13 CMakeFiles/rover_w.dir/src/dir.cpp.o
+ .debug_line    0x00000000       0x65 CMakeFiles/rover_w.dir/src/dir.cpp.o
+ .debug_str     0x00000000      0x144 CMakeFiles/rover_w.dir/src/dir.cpp.o
+ .comment       0x00000000       0x46 CMakeFiles/rover_w.dir/src/dir.cpp.o
+ .debug_frame   0x00000000       0x20 CMakeFiles/rover_w.dir/src/dir.cpp.o
+ .ARM.attributes
+                0x00000000       0x2c CMakeFiles/rover_w.dir/src/dir.cpp.o
  .group         0x00000000        0x8 CMakeFiles/rover_w.dir/src/lidar.cpp.o
  .group         0x00000000        0x8 CMakeFiles/rover_w.dir/src/lidar.cpp.o
  .text          0x00000000        0x0 CMakeFiles/rover_w.dir/src/lidar.cpp.o
  .data          0x00000000        0x0 CMakeFiles/rover_w.dir/src/lidar.cpp.o
  .bss           0x00000000        0x0 CMakeFiles/rover_w.dir/src/lidar.cpp.o
- .rodata._ZN11LidarParser10parse_dataEh.str1.4
-                0x00000000       0xae CMakeFiles/rover_w.dir/src/lidar.cpp.o
- .text._ZN11LidarParser10parse_dataEh
-                0x00000000      0x250 CMakeFiles/rover_w.dir/src/lidar.cpp.o
- .rodata._ZN11LidarParser10parse_dataEh
-                0x00000000       0x18 CMakeFiles/rover_w.dir/src/lidar.cpp.o
  .text._ZN11LidarParser10parse_byteEh
                 0x00000000       0xec CMakeFiles/rover_w.dir/src/lidar.cpp.o
  .rodata._ZN11LidarParser10parse_byteEh
@@ -185,11 +196,11 @@ Discarded input sections
  .text._ZN11LidarParser11reset_stateEv
                 0x00000000        0xc CMakeFiles/rover_w.dir/src/lidar.cpp.o
  .rodata._ZN11LidarParser11print_stateEv.str1.4
-                0x00000000       0xb5 CMakeFiles/rover_w.dir/src/lidar.cpp.o
+                0x00000000       0xa5 CMakeFiles/rover_w.dir/src/lidar.cpp.o
  .text._ZN11LidarParser11print_stateEv
-                0x00000000       0xd0 CMakeFiles/rover_w.dir/src/lidar.cpp.o
+                0x00000000       0xc4 CMakeFiles/rover_w.dir/src/lidar.cpp.o
  .rodata._ZN11LidarParser11print_stateEv
-                0x00000000       0x3c CMakeFiles/rover_w.dir/src/lidar.cpp.o
+                0x00000000       0x38 CMakeFiles/rover_w.dir/src/lidar.cpp.o
  .text.exit._GLOBAL__sub_D__Z12lidar_updatev
                 0x00000000       0x28 CMakeFiles/rover_w.dir/src/lidar.cpp.o
  .fini_array    0x00000000        0x4 CMakeFiles/rover_w.dir/src/lidar.cpp.o
@@ -216,16 +227,21 @@ Discarded input sections
  .debug_frame   0x00000000       0x54 CMakeFiles/rover_w.dir/src/pwm.cpp.o
  .ARM.attributes
                 0x00000000       0x2c CMakeFiles/rover_w.dir/src/pwm.cpp.o
+ .group         0x00000000        0x8 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
+ .group         0x00000000        0x8 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
  .text          0x00000000        0x0 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
  .data          0x00000000        0x0 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
  .bss           0x00000000        0x0 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
+ .text.exit._GLOBAL__sub_D_main
+                0x00000000       0x28 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
+ .fini_array    0x00000000        0x4 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
+ .bss._ZGV12lidar_parser
+                0x00000000        0x4 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
+ .bss.lidar_parser
+                0x00000000       0x4c CMakeFiles/rover_w.dir/src/rover_w.cpp.o
  .text          0x00000000        0x0 CMakeFiles/rover_w.dir/src/sender.cpp.o
  .data          0x00000000        0x0 CMakeFiles/rover_w.dir/src/sender.cpp.o
  .bss           0x00000000        0x0 CMakeFiles/rover_w.dir/src/sender.cpp.o
- .text._Z9send_bytec
-                0x00000000        0x8 CMakeFiles/rover_w.dir/src/sender.cpp.o
- .text._Z10send_floatf
-                0x00000000       0x28 CMakeFiles/rover_w.dir/src/sender.cpp.o
  .text._Z8send_hexh
                 0x00000000       0x24 CMakeFiles/rover_w.dir/src/sender.cpp.o
  .rodata._ZL9hex_table
@@ -235,9 +251,18 @@ Discarded input sections
  .bss           0x00000000        0x0 CMakeFiles/rover_w.dir/src/serial_debug.cpp.o
  .text._Z18debug_uart_handlerv
                 0x00000000        0x4 CMakeFiles/rover_w.dir/src/serial_debug.cpp.o
+ .group         0x00000000        0x8 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
+ .group         0x00000000        0x8 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
  .text          0x00000000        0x0 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
  .data          0x00000000        0x0 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
  .bss           0x00000000        0x0 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
+ .text.exit._GLOBAL__sub_D__Z16uart1_rx_handlerv
+                0x00000000       0x28 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
+ .fini_array    0x00000000        0x4 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
+ .bss._ZGV12lidar_parser
+                0x00000000        0x4 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
+ .bss.lidar_parser
+                0x00000000       0x4c CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
  .text          0x00000000        0x0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdlib/stdlib.c.o
  .data          0x00000000        0x0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdlib/stdlib.c.o
  .bss           0x00000000        0x0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdlib/stdlib.c.o
@@ -1195,8 +1220,6 @@ Discarded input sections
  .text          0x00000000        0x0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
  .data          0x00000000        0x0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
  .bss           0x00000000        0x0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
- .text.__wrap___aeabi_farithmetic
-                0x00000000       0x48 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
  .text.__wrap___aeabi_cfcmple
                 0x00000000       0x50 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
  .text.__wrap___aeabi_fcmpeq
@@ -1213,8 +1236,6 @@ Discarded input sections
                 0x00000000       0x18 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
  .text.__wrap___aeabi_ui2f
                 0x00000000        0xa CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
- .text.__wrap___aeabi_i2f
-                0x00000000       0x44 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
  .text.__wrap___aeabi_f2iz
                 0x00000000       0x4e CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
  .text.float2int
@@ -1570,8 +1591,6 @@ Discarded input sections
                 0x00000000       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
  .text.stdio_get_until
                 0x00000000       0x84 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
- .text.stdio_putchar_raw
-                0x00000000       0x94 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
  .text.stdio_puts_raw
                 0x00000000       0x3c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
  .text.stdio_flush
@@ -5399,7 +5418,7 @@ LOAD /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.
                 0x10000100                        __boot2_end__ = .
                 0x00000001                        ASSERT (((__boot2_end__ - __boot2_start__) == 0x100), ERROR: Pico second stage bootloader must be 256 bytes in size)
 
-.text           0x10000100     0x3fd0
+.text           0x10000100     0x43f0
                 0x10000100                        __logical_binary_start = .
  *(.vectors)
  .vectors       0x10000100       0xd4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_crt0/crt0.S.o
@@ -5465,344 +5484,371 @@ LOAD /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.
                 0x10000288       0x28 /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
  .text.frame_dummy
                 0x100002b0       0x24 /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
- .text._Z12lidar_updatev
-                0x100002d4       0x34 CMakeFiles/rover_w.dir/src/lidar.cpp.o
-                0x100002d4                lidar_update()
  .text._Z13init_lidar_rxv
-                0x10000308       0x58 CMakeFiles/rover_w.dir/src/lidar.cpp.o
-                0x10000308                init_lidar_rx()
+                0x100002d4       0x58 CMakeFiles/rover_w.dir/src/lidar.cpp.o
+                0x100002d4                init_lidar_rx()
+ .text._ZN11LidarParser10parse_dataEh
+                0x1000032c      0x144 CMakeFiles/rover_w.dir/src/lidar.cpp.o
+                0x1000032c                LidarParser::parse_data(unsigned char)
+ .text._Z12lidar_updatev
+                0x10000470      0x138 CMakeFiles/rover_w.dir/src/lidar.cpp.o
+                0x10000470                lidar_update()
  .text.startup._GLOBAL__sub_I__Z12lidar_updatev
-                0x10000360       0x44 CMakeFiles/rover_w.dir/src/lidar.cpp.o
+                0x100005a8       0x40 CMakeFiles/rover_w.dir/src/lidar.cpp.o
  .text.startup.main
-                0x100003a4       0x20 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
-                0x100003a4                main
+                0x100005e8       0x24 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
+                0x100005e8                main
+ .text.startup._GLOBAL__sub_I_main
+                0x1000060c       0x40 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
  .text._Z17init_data_sendingv
-                0x100003c4        0xc CMakeFiles/rover_w.dir/src/sender.cpp.o
-                0x100003c4                init_data_sending()
+                0x1000064c        0xc CMakeFiles/rover_w.dir/src/sender.cpp.o
+                0x1000064c                init_data_sending()
+ .text._Z9send_bytec
+                0x10000658        0x8 CMakeFiles/rover_w.dir/src/sender.cpp.o
+                0x10000658                send_byte(char)
+ .text._Z10send_floatf
+                0x10000660       0x28 CMakeFiles/rover_w.dir/src/sender.cpp.o
+                0x10000660                send_float(float)
  .text._Z15init_debug_uartv
-                0x100003d0       0x2c CMakeFiles/rover_w.dir/src/serial_debug.cpp.o
-                0x100003d0                init_debug_uart()
+                0x10000688       0x2c CMakeFiles/rover_w.dir/src/serial_debug.cpp.o
+                0x10000688                init_debug_uart()
  .text._Z16uart1_rx_handlerv
-                0x100003fc       0x88 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
-                0x100003fc                uart1_rx_handler()
+                0x100006b4       0x88 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
+                0x100006b4                uart1_rx_handler()
  .text._Z11ringbuf_popPh
-                0x10000484       0x34 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
-                0x10000484                ringbuf_pop(unsigned char*)
+                0x1000073c       0x34 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
+                0x1000073c                ringbuf_pop(unsigned char*)
  .text._Z26ringbuf_get_overflow_countv
-                0x100004b8        0xc CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
-                0x100004b8                ringbuf_get_overflow_count()
+                0x10000770        0xc CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
+                0x10000770                ringbuf_get_overflow_count()
+ .text.startup._GLOBAL__sub_I__Z16uart1_rx_handlerv
+                0x1000077c       0x40 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
  .text.gpio_set_function
-                0x100004c4       0x34 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_gpio/gpio.c.o
-                0x100004c4                gpio_set_function
- .text.panic    0x100004f8       0x30 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/panic.c.o
-                0x100004f8                panic
+                0x100007bc       0x34 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_gpio/gpio.c.o
+                0x100007bc                gpio_set_function
+ .text.panic    0x100007f0       0x30 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/panic.c.o
+                0x100007f0                panic
  .text.hw_claim_or_assert
-                0x10000528       0x44 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/hardware_claim/claim.c.o
-                0x10000528                hw_claim_or_assert
+                0x10000820       0x44 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/hardware_claim/claim.c.o
+                0x10000820                hw_claim_or_assert
  .text.next_striped_spin_lock_num
-                0x1000056c       0x18 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync/sync.c.o
-                0x1000056c                next_striped_spin_lock_num
+                0x10000864       0x18 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync/sync.c.o
+                0x10000864                next_striped_spin_lock_num
  .text.spin_locks_reset
-                0x10000584       0x1c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
-                0x10000584                spin_locks_reset
+                0x1000087c       0x1c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
+                0x1000087c                spin_locks_reset
  .text.runtime_init_per_core_irq_priorities
-                0x100005a0       0x24 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
-                0x100005a0                runtime_init_per_core_irq_priorities
+                0x10000898       0x24 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
+                0x10000898                runtime_init_per_core_irq_priorities
  .text.irq_set_enabled
-                0x100005c4       0x24 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
-                0x100005c4                irq_set_enabled
+                0x100008bc       0x24 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
+                0x100008bc                irq_set_enabled
  .text.irq_set_exclusive_handler
-                0x100005e8       0x54 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
-                0x100005e8                irq_set_exclusive_handler
+                0x100008e0       0x54 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
+                0x100008e0                irq_set_exclusive_handler
  .text.irq_remove_handler
-                0x1000063c      0x1d4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
-                0x1000063c                irq_remove_handler
+                0x10000934      0x1d4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
+                0x10000934                irq_remove_handler
  .text.irq_add_tail_to_free_list
-                0x10000810       0xb4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
-                0x10000810                irq_add_tail_to_free_list
+                0x10000b08       0xb4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
+                0x10000b08                irq_add_tail_to_free_list
  .text.lock_init
-                0x100008c4       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/lock_core.c.o
-                0x100008c4                lock_init
+                0x10000bbc       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/lock_core.c.o
+                0x10000bbc                lock_init
  .text.runtime_init_mutex
-                0x100008d4       0x50 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/mutex.c.o
-                0x100008d4                runtime_init_mutex
+                0x10000bcc       0x50 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/mutex.c.o
+                0x10000bcc                runtime_init_mutex
  .text.sleep_until_callback
-                0x10000924       0x30 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
+                0x10000c1c       0x30 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
  .text.alarm_pool_irq_handler
-                0x10000954      0x300 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
+                0x10000c4c      0x300 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
  .text.runtime_init_default_alarm_pool
-                0x10000c54       0xdc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
-                0x10000c54                runtime_init_default_alarm_pool
+                0x10000f4c       0xdc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
+                0x10000f4c                runtime_init_default_alarm_pool
  .text.alarm_pool_add_alarm_at_force_in_context
-                0x10000d30       0xb0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
-                0x10000d30                alarm_pool_add_alarm_at_force_in_context
+                0x10001028       0xb0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
+                0x10001028                alarm_pool_add_alarm_at_force_in_context
  .text.alarm_pool_cancel_alarm
-                0x10000de0       0x74 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
-                0x10000de0                alarm_pool_cancel_alarm
+                0x100010d8       0x74 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
+                0x100010d8                alarm_pool_cancel_alarm
  .text.sleep_ms
-                0x10000e54       0xfc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
-                0x10000e54                sleep_ms
+                0x1000114c       0xfc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
+                0x1000114c                sleep_ms
  .text.best_effort_wfe_or_timeout
-                0x10000f50      0x10c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
-                0x10000f50                best_effort_wfe_or_timeout
+                0x10001248      0x10c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
+                0x10001248                best_effort_wfe_or_timeout
  .text.timer_hardware_alarm_claim
-                0x1000105c       0x14 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
-                0x1000105c                timer_hardware_alarm_claim
+                0x10001354       0x14 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
+                0x10001354                timer_hardware_alarm_claim
  .text.timer_time_us_64
-                0x10001070       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
-                0x10001070                timer_time_us_64
+                0x10001368       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
+                0x10001368                timer_time_us_64
  .text.time_us_64
-                0x10001080       0x14 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
-                0x10001080                time_us_64
+                0x10001378       0x14 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
+                0x10001378                time_us_64
  .text.busy_wait_us
-                0x10001094       0x68 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
-                0x10001094                busy_wait_us
+                0x1000138c       0x68 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
+                0x1000138c                busy_wait_us
  .text.busy_wait_until
-                0x100010fc       0x20 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
-                0x100010fc                busy_wait_until
+                0x100013f4       0x20 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
+                0x100013f4                busy_wait_until
  .text.uart_init
-                0x1000111c      0x120 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
-                0x1000111c                uart_init
+                0x10001414      0x120 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
+                0x10001414                uart_init
  .text.uart_set_format
-                0x1000123c       0x78 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
-                0x1000123c                uart_set_format
+                0x10001534       0x78 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
+                0x10001534                uart_set_format
  .text.uart_set_translate_crlf
-                0x100012b4       0x28 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
-                0x100012b4                uart_set_translate_crlf
+                0x100015ac       0x28 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
+                0x100015ac                uart_set_translate_crlf
  .text.clock_configure_int_divider
-                0x100012dc       0xf4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
-                0x100012dc                clock_configure_int_divider
+                0x100015d4       0xf4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
+                0x100015d4                clock_configure_int_divider
  .text.clock_configure_undivided
-                0x100013d0       0xe8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
-                0x100013d0                clock_configure_undivided
+                0x100016c8       0xe8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
+                0x100016c8                clock_configure_undivided
  .text.clock_get_hz
-                0x100014b8        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
-                0x100014b8                clock_get_hz
+                0x100017b0        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
+                0x100017b0                clock_get_hz
  .text.pll_init
-                0x100014c4       0xa4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_pll/pll.c.o
-                0x100014c4                pll_init
+                0x100017bc       0xa4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_pll/pll.c.o
+                0x100017bc                pll_init
  .text.tick_start
-                0x10001568       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_ticks/ticks.c.o
-                0x10001568                tick_start
+                0x10001860       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_ticks/ticks.c.o
+                0x10001860                tick_start
  .text.rom_func_lookup
-                0x10001578       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bootrom/bootrom.c.o
-                0x10001578                rom_func_lookup
+                0x10001870       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bootrom/bootrom.c.o
+                0x10001870                rom_func_lookup
  .text.rom_data_lookup
-                0x10001588       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bootrom/bootrom.c.o
-                0x10001588                rom_data_lookup
+                0x10001880       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bootrom/bootrom.c.o
+                0x10001880                rom_data_lookup
  .text.rom_funcs_lookup
-                0x10001598       0x44 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bootrom/bootrom.c.o
-                0x10001598                rom_funcs_lookup
+                0x10001890       0x44 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bootrom/bootrom.c.o
+                0x10001890                rom_funcs_lookup
  .text.xosc_init
-                0x100015dc       0x28 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_xosc/xosc.c.o
-                0x100015dc                xosc_init
+                0x100018d4       0x28 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_xosc/xosc.c.o
+                0x100018d4                xosc_init
  .text.first_per_core_initializer
-                0x10001604        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
+                0x100018fc        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
  .text.hard_assertion_failure
-                0x10001608        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
-                0x10001608                hard_assertion_failure
+                0x10001900        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
+                0x10001900                hard_assertion_failure
  .text.runtime_run_initializers
-                0x10001614       0x28 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
-                0x10001614                runtime_run_initializers
+                0x1000190c       0x28 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
+                0x1000190c                runtime_run_initializers
  .text.runtime_init_early_resets
-                0x1000163c       0x2c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x1000163c                runtime_init_early_resets
+                0x10001934       0x2c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x10001934                runtime_init_early_resets
  .text.runtime_init_usb_power_down
-                0x10001668       0x1c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x10001668                runtime_init_usb_power_down
+                0x10001960       0x1c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x10001960                runtime_init_usb_power_down
  .text.runtime_init_post_clock_resets
-                0x10001684       0x20 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x10001684                runtime_init_post_clock_resets
+                0x1000197c       0x20 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x1000197c                runtime_init_post_clock_resets
  .text.runtime_init_rp2040_gpio_ie_disable
-                0x100016a4       0x14 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x100016a4                runtime_init_rp2040_gpio_ie_disable
+                0x1000199c       0x14 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x1000199c                runtime_init_rp2040_gpio_ie_disable
  .text.runtime_init_spin_locks_reset
-                0x100016b8        0x8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x100016b8                runtime_init_spin_locks_reset
+                0x100019b0        0x8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x100019b0                runtime_init_spin_locks_reset
  .text.runtime_init_install_ram_vector_table
-                0x100016c0       0xb4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x100016c0                runtime_init_install_ram_vector_table
+                0x100019b8       0xb4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x100019b8                runtime_init_install_ram_vector_table
  .text.runtime_init_clocks
-                0x10001774       0xd8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
-                0x10001774                runtime_init_clocks
- .text          0x1000184c       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
+                0x10001a6c       0xd8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
+                0x10001a6c                runtime_init_clocks
+ .text          0x10001b44       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
  .text.__wrap___aeabi_idiv
-                0x1000185c       0x50 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_divider/divider_hardware.S.o
-                0x1000185c                __wrap___aeabi_idivmod
-                0x1000185c                divmod_s32s32
-                0x1000185c                div_s32s32
-                0x1000185c                __wrap___aeabi_idiv
-                0x10001864                divmod_s32s32_unsafe
-                0x10001890                divmod_s32s32_savestate
+                0x10001b54       0x50 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_divider/divider_hardware.S.o
+                0x10001b54                __wrap___aeabi_idivmod
+                0x10001b54                divmod_s32s32
+                0x10001b54                div_s32s32
+                0x10001b54                __wrap___aeabi_idiv
+                0x10001b5c                divmod_s32s32_unsafe
+                0x10001b88                divmod_s32s32_savestate
  .text.__wrap___aeabi_uidiv
-                0x100018ac       0x4c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_divider/divider_hardware.S.o
-                0x100018ac                __wrap___aeabi_uidiv
-                0x100018ac                __wrap___aeabi_uidivmod
-                0x100018ac                div_u32u32
-                0x100018ac                divmod_u32u32
-                0x100018b4                divmod_u32u32_unsafe
-                0x100018dc                divmod_u32u32_savestate
+                0x10001ba4       0x4c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_divider/divider_hardware.S.o
+                0x10001ba4                __wrap___aeabi_uidiv
+                0x10001ba4                __wrap___aeabi_uidivmod
+                0x10001ba4                div_u32u32
+                0x10001ba4                divmod_u32u32
+                0x10001bac                divmod_u32u32_unsafe
+                0x10001bd4                divmod_u32u32_savestate
  .text.__wrap___aeabi_ldiv
-                0x100018f8      0x424 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_divider/divider_hardware.S.o
-                0x100018f8                __wrap___aeabi_ldivmod
-                0x100018f8                div_s64s64
-                0x100018f8                divmod_s64s64
-                0x10001928                divmod_u64u64
-                0x10001928                div_u64u64
-                0x10001928                __wrap___aeabi_uldivmod
-                0x10001938                divmod_u64u64_savestate
-                0x10001958                divmod_s64s64_unsafe
-                0x100019e0                divmod_u64u64_unsafe
+                0x10001bf0      0x424 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_divider/divider_hardware.S.o
+                0x10001bf0                __wrap___aeabi_ldivmod
+                0x10001bf0                div_s64s64
+                0x10001bf0                divmod_s64s64
+                0x10001c20                divmod_u64u64
+                0x10001c20                div_u64u64
+                0x10001c20                __wrap___aeabi_uldivmod
+                0x10001c30                divmod_u64u64_savestate
+                0x10001c50                divmod_s64s64_unsafe
+                0x10001cd8                divmod_u64u64_unsafe
  .text.__wrap___aeabi_darithmetic
-                0x10001d1c       0x60 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
-                0x10001d1c                __wrap___aeabi_drsub
-                0x10001d22                __wrap___aeabi_dsub
-                0x10001d2c                __wrap___aeabi_dadd
-                0x10001d36                __wrap___aeabi_ddiv
-                0x10001d6a                __wrap___aeabi_dmul
+                0x10002014       0x60 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+                0x10002014                __wrap___aeabi_drsub
+                0x1000201a                __wrap___aeabi_dsub
+                0x10002024                __wrap___aeabi_dadd
+                0x1000202e                __wrap___aeabi_ddiv
+                0x10002062                __wrap___aeabi_dmul
  .text.__wrap___aeabi_cdcmple
-                0x10001d7c       0x6c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
-                0x10001d7c                __wrap___aeabi_cdrcmple
-                0x10001d8c                __wrap___aeabi_cdcmple
-                0x10001d8c                __wrap___aeabi_cdcmpeq
+                0x10002074       0x6c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+                0x10002074                __wrap___aeabi_cdrcmple
+                0x10002084                __wrap___aeabi_cdcmple
+                0x10002084                __wrap___aeabi_cdcmpeq
  .text.__wrap___aeabi_dcmplt
-                0x10001de8        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
-                0x10001de8                __wrap___aeabi_dcmplt
+                0x100020e0        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+                0x100020e0                __wrap___aeabi_dcmplt
  .text.__wrap___aeabi_dcmple
-                0x10001df4       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
-                0x10001df4                __wrap___aeabi_dcmple
+                0x100020ec       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+                0x100020ec                __wrap___aeabi_dcmple
  .text.__wrap___aeabi_dcmpge
-                0x10001e04       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
-                0x10001e04                __wrap___aeabi_dcmpge
+                0x100020fc       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+                0x100020fc                __wrap___aeabi_dcmpge
  .text.__wrap___aeabi_dcmpgt
-                0x10001e14        0xa CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
-                0x10001e14                __wrap___aeabi_dcmpgt
+                0x1000210c        0xa CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+                0x1000210c                __wrap___aeabi_dcmpgt
  .text.__wrap___aeabi_dcmpun
-                0x10001e1e       0x18 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
-                0x10001e1e                __wrap___aeabi_dcmpun
- *fill*         0x10001e36        0x2 
+                0x10002116       0x18 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+                0x10002116                __wrap___aeabi_dcmpun
+ *fill*         0x1000212e        0x2 
  .text.__wrap___aeabi_i2d
-                0x10001e38       0x38 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
-                0x10001e38                __wrap___aeabi_ui2d
-                0x10001e38                uint2double
-                0x10001e40                __wrap___aeabi_i2d
-                0x10001e40                int2double
+                0x10002130       0x38 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+                0x10002130                __wrap___aeabi_ui2d
+                0x10002130                uint2double
+                0x10002138                __wrap___aeabi_i2d
+                0x10002138                int2double
  .text.__wrap___aeabi_d2iz
-                0x10001e70       0x48 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
-                0x10001e70                __wrap___aeabi_d2iz
-                0x10001e70                double2int_z
+                0x10002168       0x48 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+                0x10002168                __wrap___aeabi_d2iz
+                0x10002168                double2int_z
  .text.__wrap___aeabi_d2uiz
-                0x10001eb8       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
-                0x10001eb8                double2uint_z
-                0x10001eb8                double2uint
-                0x10001eb8                __wrap___aeabi_d2uiz
+                0x100021b0       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+                0x100021b0                double2uint_z
+                0x100021b0                double2uint
+                0x100021b0                __wrap___aeabi_d2uiz
  .text.missing_double_func_shim
-                0x10001ec8        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
+                0x100021c0        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
  .text.__aeabi_double_init
-                0x10001ed4       0xa0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
-                0x10001ed4                __aeabi_double_init
+                0x100021cc       0xa0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
+                0x100021cc                __aeabi_double_init
  .text.double_table_shim_on_use_helper
-                0x10001f74       0x2c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
-                0x10001f74                double_table_shim_on_use_helper
+                0x1000226c       0x2c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
+                0x1000226c                double_table_shim_on_use_helper
  .text.__aeabi_lmul
-                0x10001fa0       0x32 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
-                0x10001fa0                __wrap___aeabi_lmul
- *fill*         0x10001fd2        0x2 
+                0x10002298       0x32 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
+                0x10002298                __wrap___aeabi_lmul
+ *fill*         0x100022ca        0x2 
+ .text.__wrap___aeabi_farithmetic
+                0x100022cc       0x48 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
+                0x100022cc                __wrap___aeabi_frsub
+                0x100022d2                __wrap___aeabi_fsub
+                0x100022d8                __wrap___aeabi_fadd
+                0x100022de                __wrap___aeabi_fdiv
+                0x10002306                __wrap___aeabi_fmul
+ .text.__wrap___aeabi_i2f
+                0x10002314       0x44 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
+                0x10002314                int2float
+                0x10002314                __wrap___aeabi_i2f
  .text.missing_float_func_shim
-                0x10001fd4        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
+                0x10002358        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
  .text.__aeabi_float_init
-                0x10001fe0       0x5c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
-                0x10001fe0                __aeabi_float_init
- .text          0x1000203c       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
-                0x1000203c                __aeabi_mem_init
- .text.memset   0x1000204c        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
-                0x1000204c                __wrap_memset
- .text.memcpy   0x10002058        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
-                0x10002058                __wrap___aeabi_memcpy
-                0x10002058                __wrap_memcpy
+                0x10002364       0x5c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
+                0x10002364                __aeabi_float_init
+ .text          0x100023c0       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
+                0x100023c0                __aeabi_mem_init
+ .text.memset   0x100023d0        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
+                0x100023d0                __wrap_memset
+ .text.memcpy   0x100023dc        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
+                0x100023dc                __wrap___aeabi_memcpy
+                0x100023dc                __wrap_memcpy
  .text._out_null
-                0x10002064        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+                0x100023e8        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
  .text._out_rev
-                0x10002068       0xac CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+                0x100023ec       0xac CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
  .text._ntoa_format
-                0x10002114      0x1cc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+                0x10002498      0x1cc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
  .text._out_char
-                0x100022e0       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+                0x10002664       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
  .text._out_fct
-                0x100022f0       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
- .text._ftoa    0x10002300      0x4a8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
- .text._etoa    0x100027a8      0x57c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+                0x10002674       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+ .text._ftoa    0x10002684      0x4a8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+ .text._etoa    0x10002b2c      0x57c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
  .text._vsnprintf
-                0x10002d24      0xbe0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+                0x100030a8      0xbe0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
  .text.vfctprintf
-                0x10003904       0x24 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
-                0x10003904                vfctprintf
+                0x10003c88       0x24 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+                0x10003c88                vfctprintf
  .text.weak_raw_vprintf
-                0x10003928       0x30 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
-                0x10003928                weak_raw_vprintf
- .text._exit    0x10003958        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_clib_interface/newlib_interface.c.o
-                0x10003958                _exit
- .text.exit     0x1000395c        0x8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_clib_interface/newlib_interface.c.o
-                0x1000395c                exit
+                0x10003cac       0x30 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+                0x10003cac                weak_raw_vprintf
+ .text._exit    0x10003cdc        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+                0x10003cdc                _exit
+ .text.exit     0x10003ce0        0x8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+                0x10003ce0                exit
  .text.runtime_init
-                0x10003964       0x2c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_clib_interface/newlib_interface.c.o
-                0x10003964                runtime_init
+                0x10003ce8       0x2c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+                0x10003ce8                runtime_init
  .text.stdio_out_chars_no_crlf
-                0x10003990       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
+                0x10003d14       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
  .text.stdio_out_chars_crlf
-                0x100039a0       0xb0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
+                0x10003d24       0xb0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
  .text.stdio_buffered_printer
-                0x10003a50       0x64 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
+                0x10003dd4       0x64 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
  .text.stdio_put_string
-                0x10003ab4       0xfc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
-                0x10003ab4                stdio_put_string
+                0x10003e38       0xfc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
+                0x10003e38                stdio_put_string
+ .text.stdio_putchar_raw
+                0x10003f34       0x94 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
+                0x10003f34                stdio_putchar_raw
  .text.stdio_set_driver_enabled
-                0x10003bb0       0x30 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
-                0x10003bb0                stdio_set_driver_enabled
+                0x10003fc8       0x30 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
+                0x10003fc8                stdio_set_driver_enabled
  .text.stdio_init_all
-                0x10003be0        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
-                0x10003be0                stdio_init_all
+                0x10003ff8        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
+                0x10003ff8                stdio_init_all
  .text.__wrap_putchar
-                0x10003bec       0x94 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
-                0x10003bec                stdio_putchar
-                0x10003bec                __wrap_putchar
+                0x10004004       0x94 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
+                0x10004004                stdio_putchar
+                0x10004004                __wrap_putchar
  .text.__wrap_puts
-                0x10003c80       0x3c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
-                0x10003c80                __wrap_puts
-                0x10003c80                stdio_puts
+                0x10004098       0x3c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
+                0x10004098                __wrap_puts
+                0x10004098                stdio_puts
  .text.__wrap_vprintf
-                0x10003cbc       0xcc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
-                0x10003cbc                __wrap_vprintf
-                0x10003cbc                stdio_vprintf
+                0x100040d4       0xcc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
+                0x100040d4                __wrap_vprintf
+                0x100040d4                stdio_vprintf
  .text.__wrap_printf
-                0x10003d88       0x18 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
-                0x10003d88                stdio_printf
-                0x10003d88                __wrap_printf
+                0x100041a0       0x18 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
+                0x100041a0                stdio_printf
+                0x100041a0                __wrap_printf
  .text.stdio_uart_out_chars
-                0x10003da0       0x4c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+                0x100041b8       0x4c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
  .text.stdio_uart_in_chars
-                0x10003dec       0x90 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
-                0x10003dec                stdio_uart_in_chars
+                0x10004204       0x90 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+                0x10004204                stdio_uart_in_chars
  .text.on_uart_rx
-                0x10003e7c       0x28 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+                0x10004294       0x28 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
  .text.stdio_uart_out_flush
-                0x10003ea4       0x14 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+                0x100042bc       0x14 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
  .text.stdio_uart_set_chars_available_callback
-                0x10003eb8       0x84 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+                0x100042d0       0x84 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
  .text.stdio_uart_init
-                0x10003f3c       0x50 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
-                0x10003f3c                stdio_uart_init
+                0x10004354       0x50 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+                0x10004354                stdio_uart_init
  .text.startup._retrieve_unique_id_on_boot
-                0x10003f8c       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
+                0x100043a4       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
  .text.flash_get_unique_id
-                0x10003f9c       0x3c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
-                0x10003f9c                flash_get_unique_id
- .text.strlen   0x10003fd8       0x5c /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
-                0x10003fd8                strlen
+                0x100043b4       0x3c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
+                0x100043b4                flash_get_unique_id
+ .text.strlen   0x100043f0       0x5c /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
+                0x100043f0                strlen
  *(.fini)
- .fini          0x10004034        0x4 /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crti.o
-                0x10004034                _fini
- .fini.__stub   0x10004038       0x50 linker stubs
+ .fini          0x1000444c        0x4 /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crti.o
+                0x1000444c                _fini
+ .fini.__stub   0x10004450       0x50 linker stubs
  *crtbegin.o(.ctors)
  *crtbegin?.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o *crtend?.o) .ctors)
@@ -5813,180 +5859,185 @@ LOAD /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.
  *(EXCLUDE_FILE(*crtend.o *crtend?.o) .dtors)
  *(SORT_BY_NAME(.dtors.*))
  *(.dtors)
-                0x10004088                        . = ALIGN (0x4)
-                0x10004088                        PROVIDE (__preinit_array_start = .)
+                0x100044a0                        . = ALIGN (0x4)
+                0x100044a0                        PROVIDE (__preinit_array_start = .)
  *(SORT_BY_NAME(.preinit_array.*))
  .preinit_array.00100
-                0x10004088        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x10004088                __pre_init_runtime_init_early_resets
+                0x100044a0        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x100044a0                __pre_init_runtime_init_early_resets
  .preinit_array.00101
-                0x1000408c        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x1000408c                __pre_init_runtime_init_usb_power_down
+                0x100044a4        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x100044a4                __pre_init_runtime_init_usb_power_down
  .preinit_array.00275
-                0x10004090        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
+                0x100044a8        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
  .preinit_array.00300
-                0x10004094        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
+                0x100044ac        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
  .preinit_array.00350
-                0x10004098        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+                0x100044b0        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
  .preinit_array.00350
-                0x1000409c        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
+                0x100044b4        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
  .preinit_array.00500
-                0x100040a0        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x100040a0                __pre_init_runtime_init_clocks
+                0x100044b8        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x100044b8                __pre_init_runtime_init_clocks
  .preinit_array.00600
-                0x100040a4        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x100040a4                __pre_init_runtime_init_post_clock_resets
+                0x100044bc        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x100044bc                __pre_init_runtime_init_post_clock_resets
  .preinit_array.00700
-                0x100040a8        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x100040a8                __pre_init_runtime_init_rp2040_gpio_ie_disable
+                0x100044c0        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x100044c0                __pre_init_runtime_init_rp2040_gpio_ie_disable
  .preinit_array.01000
-                0x100040ac        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x100040ac                __pre_init_runtime_init_spin_locks_reset
+                0x100044c4        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x100044c4                __pre_init_runtime_init_spin_locks_reset
  .preinit_array.01100
-                0x100040b0        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/mutex.c.o
-                0x100040b0                __pre_init_runtime_init_mutex
+                0x100044c8        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/mutex.c.o
+                0x100044c8                __pre_init_runtime_init_mutex
  .preinit_array.10080
-                0x100040b4        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x100040b4                __pre_init_runtime_init_install_ram_vector_table
+                0x100044cc        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x100044cc                __pre_init_runtime_init_install_ram_vector_table
  .preinit_array.11000
-                0x100040b8        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
-                0x100040b8                __pre_init_runtime_init_default_alarm_pool
+                0x100044d0        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
+                0x100044d0                __pre_init_runtime_init_default_alarm_pool
  .preinit_array.YYYYY
-                0x100040bc        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
-                0x100040bc                __pre_init_first_per_core_initializer
+                0x100044d4        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
+                0x100044d4                __pre_init_first_per_core_initializer
  .preinit_array.ZZZZZ.01200
-                0x100040c0        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
-                0x100040c0                __pre_init_runtime_init_per_core_irq_priorities
+                0x100044d8        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
+                0x100044d8                __pre_init_runtime_init_per_core_irq_priorities
  *(.preinit_array)
-                0x100040c4                        PROVIDE (__preinit_array_end = .)
-                0x100040c4                        . = ALIGN (0x4)
-                0x100040c4                        PROVIDE (__init_array_start = .)
+                0x100044dc                        PROVIDE (__preinit_array_end = .)
+                0x100044dc                        . = ALIGN (0x4)
+                0x100044dc                        PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  .init_array.01000
-                0x100040c4        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
+                0x100044dc        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
  *(.init_array)
- .init_array    0x100040c8        0x4 /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
- .init_array    0x100040cc        0x4 CMakeFiles/rover_w.dir/src/lidar.cpp.o
-                0x100040d0                        PROVIDE (__init_array_end = .)
-                0x100040d0                        . = ALIGN (0x4)
+ .init_array    0x100044e0        0x4 /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+ .init_array    0x100044e4        0x4 CMakeFiles/rover_w.dir/src/lidar.cpp.o
+ .init_array    0x100044e8        0x4 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
+ .init_array    0x100044ec        0x4 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
+                0x100044f0                        PROVIDE (__init_array_end = .)
+                0x100044f0                        . = ALIGN (0x4)
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array)
                 [!provide]                        PROVIDE (__fini_array_end = .)
  *(.eh_frame*)
- .eh_frame      0x100040d0        0x0 /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
-                0x100040d0                        . = ALIGN (0x4)
+ .eh_frame      0x100044f0        0x0 /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+                0x100044f0                        . = ALIGN (0x4)
 
-.glue_7         0x100040d0        0x0
- .glue_7        0x100040d0        0x0 linker stubs
+.glue_7         0x100044f0        0x0
+ .glue_7        0x100044f0        0x0 linker stubs
 
-.glue_7t        0x100040d0        0x0
- .glue_7t       0x100040d0        0x0 linker stubs
+.glue_7t        0x100044f0        0x0
+ .glue_7t       0x100044f0        0x0 linker stubs
 
-.vfp11_veneer   0x100040d0        0x0
- .vfp11_veneer  0x100040d0        0x0 linker stubs
+.vfp11_veneer   0x100044f0        0x0
+ .vfp11_veneer  0x100044f0        0x0 linker stubs
 
-.v4_bx          0x100040d0        0x0
- .v4_bx         0x100040d0        0x0 linker stubs
+.v4_bx          0x100044f0        0x0
+ .v4_bx         0x100044f0        0x0 linker stubs
 
-.iplt           0x100040d0        0x0
- .iplt          0x100040d0        0x0 /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+.iplt           0x100044f0        0x0
+ .iplt          0x100044f0        0x0 /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
 
-.rodata         0x100040d0      0x380
+.rodata         0x100044f0      0x3b0
  *(EXCLUDE_FILE(*libm.a: *libc.a:*lib_a-mem*.o *libgcc.a:) .rodata*)
+ .rodata._ZN11LidarParser10parse_dataEh
+                0x100044f0       0x14 CMakeFiles/rover_w.dir/src/lidar.cpp.o
  .rodata._Z12lidar_updatev.str1.4
-                0x100040d0      0x114 CMakeFiles/rover_w.dir/src/lidar.cpp.o
+                0x10004504      0x108 CMakeFiles/rover_w.dir/src/lidar.cpp.o
                                  0x16 (size before relaxing)
+ .rodata._Z12lidar_updatev
+                0x1000460c       0x24 CMakeFiles/rover_w.dir/src/lidar.cpp.o
  .rodata.main.str1.4
-                0x100041e4       0x12 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
- .rodata._Z16uart1_rx_handlerv.str1.4
-                0x100041e4        0xa CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
+                0x10004630       0x12 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
  .rodata.panic.str1.4
-                0x100041e4       0x12 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/panic.c.o
+                0x10004630       0x12 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/panic.c.o
  .rodata.timer_hardware_alarm_claim.str1.4
-                0x100041e4       0x22 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
+                0x10004630       0x22 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
  .rodata.hard_assertion_failure.str1.4
-                0x100041e4        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
+                0x10004630        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
  .rodata.missing_double_func_shim.str1.4
-                0x100041e4       0x18 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
+                0x10004630       0x18 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
  .rodata.missing_float_func_shim.str1.4
-                0x100041e4        0x1 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
+                0x10004630        0x1 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
  .rodata.str1.4
-                0x100041e4       0x40 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x10004630       0x40 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .rodata.__bi_84
-                0x100041e4        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x10004630        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .rodata.__bi_78
-                0x100041f0        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x1000463c        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .rodata.__bi_60
-                0x100041fc        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x10004648        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .rodata.__bi_54
-                0x10004208        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x10004654        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .rodata.__bi_48
-                0x10004214        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x10004660        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .rodata.__bi_42
-                0x10004220        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x1000466c        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .rodata.__bi_34
-                0x1000422c        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x10004678        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .rodata.__bi_26
-                0x10004238        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x10004684        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .rodata._ftoa.str1.4
-                0x10004244       0x15 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+                0x10004690       0x15 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
  .rodata._vsnprintf
-                0x10004244      0x19c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+                0x10004690      0x19c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+ *fill*         0x1000482c        0x4 
  .rodata.pow10.0
-                0x100043e0       0x50 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+                0x10004830       0x50 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
  .rodata.crlf_str.0
-                0x10004430        0x2 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
+                0x10004880        0x2 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
  .rodata.str1.4
-                0x10004432       0x2c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
- *fill*         0x10004432        0x2 
+                0x10004882       0x2c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+ *fill*         0x10004882        0x2 
  .rodata.__bi_45.4
-                0x10004434        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+                0x10004884        0xc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
  .rodata.__bi_49.5
-                0x10004440        0x8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+                0x10004890        0x8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
  .rodata.__bi_50.6
-                0x10004448        0x8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
-                0x10004450                        . = ALIGN (0x4)
+                0x10004898        0x8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+                0x100048a0                        . = ALIGN (0x4)
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.flashdata*)))
-                0x10004450                        . = ALIGN (0x4)
+                0x100048a0                        . = ALIGN (0x4)
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x10004450                        __exidx_start = .
+                0x100048a0                        __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x10004450                        __exidx_end = .
-                0x10004450                        . = ALIGN (0x4)
-                0x10004450                        __binary_info_start = .
+                0x100048a0                        __exidx_end = .
+                0x100048a0                        . = ALIGN (0x4)
+                0x100048a0                        __binary_info_start = .
 
-.binary_info    0x10004450       0x2c
+.binary_info    0x100048a0       0x2c
  *(.binary_info.keep.*)
  .binary_info.keep.__bi_ptr84
-                0x10004450        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x100048a0        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .binary_info.keep.__bi_ptr78
-                0x10004454        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x100048a4        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .binary_info.keep.__bi_ptr60
-                0x10004458        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x100048a8        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .binary_info.keep.__bi_ptr54
-                0x1000445c        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x100048ac        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .binary_info.keep.__bi_ptr48
-                0x10004460        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x100048b0        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .binary_info.keep.__bi_ptr42
-                0x10004464        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x100048b4        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .binary_info.keep.__bi_ptr34
-                0x10004468        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x100048b8        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .binary_info.keep.__bi_ptr26
-                0x1000446c        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x100048bc        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  *(.binary_info.*)
  .binary_info.__bi_ptr50
-                0x10004470        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+                0x100048c0        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
  .binary_info.__bi_ptr49
-                0x10004474        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+                0x100048c4        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
  .binary_info.__bi_ptr45
-                0x10004478        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
-                0x1000447c                        __binary_info_end = .
-                0x1000447c                        . = ALIGN (0x4)
+                0x100048c8        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+                0x100048cc                        __binary_info_end = .
+                0x100048cc                        . = ALIGN (0x4)
 
 .ram_vector_table
                 0x20000000       0xc0
@@ -6000,7 +6051,7 @@ LOAD /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.
                 0x200000c0                        . = ALIGN (0x4)
  *(.uninitialized_data*)
 
-.data           0x200000c0      0x370 load address 0x1000447c
+.data           0x200000c0      0x370 load address 0x100048cc
                 0x200000c0                        __data_start__ = .
  *(vtable)
  *(.time_critical*)
@@ -6067,23 +6118,23 @@ LOAD /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.
                 0x20000430                        . = ALIGN (0x4)
 
 .tm_clone_table
-                0x20000430        0x0 load address 0x100047ec
+                0x20000430        0x0 load address 0x10004c3c
  .tm_clone_table
                 0x20000430        0x0 /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
  .tm_clone_table
                 0x20000430        0x0 /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtend.o
 
-.igot.plt       0x20000430        0x0 load address 0x100047ec
+.igot.plt       0x20000430        0x0 load address 0x10004c3c
  .igot.plt      0x20000430        0x0 /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
 
-.tdata          0x20000430        0x0 load address 0x100047ec
+.tdata          0x20000430        0x0 load address 0x10004c3c
                 0x20000430                        . = ALIGN (0x4)
  *(.tdata .tdata.* .gnu.linkonce.td.*)
                 0x20000430                        __tdata_end = .
                 0x20000430                        PROVIDE (__data_end__ = .)
-                0x1000447c                        __etext = LOADADDR (.data)
+                0x100048cc                        __etext = LOADADDR (.data)
 
-.tbss           0x20000430        0x0 load address 0x100047ec
+.tbss           0x20000430        0x0 load address 0x10004c3c
                 0x20000430                        . = ALIGN (0x4)
                 0x20000430                        __bss_start__ = .
                 0x20000430                        __tls_base = .
@@ -6091,7 +6142,7 @@ LOAD /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.
  *(.tcommon)
                 0x20000430                        __tls_end = .
 
-.bss            0x20000430      0x964 load address 0x100047ec
+.bss            0x20000430      0x960 load address 0x10004c3c
                 0x20000430                        . = ALIGN (0x4)
                 0x20000430                        __tbss_end = .
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.bss*)))
@@ -6104,76 +6155,78 @@ LOAD /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.
                 0x200006b0                guard variable for lidar_parser
  .bss._ZL6rx_buf
                 0x200006b4      0x400 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
+ .bss._ZZN11LidarParser10parse_dataEhE5count
+                0x20000ab4        0x4 CMakeFiles/rover_w.dir/src/lidar.cpp.o
  .bss.boot2_copyout
-                0x20000ab4      0x100 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
+                0x20000ab8      0x100 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
  .bss.chars_available_callback
-                0x20000bb4        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
- .bss.chars_available_param
                 0x20000bb8        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
- .bss.claimed   0x20000bbc        0x1 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
- *fill*         0x20000bbd        0x3 
+ .bss.chars_available_param
+                0x20000bbc        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+ .bss.claimed   0x20000bc0        0x1 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
+ *fill*         0x20000bc1        0x3 
  .bss.configured_freq
-                0x20000bc0       0x28 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
- .bss.drivers   0x20000be8        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
- .bss.filter    0x20000bec        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
+                0x20000bc4       0x28 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
+ .bss.drivers   0x20000bec        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
+ .bss.filter    0x20000bf0        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
  .bss.lazy_vsnprintf
-                0x20000bf0        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+                0x20000bf4        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
  .bss.lidar_parser
-                0x20000bf4       0x54 CMakeFiles/rover_w.dir/src/lidar.cpp.o
-                0x20000bf4                lidar_parser
- .bss.object.0  0x20000c48       0x18 /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
- .bss.pools     0x20000c60       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
+                0x20000bf8       0x4c CMakeFiles/rover_w.dir/src/lidar.cpp.o
+                0x20000bf8                lidar_parser
+ .bss.object.0  0x20000c44       0x18 /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+ .bss.pools     0x20000c5c       0x10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
  .bss.retrieved_id
-                0x20000c70        0x8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
+                0x20000c6c        0x8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
  .bss.sf_clz_func
-                0x20000c78        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
-                0x20000c78                sf_clz_func
- .bss.sf_table  0x20000c7c      0x100 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
-                0x20000c7c                sf_table
+                0x20000c74        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
+                0x20000c74                sf_clz_func
+ .bss.sf_table  0x20000c78      0x100 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
+                0x20000c78                sf_table
  .bss.sleep_notifier
-                0x20000d7c        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
+                0x20000d78        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
  .bss.uart_char_to_line_feed
-                0x20000d80        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
-                0x20000d80                uart_char_to_line_feed
+                0x20000d7c        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
+                0x20000d7c                uart_char_to_line_feed
  .bss.uart_instance
-                0x20000d84        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+                0x20000d80        0x4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
  .bss._ZL17rb_overflow_count
-                0x20000d88        0x2 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
+                0x20000d84        0x2 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
  .bss._ZL7rb_head
-                0x20000d8a        0x2 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
+                0x20000d86        0x2 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
  .bss._ZL7rb_tail
-                0x20000d8c        0x2 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
+                0x20000d88        0x2 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
  .bss._ZZ12lidar_updatevE1n
-                0x20000d8e        0x2 CMakeFiles/rover_w.dir/src/lidar.cpp.o
+                0x20000d8a        0x2 CMakeFiles/rover_w.dir/src/lidar.cpp.o
  .bss.boot2_copyout_valid
-                0x20000d90        0x1 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
+                0x20000d8c        0x1 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
  .bss.irq_handler_chain_free_slot_head
-                0x20000d91        0x1 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
+                0x20000d8d        0x1 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
  *(COMMON)
-                0x20000d94                        . = ALIGN (0x4)
- *fill*         0x20000d92        0x2 
-                0x20000d94                        __bss_end__ = .
+                0x20000d90                        . = ALIGN (0x4)
+ *fill*         0x20000d8e        0x2 
+                0x20000d90                        __bss_end__ = .
 
-.heap           0x20000d94      0x800 load address 0x100047ec
-                0x20000d94                        __end__ = .
-                0x20000d94                        end = __end__
+.heap           0x20000d90      0x800 load address 0x10004c3c
+                0x20000d90                        __end__ = .
+                0x20000d90                        end = __end__
  *(.heap*)
- .heap          0x20000d94      0x800 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_crt0/crt0.S.o
+ .heap          0x20000d90      0x800 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_crt0/crt0.S.o
                 0x20040000                        __HeapLimit = (ORIGIN (RAM) + LENGTH (RAM))
 
-.scratch_x      0x20040000        0x0 load address 0x100047ec
+.scratch_x      0x20040000        0x0 load address 0x10004c3c
                 0x20040000                        __scratch_x_start__ = .
  *(.scratch_x.*)
                 0x20040000                        . = ALIGN (0x4)
                 0x20040000                        __scratch_x_end__ = .
-                0x100047ec                        __scratch_x_source__ = LOADADDR (.scratch_x)
+                0x10004c3c                        __scratch_x_source__ = LOADADDR (.scratch_x)
 
-.scratch_y      0x20041000        0x0 load address 0x100047ec
+.scratch_y      0x20041000        0x0 load address 0x10004c3c
                 0x20041000                        __scratch_y_start__ = .
  *(.scratch_y.*)
                 0x20041000                        . = ALIGN (0x4)
                 0x20041000                        __scratch_y_end__ = .
-                0x100047ec                        __scratch_y_source__ = LOADADDR (.scratch_y)
+                0x10004c3c                        __scratch_y_source__ = LOADADDR (.scratch_y)
 
 .stack1_dummy
  *(.stack1*)
@@ -6185,9 +6238,9 @@ LOAD /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.
 .rel.dyn        0x20041800        0x0
  .rel.iplt      0x20041800        0x0 /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
 
-.flash_end      0x100047ec        0x0
+.flash_end      0x10004c3c        0x0
  *(.embedded_end_block*)
-                0x100047ec                        PROVIDE (__flash_binary_end = .)
+                0x10004c3c                        PROVIDE (__flash_binary_end = .)
                 0x20040000                        __StackLimit = (ORIGIN (RAM) + LENGTH (RAM))
                 0x20041000                        __StackOneTop = (ORIGIN (SCRATCH_X) + LENGTH (SCRATCH_X))
                 0x20042000                        __StackTop = (ORIGIN (SCRATCH_Y) + LENGTH (SCRATCH_Y))
@@ -6203,6 +6256,7 @@ LOAD /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.
                 [!provide]                        PROVIDE (__llvm_libc_heap_limit = __HeapLimit)
                 0x00000001                        ASSERT ((__StackLimit >= __HeapLimit), region RAM overflowed)
                 0x00000001                        ASSERT (((__binary_info_header_end - __logical_binary_start) <= 0x100), Binary info must be in first 256 bytes of the binary)
+LOAD CMakeFiles/rover_w.dir/src/dir.cpp.o
 LOAD CMakeFiles/rover_w.dir/src/lidar.cpp.o
 LOAD CMakeFiles/rover_w.dir/src/pwm.cpp.o
 LOAD CMakeFiles/rover_w.dir/src/rover_w.cpp.o
@@ -6527,437 +6581,439 @@ LOAD linker stubs
  .comment       0x00000045       0x46 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
  .comment       0x00000045       0x46 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
 
-.debug_info     0x00000000    0x233b7
- .debug_info    0x00000000     0x3cee CMakeFiles/rover_w.dir/src/lidar.cpp.o
- .debug_info    0x00003cee      0x1f2 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
- .debug_info    0x00003ee0      0x6dd CMakeFiles/rover_w.dir/src/sender.cpp.o
- .debug_info    0x000045bd      0x2f5 CMakeFiles/rover_w.dir/src/serial_debug.cpp.o
- .debug_info    0x000048b2      0x4e2 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
- .debug_info    0x00004d94     0x2421 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_gpio/gpio.c.o
- .debug_info    0x000071b5      0x1bf CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/panic.c.o
- .debug_info    0x00007374      0x9a1 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/hardware_claim/claim.c.o
- .debug_info    0x00007d15      0x45c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync/sync.c.o
- .debug_info    0x00008171      0x245 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
- .debug_info    0x000083b6     0x2233 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
- .debug_info    0x0000a5e9      0x15f CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/lock_core.c.o
- .debug_info    0x0000a748     0x2815 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/mutex.c.o
- .debug_info    0x0000cf5d     0x5065 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
- .debug_info    0x00011fc2     0x2b37 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
- .debug_info    0x00014af9     0x1983 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
- .debug_info    0x0001647c     0x2a05 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
- .debug_info    0x00018e81      0x4e5 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_pll/pll.c.o
- .debug_info    0x00019366      0x248 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_ticks/ticks.c.o
- .debug_info    0x000195ae      0x678 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bootrom/bootrom.c.o
- .debug_info    0x00019c26      0x1d0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_xosc/xosc.c.o
- .debug_info    0x00019df6      0x21a CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
- .debug_info    0x0001a010      0x7ea CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
- .debug_info    0x0001a7fa      0x781 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
- .debug_info    0x0001af7b       0x23 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
- .debug_info    0x0001af9e       0x23 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_divider/divider_hardware.S.o
- .debug_info    0x0001afc1       0x23 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
- .debug_info    0x0001afe4      0x2c4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
- .debug_info    0x0001b2a8       0x24 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
- .debug_info    0x0001b2cc       0x24 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
- .debug_info    0x0001b2f0       0x23 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
- .debug_info    0x0001b313      0x2b0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
- .debug_info    0x0001b5c3       0x23 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
- .debug_info    0x0001b5e6      0x2e2 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
- .debug_info    0x0001b8c8     0x22f2 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
- .debug_info    0x0001dbba       0x23 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_crt0/crt0.S.o
- .debug_info    0x0001dbdd      0xbbe CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_clib_interface/newlib_interface.c.o
- .debug_info    0x0001e79b     0x1d90 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
- .debug_info    0x0002052b     0x150c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
- .debug_info    0x00021a37      0x201 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
- .debug_info    0x00021c38     0x177f CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
+.debug_info     0x00000000    0x279a2
+ .debug_info    0x00000000     0x3bbc CMakeFiles/rover_w.dir/src/lidar.cpp.o
+ .debug_info    0x00003bbc     0x2530 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
+ .debug_info    0x000060ec      0x6dd CMakeFiles/rover_w.dir/src/sender.cpp.o
+ .debug_info    0x000067c9      0x30a CMakeFiles/rover_w.dir/src/serial_debug.cpp.o
+ .debug_info    0x00006ad3     0x28ac CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
+ .debug_info    0x0000937f     0x2421 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_gpio/gpio.c.o
+ .debug_info    0x0000b7a0      0x1bf CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/panic.c.o
+ .debug_info    0x0000b95f      0x9a1 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/hardware_claim/claim.c.o
+ .debug_info    0x0000c300      0x45c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync/sync.c.o
+ .debug_info    0x0000c75c      0x245 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
+ .debug_info    0x0000c9a1     0x2233 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
+ .debug_info    0x0000ebd4      0x15f CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/lock_core.c.o
+ .debug_info    0x0000ed33     0x2815 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/mutex.c.o
+ .debug_info    0x00011548     0x5065 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
+ .debug_info    0x000165ad     0x2b37 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
+ .debug_info    0x000190e4     0x1983 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
+ .debug_info    0x0001aa67     0x2a05 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
+ .debug_info    0x0001d46c      0x4e5 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_pll/pll.c.o
+ .debug_info    0x0001d951      0x248 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_ticks/ticks.c.o
+ .debug_info    0x0001db99      0x678 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bootrom/bootrom.c.o
+ .debug_info    0x0001e211      0x1d0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_xosc/xosc.c.o
+ .debug_info    0x0001e3e1      0x21a CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
+ .debug_info    0x0001e5fb      0x7ea CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
+ .debug_info    0x0001ede5      0x781 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
+ .debug_info    0x0001f566       0x23 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
+ .debug_info    0x0001f589       0x23 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_divider/divider_hardware.S.o
+ .debug_info    0x0001f5ac       0x23 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+ .debug_info    0x0001f5cf      0x2c4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
+ .debug_info    0x0001f893       0x24 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
+ .debug_info    0x0001f8b7       0x24 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
+ .debug_info    0x0001f8db       0x23 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
+ .debug_info    0x0001f8fe      0x2b0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
+ .debug_info    0x0001fbae       0x23 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
+ .debug_info    0x0001fbd1      0x2e2 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+ .debug_info    0x0001feb3     0x22f2 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+ .debug_info    0x000221a5       0x23 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_crt0/crt0.S.o
+ .debug_info    0x000221c8      0xbbe CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+ .debug_info    0x00022d86     0x1d90 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
+ .debug_info    0x00024b16     0x150c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+ .debug_info    0x00026022      0x201 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
+ .debug_info    0x00026223     0x177f CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
 
-.debug_abbrev   0x00000000     0x6678
- .debug_abbrev  0x00000000      0x96c CMakeFiles/rover_w.dir/src/lidar.cpp.o
- .debug_abbrev  0x0000096c      0x158 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
- .debug_abbrev  0x00000ac4      0x208 CMakeFiles/rover_w.dir/src/sender.cpp.o
- .debug_abbrev  0x00000ccc      0x13f CMakeFiles/rover_w.dir/src/serial_debug.cpp.o
- .debug_abbrev  0x00000e0b      0x2a2 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
- .debug_abbrev  0x000010ad      0x4f9 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_gpio/gpio.c.o
- .debug_abbrev  0x000015a6      0x12b CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/panic.c.o
- .debug_abbrev  0x000016d1      0x328 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/hardware_claim/claim.c.o
- .debug_abbrev  0x000019f9      0x20f CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync/sync.c.o
- .debug_abbrev  0x00001c08      0x1bb CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
- .debug_abbrev  0x00001dc3      0x614 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
- .debug_abbrev  0x000023d7       0xee CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/lock_core.c.o
- .debug_abbrev  0x000024c5      0x48c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/mutex.c.o
- .debug_abbrev  0x00002951      0x659 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
- .debug_abbrev  0x00002faa      0x4f2 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
- .debug_abbrev  0x0000349c      0x365 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
- .debug_abbrev  0x00003801      0x512 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
- .debug_abbrev  0x00003d13      0x1d2 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_pll/pll.c.o
- .debug_abbrev  0x00003ee5      0x145 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_ticks/ticks.c.o
- .debug_abbrev  0x0000402a      0x1bc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bootrom/bootrom.c.o
- .debug_abbrev  0x000041e6      0x11d CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_xosc/xosc.c.o
- .debug_abbrev  0x00004303      0x182 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
- .debug_abbrev  0x00004485      0x26b CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
- .debug_abbrev  0x000046f0      0x2af CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
- .debug_abbrev  0x0000499f       0x12 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
- .debug_abbrev  0x000049b1       0x12 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_divider/divider_hardware.S.o
- .debug_abbrev  0x000049c3       0x12 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
- .debug_abbrev  0x000049d5      0x1bb CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
- .debug_abbrev  0x00004b90       0x14 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
- .debug_abbrev  0x00004ba4       0x14 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
- .debug_abbrev  0x00004bb8       0x12 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
- .debug_abbrev  0x00004bca      0x19e CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
- .debug_abbrev  0x00004d68       0x12 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
- .debug_abbrev  0x00004d7a       0xb8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
- .debug_abbrev  0x00004e32      0x50c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
- .debug_abbrev  0x0000533e       0x12 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_crt0/crt0.S.o
- .debug_abbrev  0x00005350      0x352 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_clib_interface/newlib_interface.c.o
- .debug_abbrev  0x000056a2      0x5d9 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
- .debug_abbrev  0x00005c7b      0x498 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
- .debug_abbrev  0x00006113      0x153 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
- .debug_abbrev  0x00006266      0x412 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
+.debug_abbrev   0x00000000     0x724f
+ .debug_abbrev  0x00000000      0x96b CMakeFiles/rover_w.dir/src/lidar.cpp.o
+ .debug_abbrev  0x0000096b      0x744 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
+ .debug_abbrev  0x000010af      0x208 CMakeFiles/rover_w.dir/src/sender.cpp.o
+ .debug_abbrev  0x000012b7      0x152 CMakeFiles/rover_w.dir/src/serial_debug.cpp.o
+ .debug_abbrev  0x00001409      0x87b CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
+ .debug_abbrev  0x00001c84      0x4f9 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_gpio/gpio.c.o
+ .debug_abbrev  0x0000217d      0x12b CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/panic.c.o
+ .debug_abbrev  0x000022a8      0x328 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/hardware_claim/claim.c.o
+ .debug_abbrev  0x000025d0      0x20f CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync/sync.c.o
+ .debug_abbrev  0x000027df      0x1bb CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
+ .debug_abbrev  0x0000299a      0x614 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
+ .debug_abbrev  0x00002fae       0xee CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/lock_core.c.o
+ .debug_abbrev  0x0000309c      0x48c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/mutex.c.o
+ .debug_abbrev  0x00003528      0x659 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
+ .debug_abbrev  0x00003b81      0x4f2 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
+ .debug_abbrev  0x00004073      0x365 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
+ .debug_abbrev  0x000043d8      0x512 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
+ .debug_abbrev  0x000048ea      0x1d2 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_pll/pll.c.o
+ .debug_abbrev  0x00004abc      0x145 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_ticks/ticks.c.o
+ .debug_abbrev  0x00004c01      0x1bc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bootrom/bootrom.c.o
+ .debug_abbrev  0x00004dbd      0x11d CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_xosc/xosc.c.o
+ .debug_abbrev  0x00004eda      0x182 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
+ .debug_abbrev  0x0000505c      0x26b CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
+ .debug_abbrev  0x000052c7      0x2af CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
+ .debug_abbrev  0x00005576       0x12 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
+ .debug_abbrev  0x00005588       0x12 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_divider/divider_hardware.S.o
+ .debug_abbrev  0x0000559a       0x12 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+ .debug_abbrev  0x000055ac      0x1bb CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
+ .debug_abbrev  0x00005767       0x14 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
+ .debug_abbrev  0x0000577b       0x14 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
+ .debug_abbrev  0x0000578f       0x12 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
+ .debug_abbrev  0x000057a1      0x19e CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
+ .debug_abbrev  0x0000593f       0x12 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
+ .debug_abbrev  0x00005951       0xb8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+ .debug_abbrev  0x00005a09      0x50c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+ .debug_abbrev  0x00005f15       0x12 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_crt0/crt0.S.o
+ .debug_abbrev  0x00005f27      0x352 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+ .debug_abbrev  0x00006279      0x5d9 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
+ .debug_abbrev  0x00006852      0x498 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+ .debug_abbrev  0x00006cea      0x153 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
+ .debug_abbrev  0x00006e3d      0x412 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
 
 .debug_loclists
-                0x00000000    0x12893
+                0x00000000    0x12cc4
  .debug_loclists
-                0x00000000      0x8a7 CMakeFiles/rover_w.dir/src/lidar.cpp.o
+                0x00000000      0x8aa CMakeFiles/rover_w.dir/src/lidar.cpp.o
  .debug_loclists
-                0x000008a7      0x13c CMakeFiles/rover_w.dir/src/sender.cpp.o
+                0x000008aa      0x21d CMakeFiles/rover_w.dir/src/rover_w.cpp.o
  .debug_loclists
-                0x000009e3       0xdd CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
+                0x00000ac7      0x13c CMakeFiles/rover_w.dir/src/sender.cpp.o
  .debug_loclists
-                0x00000ac0     0x1a7f CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_gpio/gpio.c.o
+                0x00000c03      0x2ee CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
  .debug_loclists
-                0x0000253f      0x349 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/hardware_claim/claim.c.o
+                0x00000ef1     0x1a7f CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_gpio/gpio.c.o
  .debug_loclists
-                0x00002888      0x108 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync/sync.c.o
+                0x00002970      0x349 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/hardware_claim/claim.c.o
  .debug_loclists
-                0x00002990       0x7d CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
+                0x00002cb9      0x108 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync/sync.c.o
  .debug_loclists
-                0x00002a0d     0x11ed CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
+                0x00002dc1       0x7d CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
  .debug_loclists
-                0x00003bfa       0x41 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/lock_core.c.o
+                0x00002e3e     0x11ed CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
  .debug_loclists
-                0x00003c3b      0xaec CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/mutex.c.o
+                0x0000402b       0x41 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/lock_core.c.o
  .debug_loclists
-                0x00004727     0x27af CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
+                0x0000406c      0xaec CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/mutex.c.o
  .debug_loclists
-                0x00006ed6     0x19f1 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
+                0x00004b58     0x27af CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
  .debug_loclists
-                0x000088c7      0xc90 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
+                0x00007307     0x19f1 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
  .debug_loclists
-                0x00009557     0x2b7c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
+                0x00008cf8      0xc90 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
  .debug_loclists
-                0x0000c0d3      0x1e0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_pll/pll.c.o
+                0x00009988     0x2b7c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
  .debug_loclists
-                0x0000c2b3       0x47 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_ticks/ticks.c.o
+                0x0000c504      0x1e0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_pll/pll.c.o
  .debug_loclists
-                0x0000c2fa      0x351 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bootrom/bootrom.c.o
+                0x0000c6e4       0x47 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_ticks/ticks.c.o
  .debug_loclists
-                0x0000c64b       0x48 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_xosc/xosc.c.o
+                0x0000c72b      0x351 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bootrom/bootrom.c.o
  .debug_loclists
-                0x0000c693       0x7e CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
+                0x0000ca7c       0x48 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_xosc/xosc.c.o
  .debug_loclists
-                0x0000c711      0x139 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x0000cac4       0x7e CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
  .debug_loclists
-                0x0000c84a       0x74 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
+                0x0000cb42      0x139 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
  .debug_loclists
-                0x0000c8be       0x35 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
+                0x0000cc7b       0x74 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
  .debug_loclists
-                0x0000c8f3       0x4e CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
+                0x0000ccef       0x35 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
  .debug_loclists
-                0x0000c941     0x355f CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+                0x0000cd24       0x4e CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
  .debug_loclists
-                0x0000fea0      0x44e CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+                0x0000cd72     0x355f CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
  .debug_loclists
-                0x000102ee      0xf51 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
+                0x000102d1      0x44e CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_clib_interface/newlib_interface.c.o
  .debug_loclists
-                0x0001123f      0x75b CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+                0x0001071f      0xf51 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
  .debug_loclists
-                0x0001199a      0x3d5 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
+                0x00011670      0x75b CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
  .debug_loclists
-                0x00011d6f      0xb24 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
+                0x00011dcb      0x3d5 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
+ .debug_loclists
+                0x000121a0      0xb24 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
 
-.debug_aranges  0x00000000      0xfe8
+.debug_aranges  0x00000000     0x1008
  .debug_aranges
                 0x00000000       0x58 CMakeFiles/rover_w.dir/src/lidar.cpp.o
  .debug_aranges
-                0x00000058       0x20 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
+                0x00000058       0x30 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
  .debug_aranges
-                0x00000078       0x38 CMakeFiles/rover_w.dir/src/sender.cpp.o
+                0x00000088       0x38 CMakeFiles/rover_w.dir/src/sender.cpp.o
  .debug_aranges
-                0x000000b0       0x28 CMakeFiles/rover_w.dir/src/serial_debug.cpp.o
+                0x000000c0       0x28 CMakeFiles/rover_w.dir/src/serial_debug.cpp.o
  .debug_aranges
-                0x000000d8       0x30 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
+                0x000000e8       0x40 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
  .debug_aranges
-                0x00000108      0x118 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_gpio/gpio.c.o
+                0x00000128      0x118 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_gpio/gpio.c.o
  .debug_aranges
-                0x00000220       0x28 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/panic.c.o
+                0x00000240       0x28 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/panic.c.o
  .debug_aranges
-                0x00000248       0x48 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/hardware_claim/claim.c.o
+                0x00000268       0x48 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/hardware_claim/claim.c.o
  .debug_aranges
-                0x00000290       0x48 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync/sync.c.o
+                0x000002b0       0x48 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync/sync.c.o
  .debug_aranges
-                0x000002d8       0x28 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
+                0x000002f8       0x28 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
  .debug_aranges
-                0x00000300       0xb8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
+                0x00000320       0xb8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
  .debug_aranges
-                0x000003b8       0x20 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/lock_core.c.o
+                0x000003d8       0x20 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/lock_core.c.o
  .debug_aranges
-                0x000003d8       0x98 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/mutex.c.o
+                0x000003f8       0x98 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/mutex.c.o
  .debug_aranges
-                0x00000470       0xe0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
+                0x00000490       0xe0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
  .debug_aranges
-                0x00000550       0xf0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
+                0x00000570       0xf0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
  .debug_aranges
-                0x00000640       0x58 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
+                0x00000660       0x58 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
  .debug_aranges
-                0x00000698       0x90 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
+                0x000006b8       0x90 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
  .debug_aranges
-                0x00000728       0x28 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_pll/pll.c.o
+                0x00000748       0x28 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_pll/pll.c.o
  .debug_aranges
-                0x00000750       0x30 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_ticks/ticks.c.o
+                0x00000770       0x30 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_ticks/ticks.c.o
  .debug_aranges
-                0x00000780       0x40 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bootrom/bootrom.c.o
+                0x000007a0       0x40 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bootrom/bootrom.c.o
  .debug_aranges
-                0x000007c0       0x30 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_xosc/xosc.c.o
+                0x000007e0       0x30 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_xosc/xosc.c.o
  .debug_aranges
-                0x000007f0       0x38 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
+                0x00000810       0x38 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
  .debug_aranges
-                0x00000828       0x48 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x00000848       0x48 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
  .debug_aranges
-                0x00000870       0x20 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
+                0x00000890       0x20 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
  .debug_aranges
-                0x00000890       0x60 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
+                0x000008b0       0x60 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
  .debug_aranges
-                0x000008f0       0x40 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_divider/divider_hardware.S.o
+                0x00000910       0x40 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_divider/divider_hardware.S.o
  .debug_aranges
-                0x00000930      0x150 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+                0x00000950      0x150 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
  .debug_aranges
-                0x00000a80       0x28 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
+                0x00000aa0       0x28 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
  .debug_aranges
-                0x00000aa8       0x20 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
+                0x00000ac8       0x20 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
  .debug_aranges
-                0x00000ac8       0x20 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
+                0x00000ae8       0x20 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
  .debug_aranges
-                0x00000ae8      0x138 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
+                0x00000b08      0x138 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
  .debug_aranges
-                0x00000c20       0x28 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
+                0x00000c40       0x28 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
  .debug_aranges
-                0x00000c48       0x38 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
+                0x00000c68       0x38 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
  .debug_aranges
-                0x00000c80       0x18 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x00000ca0       0x18 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .debug_aranges
-                0x00000c98       0x90 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+                0x00000cb8       0x90 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
  .debug_aranges
-                0x00000d28       0x28 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_crt0/crt0.S.o
+                0x00000d48       0x28 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_crt0/crt0.S.o
  .debug_aranges
-                0x00000d50       0xa8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+                0x00000d70       0xa8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_clib_interface/newlib_interface.c.o
  .debug_aranges
-                0x00000df8       0xc8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
+                0x00000e18       0xc8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
  .debug_aranges
-                0x00000ec0       0x80 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+                0x00000ee0       0x80 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
  .debug_aranges
-                0x00000f40       0x30 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
+                0x00000f60       0x30 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
  .debug_aranges
-                0x00000f70       0x78 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
+                0x00000f90       0x78 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
 
 .debug_rnglists
-                0x00000000     0x33b4
+                0x00000000     0x3517
  .debug_rnglists
-                0x00000000      0x16b CMakeFiles/rover_w.dir/src/lidar.cpp.o
+                0x00000000      0x1b1 CMakeFiles/rover_w.dir/src/lidar.cpp.o
  .debug_rnglists
-                0x0000016b       0x13 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
+                0x000001b1       0xa0 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
  .debug_rnglists
-                0x0000017e       0x61 CMakeFiles/rover_w.dir/src/sender.cpp.o
+                0x00000251       0x61 CMakeFiles/rover_w.dir/src/sender.cpp.o
  .debug_rnglists
-                0x000001df       0x19 CMakeFiles/rover_w.dir/src/serial_debug.cpp.o
+                0x000002b2       0x19 CMakeFiles/rover_w.dir/src/serial_debug.cpp.o
  .debug_rnglists
-                0x000001f8       0x6e CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
+                0x000002cb       0xfe CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
  .debug_rnglists
-                0x00000266      0x5ca CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_gpio/gpio.c.o
+                0x000003c9      0x5ca CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_gpio/gpio.c.o
  .debug_rnglists
-                0x00000830       0x19 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/panic.c.o
+                0x00000993       0x19 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/panic.c.o
  .debug_rnglists
-                0x00000849       0xb6 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/hardware_claim/claim.c.o
+                0x000009ac       0xb6 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/hardware_claim/claim.c.o
  .debug_rnglists
-                0x000008ff       0x58 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync/sync.c.o
+                0x00000a62       0x58 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync/sync.c.o
  .debug_rnglists
-                0x00000957       0x3d CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
+                0x00000aba       0x3d CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
  .debug_rnglists
-                0x00000994      0x37d CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
+                0x00000af7      0x37d CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
  .debug_rnglists
-                0x00000d11       0x1f CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/lock_core.c.o
+                0x00000e74       0x1f CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/lock_core.c.o
  .debug_rnglists
-                0x00000d30      0x325 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/mutex.c.o
+                0x00000e93      0x325 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/mutex.c.o
  .debug_rnglists
-                0x00001055      0x7dc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
+                0x000011b8      0x7dc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
  .debug_rnglists
-                0x00001831      0x2c6 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
+                0x00001994      0x2c6 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
  .debug_rnglists
-                0x00001af7      0x259 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
+                0x00001c5a      0x259 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
  .debug_rnglists
-                0x00001d50      0x5be CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
+                0x00001eb3      0x5be CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
  .debug_rnglists
-                0x0000230e       0x5c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_pll/pll.c.o
+                0x00002471       0x5c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_pll/pll.c.o
  .debug_rnglists
-                0x0000236a       0x2b CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_ticks/ticks.c.o
+                0x000024cd       0x2b CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_ticks/ticks.c.o
  .debug_rnglists
-                0x00002395      0x112 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bootrom/bootrom.c.o
+                0x000024f8      0x112 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bootrom/bootrom.c.o
  .debug_rnglists
-                0x000024a7       0x1f CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_xosc/xosc.c.o
+                0x0000260a       0x1f CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_xosc/xosc.c.o
  .debug_rnglists
-                0x000024c6       0x3d CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
+                0x00002629       0x3d CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
  .debug_rnglists
-                0x00002503       0x4a CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x00002666       0x4a CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
  .debug_rnglists
-                0x0000254d       0x20 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
+                0x000026b0       0x20 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
  .debug_rnglists
-                0x0000256d       0x43 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
+                0x000026d0       0x43 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
  .debug_rnglists
-                0x000025b0       0x2c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_divider/divider_hardware.S.o
+                0x00002713       0x2c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_divider/divider_hardware.S.o
  .debug_rnglists
-                0x000025dc       0xf8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+                0x0000273f       0xf8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
  .debug_rnglists
-                0x000026d4       0x1a CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
+                0x00002837       0x1a CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
  .debug_rnglists
-                0x000026ee       0xe5 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
+                0x00002851       0xe5 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
  .debug_rnglists
-                0x000027d3       0x19 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
+                0x00002936       0x19 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
  .debug_rnglists
-                0x000027ec       0x25 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
+                0x0000294f       0x25 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
  .debug_rnglists
-                0x00002811      0x2a2 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+                0x00002974      0x2a2 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
  .debug_rnglists
-                0x00002ab3       0x1b CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_crt0/crt0.S.o
+                0x00002c16       0x1b CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_crt0/crt0.S.o
  .debug_rnglists
-                0x00002ace       0x85 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+                0x00002c31       0x85 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_clib_interface/newlib_interface.c.o
  .debug_rnglists
-                0x00002b53      0x2bb CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
+                0x00002cb6      0x2bb CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
  .debug_rnglists
-                0x00002e0e      0x1ce CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+                0x00002f71      0x1ce CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
  .debug_rnglists
-                0x00002fdc       0x70 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
+                0x0000313f       0x70 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
  .debug_rnglists
-                0x0000304c      0x368 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
+                0x000031af      0x368 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
 
-.debug_line     0x00000000    0x1a23a
- .debug_line    0x00000000     0x1127 CMakeFiles/rover_w.dir/src/lidar.cpp.o
- .debug_line    0x00001127      0x3fe CMakeFiles/rover_w.dir/src/rover_w.cpp.o
- .debug_line    0x00001525      0x528 CMakeFiles/rover_w.dir/src/sender.cpp.o
- .debug_line    0x00001a4d      0x336 CMakeFiles/rover_w.dir/src/serial_debug.cpp.o
- .debug_line    0x00001d83      0x541 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
- .debug_line    0x000022c4     0x1c64 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_gpio/gpio.c.o
- .debug_line    0x00003f28      0x27e CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/panic.c.o
- .debug_line    0x000041a6      0x8f2 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/hardware_claim/claim.c.o
- .debug_line    0x00004a98      0x4c8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync/sync.c.o
- .debug_line    0x00004f60      0x3ac CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
- .debug_line    0x0000530c     0x17c5 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
- .debug_line    0x00006ad1      0x2d7 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/lock_core.c.o
- .debug_line    0x00006da8     0x1b92 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/mutex.c.o
- .debug_line    0x0000893a     0x3586 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
- .debug_line    0x0000bec0     0x1d65 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
- .debug_line    0x0000dc25      0xfa2 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
- .debug_line    0x0000ebc7     0x2150 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
- .debug_line    0x00010d17      0x502 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_pll/pll.c.o
- .debug_line    0x00011219      0x336 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_ticks/ticks.c.o
- .debug_line    0x0001154f      0x458 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bootrom/bootrom.c.o
- .debug_line    0x000119a7      0x351 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_xosc/xosc.c.o
- .debug_line    0x00011cf8      0x30d CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
- .debug_line    0x00012005      0x6da CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
- .debug_line    0x000126df      0x563 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
- .debug_line    0x00012c42      0x108 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
- .debug_line    0x00012d4a      0x2a9 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_divider/divider_hardware.S.o
- .debug_line    0x00012ff3      0x44d CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
- .debug_line    0x00013440      0x4fa CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
- .debug_line    0x0001393a       0x5d CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
- .debug_line    0x00013997       0x61 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
- .debug_line    0x000139f8      0x3c6 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
- .debug_line    0x00013dbe      0x3b6 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
- .debug_line    0x00014174       0x94 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
- .debug_line    0x00014208      0x1eb CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
- .debug_line    0x000143f3     0x1d0a CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
- .debug_line    0x000160fd       0xa2 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_crt0/crt0.S.o
- .debug_line    0x0001619f      0x8d2 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_clib_interface/newlib_interface.c.o
- .debug_line    0x00016a71     0x14bb CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
- .debug_line    0x00017f2c      0xe10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
- .debug_line    0x00018d3c      0x659 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
- .debug_line    0x00019395      0xea5 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
+.debug_line     0x00000000    0x1a8de
+ .debug_line    0x00000000     0x11c3 CMakeFiles/rover_w.dir/src/lidar.cpp.o
+ .debug_line    0x000011c3      0x60b CMakeFiles/rover_w.dir/src/rover_w.cpp.o
+ .debug_line    0x000017ce      0x528 CMakeFiles/rover_w.dir/src/sender.cpp.o
+ .debug_line    0x00001cf6      0x338 CMakeFiles/rover_w.dir/src/serial_debug.cpp.o
+ .debug_line    0x0000202e      0x93a CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
+ .debug_line    0x00002968     0x1c64 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_gpio/gpio.c.o
+ .debug_line    0x000045cc      0x27e CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/panic.c.o
+ .debug_line    0x0000484a      0x8f2 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/hardware_claim/claim.c.o
+ .debug_line    0x0000513c      0x4c8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync/sync.c.o
+ .debug_line    0x00005604      0x3ac CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
+ .debug_line    0x000059b0     0x17c5 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
+ .debug_line    0x00007175      0x2d7 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/lock_core.c.o
+ .debug_line    0x0000744c     0x1b92 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/mutex.c.o
+ .debug_line    0x00008fde     0x3586 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
+ .debug_line    0x0000c564     0x1d65 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
+ .debug_line    0x0000e2c9      0xfa2 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
+ .debug_line    0x0000f26b     0x2150 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
+ .debug_line    0x000113bb      0x502 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_pll/pll.c.o
+ .debug_line    0x000118bd      0x336 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_ticks/ticks.c.o
+ .debug_line    0x00011bf3      0x458 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bootrom/bootrom.c.o
+ .debug_line    0x0001204b      0x351 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_xosc/xosc.c.o
+ .debug_line    0x0001239c      0x30d CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
+ .debug_line    0x000126a9      0x6da CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
+ .debug_line    0x00012d83      0x563 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
+ .debug_line    0x000132e6      0x108 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
+ .debug_line    0x000133ee      0x2a9 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_divider/divider_hardware.S.o
+ .debug_line    0x00013697      0x44d CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+ .debug_line    0x00013ae4      0x4fa CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
+ .debug_line    0x00013fde       0x5d CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
+ .debug_line    0x0001403b       0x61 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
+ .debug_line    0x0001409c      0x3c6 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
+ .debug_line    0x00014462      0x3b6 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
+ .debug_line    0x00014818       0x94 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
+ .debug_line    0x000148ac      0x1eb CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+ .debug_line    0x00014a97     0x1d0a CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+ .debug_line    0x000167a1       0xa2 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_crt0/crt0.S.o
+ .debug_line    0x00016843      0x8d2 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+ .debug_line    0x00017115     0x14bb CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
+ .debug_line    0x000185d0      0xe10 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+ .debug_line    0x000193e0      0x659 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
+ .debug_line    0x00019a39      0xea5 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
 
-.debug_str      0x00000000     0x824d
- .debug_str     0x00000000     0x824d CMakeFiles/rover_w.dir/src/lidar.cpp.o
-                               0x38da (size before relaxing)
- .debug_str     0x0000824d      0x31b CMakeFiles/rover_w.dir/src/rover_w.cpp.o
- .debug_str     0x0000824d      0x712 CMakeFiles/rover_w.dir/src/sender.cpp.o
- .debug_str     0x0000824d      0x3a0 CMakeFiles/rover_w.dir/src/serial_debug.cpp.o
- .debug_str     0x0000824d      0x3cc CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
- .debug_str     0x0000824d      0xcc5 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_gpio/gpio.c.o
- .debug_str     0x0000824d      0x1fd CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/panic.c.o
- .debug_str     0x0000824d      0x380 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/hardware_claim/claim.c.o
- .debug_str     0x0000824d      0x329 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync/sync.c.o
- .debug_str     0x0000824d      0x23c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
- .debug_str     0x0000824d      0xab8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
- .debug_str     0x0000824d      0x208 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/lock_core.c.o
- .debug_str     0x0000824d      0x7e3 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/mutex.c.o
- .debug_str     0x0000824d     0x11df CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
- .debug_str     0x0000824d      0xa2b CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
- .debug_str     0x0000824d      0xc3a CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
- .debug_str     0x0000824d      0xa0e CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
- .debug_str     0x0000824d      0x45b CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_pll/pll.c.o
- .debug_str     0x0000824d      0x28a CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_ticks/ticks.c.o
- .debug_str     0x0000824d      0x34f CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bootrom/bootrom.c.o
- .debug_str     0x0000824d      0x23f CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_xosc/xosc.c.o
- .debug_str     0x0000824d      0x28f CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
- .debug_str     0x0000824d      0x7c2 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
- .debug_str     0x0000824d      0x497 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
- .debug_str     0x0000824d       0x87 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
- .debug_str     0x0000824d       0x8a CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_divider/divider_hardware.S.o
- .debug_str     0x0000824d       0x8c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
- .debug_str     0x0000824d      0x2d7 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
- .debug_str     0x0000824d       0x92 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
- .debug_str     0x0000824d       0x90 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
- .debug_str     0x0000824d       0x8a CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
- .debug_str     0x0000824d      0x29c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
- .debug_str     0x0000824d       0x87 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
- .debug_str     0x0000824d      0x438 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
- .debug_str     0x0000824d      0x4e1 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
- .debug_str     0x0000824d       0x7b CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_crt0/crt0.S.o
- .debug_str     0x0000824d      0x778 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_clib_interface/newlib_interface.c.o
- .debug_str     0x0000824d      0xdb6 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
- .debug_str     0x0000824d      0xf19 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
- .debug_str     0x0000824d      0x26e CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
- .debug_str     0x0000824d      0x7a7 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
+.debug_str      0x00000000     0x827d
+ .debug_str     0x00000000     0x827d CMakeFiles/rover_w.dir/src/lidar.cpp.o
+                               0x38b6 (size before relaxing)
+ .debug_str     0x0000827d     0x2f8e CMakeFiles/rover_w.dir/src/rover_w.cpp.o
+ .debug_str     0x0000827d      0x712 CMakeFiles/rover_w.dir/src/sender.cpp.o
+ .debug_str     0x0000827d      0x3b4 CMakeFiles/rover_w.dir/src/serial_debug.cpp.o
+ .debug_str     0x0000827d     0x30d0 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
+ .debug_str     0x0000827d      0xcc5 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_gpio/gpio.c.o
+ .debug_str     0x0000827d      0x1fd CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/panic.c.o
+ .debug_str     0x0000827d      0x380 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/hardware_claim/claim.c.o
+ .debug_str     0x0000827d      0x329 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync/sync.c.o
+ .debug_str     0x0000827d      0x23c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
+ .debug_str     0x0000827d      0xab8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
+ .debug_str     0x0000827d      0x208 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/lock_core.c.o
+ .debug_str     0x0000827d      0x7e3 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/mutex.c.o
+ .debug_str     0x0000827d     0x11df CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
+ .debug_str     0x0000827d      0xa2b CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
+ .debug_str     0x0000827d      0xc3a CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
+ .debug_str     0x0000827d      0xa0e CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
+ .debug_str     0x0000827d      0x45b CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_pll/pll.c.o
+ .debug_str     0x0000827d      0x28a CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_ticks/ticks.c.o
+ .debug_str     0x0000827d      0x34f CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bootrom/bootrom.c.o
+ .debug_str     0x0000827d      0x23f CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_xosc/xosc.c.o
+ .debug_str     0x0000827d      0x28f CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
+ .debug_str     0x0000827d      0x7c2 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
+ .debug_str     0x0000827d      0x497 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
+ .debug_str     0x0000827d       0x87 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
+ .debug_str     0x0000827d       0x8a CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_divider/divider_hardware.S.o
+ .debug_str     0x0000827d       0x8c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+ .debug_str     0x0000827d      0x2d7 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
+ .debug_str     0x0000827d       0x92 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
+ .debug_str     0x0000827d       0x90 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
+ .debug_str     0x0000827d       0x8a CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
+ .debug_str     0x0000827d      0x29c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
+ .debug_str     0x0000827d       0x87 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
+ .debug_str     0x0000827d      0x438 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+ .debug_str     0x0000827d      0x4e1 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+ .debug_str     0x0000827d       0x7b CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_crt0/crt0.S.o
+ .debug_str     0x0000827d      0x778 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+ .debug_str     0x0000827d      0xdb6 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
+ .debug_str     0x0000827d      0xf19 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+ .debug_str     0x0000827d      0x26e CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
+ .debug_str     0x0000827d      0x7a7 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
 
-.debug_frame    0x00000000     0x1f94
- .debug_frame   0x00000000       0xc8 CMakeFiles/rover_w.dir/src/lidar.cpp.o
- .debug_frame   0x000000c8       0x28 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
- .debug_frame   0x000000f0       0x78 CMakeFiles/rover_w.dir/src/sender.cpp.o
- .debug_frame   0x00000168       0x38 CMakeFiles/rover_w.dir/src/serial_debug.cpp.o
- .debug_frame   0x000001a0       0x58 CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
- .debug_frame   0x000001f8      0x320 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_gpio/gpio.c.o
- .debug_frame   0x00000518       0x44 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/panic.c.o
- .debug_frame   0x0000055c       0xa0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/hardware_claim/claim.c.o
- .debug_frame   0x000005fc       0xa8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync/sync.c.o
- .debug_frame   0x000006a4       0x30 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
- .debug_frame   0x000006d4      0x1cc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
- .debug_frame   0x000008a0       0x20 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/lock_core.c.o
- .debug_frame   0x000008c0      0x1e8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/mutex.c.o
- .debug_frame   0x00000aa8      0x2ec CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
- .debug_frame   0x00000d94      0x2c4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
- .debug_frame   0x00001058       0xec CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
- .debug_frame   0x00001144      0x1f4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
- .debug_frame   0x00001338       0x40 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_pll/pll.c.o
- .debug_frame   0x00001378       0x40 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_ticks/ticks.c.o
- .debug_frame   0x000013b8       0xa0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bootrom/bootrom.c.o
- .debug_frame   0x00001458       0x40 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_xosc/xosc.c.o
- .debug_frame   0x00001498       0x70 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
- .debug_frame   0x00001508       0x88 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
- .debug_frame   0x00001590       0x2c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
- .debug_frame   0x000015bc       0x44 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
- .debug_frame   0x00001600       0x40 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
- .debug_frame   0x00001640      0x1f0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
- .debug_frame   0x00001830      0x184 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_clib_interface/newlib_interface.c.o
- .debug_frame   0x000019b4      0x2a8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
- .debug_frame   0x00001c5c      0x158 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
- .debug_frame   0x00001db4       0x5c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
- .debug_frame   0x00001e10      0x15c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
- .debug_frame   0x00001f6c       0x28 /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
+.debug_frame    0x00000000     0x1fe8
+ .debug_frame   0x00000000       0xd0 CMakeFiles/rover_w.dir/src/lidar.cpp.o
+ .debug_frame   0x000000d0       0x50 CMakeFiles/rover_w.dir/src/rover_w.cpp.o
+ .debug_frame   0x00000120       0x78 CMakeFiles/rover_w.dir/src/sender.cpp.o
+ .debug_frame   0x00000198       0x38 CMakeFiles/rover_w.dir/src/serial_debug.cpp.o
+ .debug_frame   0x000001d0       0x7c CMakeFiles/rover_w.dir/src/uart1_ringbuf.cpp.o
+ .debug_frame   0x0000024c      0x320 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_gpio/gpio.c.o
+ .debug_frame   0x0000056c       0x44 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/panic.c.o
+ .debug_frame   0x000005b0       0xa0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/hardware_claim/claim.c.o
+ .debug_frame   0x00000650       0xa8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync/sync.c.o
+ .debug_frame   0x000006f8       0x30 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
+ .debug_frame   0x00000728      0x1cc CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.o
+ .debug_frame   0x000008f4       0x20 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/lock_core.c.o
+ .debug_frame   0x00000914      0x1e8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_sync/mutex.c.o
+ .debug_frame   0x00000afc      0x2ec CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.o
+ .debug_frame   0x00000de8      0x2c4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.o
+ .debug_frame   0x000010ac       0xec CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_uart/uart.c.o
+ .debug_frame   0x00001198      0x1f4 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_clocks/clocks.c.o
+ .debug_frame   0x0000138c       0x40 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_pll/pll.c.o
+ .debug_frame   0x000013cc       0x40 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_ticks/ticks.c.o
+ .debug_frame   0x0000140c       0xa0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_bootrom/bootrom.c.o
+ .debug_frame   0x000014ac       0x40 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_xosc/xosc.c.o
+ .debug_frame   0x000014ec       0x70 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime/runtime.c.o
+ .debug_frame   0x0000155c       0x88 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init.c.o
+ .debug_frame   0x000015e4       0x2c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
+ .debug_frame   0x00001610       0x44 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
+ .debug_frame   0x00001654       0x40 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
+ .debug_frame   0x00001694      0x1f0 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.o
+ .debug_frame   0x00001884      0x184 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+ .debug_frame   0x00001a08      0x2a8 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.o
+ .debug_frame   0x00001cb0      0x158 CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+ .debug_frame   0x00001e08       0x5c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_unique_id/unique_id.c.o
+ .debug_frame   0x00001e64      0x15c CMakeFiles/rover_w.dir/Users/admin/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_flash/flash.c.o
+ .debug_frame   0x00001fc0       0x28 /Users/admin/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
 
 .debug_line_str
                 0x00000000      0x33d

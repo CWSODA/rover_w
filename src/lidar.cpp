@@ -13,12 +13,12 @@
 
 #define DEBUG_STATES false
 #define DEBUG_LENGTH false
+#define DEBUG_ANGLE false
 
 const int LIDAR_RX_BAUDRATE = 115200;
 
 void lidar_update() {
     static uint16_t n = 0;
-    if (n != 0) return;
 
     uint8_t byte;
     while (ringbuf_pop(&byte)) {
@@ -115,7 +115,7 @@ void LidarParser::parse_byte(uint8_t byte) {
             break;
         }
         case (State::HEALTH): {
-            // assert(data_len_buf.val() == 1);
+            assert(data_len_buf.val() == 1);
             ++data_byte_count;
             rotation_speed = byte * 0.05f;
             state = State::CHECKSUM;
@@ -150,33 +150,21 @@ bool LidarParser::parse_data(uint8_t byte) {
 
             start_angle = start_angle_buf.val() * 0.01f;
             temp_point.angle = start_angle;
-            data_state = DataState::END_ANGLE;
 
-            break;
-        }
-        case (DataState::END_ANGLE): {
-            if (!end_angle_buf.insert(byte)) break;
-
-            end_angle = end_angle_buf.val() * 0.01f;
-
-            // data length includes 1+2+2+2 header for rot speed and angles
+            // data length includes 1+2+2 header for rot speed and angles
             // each data point has 1+2 bytes for strength(1) and distance(2)
-            uint16_t n_measurements = (data_len_buf.val() - 7) / 3;
+            uint16_t n_measurements = (data_len_buf.val() - 5) / 3;
             assert(n_measurements != 0);  // should not have zero data
-            delta_angle = (end_angle - start_angle) / n_measurements;
+            delta_angle = 22.5f / n_measurements;
+
+// debug angle data
+#if DEBUG_ANGLE
+            DBG("SA: %.3f\n", start_angle);
+            DBG("N: %d\n", n_measurements);
+            DBG("dA: %.3f\n", delta_angle);
+#endif
+
             data_state = DataState::SIG_STRENGTH;
-
-            // debug angle data
-            DBG("---\n");
-            DBG("Offset angle: %f\n", angle_buf.val() * 0.01f);
-            DBG("Start angle: %f\n", start_angle);
-            DBG("End angle: %f\n", end_angle);
-            DBG("DL: %d\n", data_len_buf.val());
-            DBG("DP float: %f\n", (data_len_buf.val() - 7.0f) / 3.0f);
-            DBG("Data points: %d\n", n_measurements);
-            DBG("Delta angle: %f\n", delta_angle);
-            DBG("---\n");
-
             break;
         }
         // parts below loop
@@ -196,28 +184,27 @@ bool LidarParser::parse_data(uint8_t byte) {
 #ifdef SEND_LIDAR_DATA
             // send opcode L (lidar)
             // send sig_str, dist, angle
-            send_byte('$');
-            send_byte('L');
-            send_byte(temp_point.sig_strength);
-            send_float(temp_point.distance);
-            send_float(temp_point.angle);
+            // only send every 5th data point to avoid overloading uart
+            static unsigned int count = 0;
+            if (count % 5 == 0) {
+                send_byte('$');
+                send_byte('L');
+                send_byte(temp_point.sig_strength);
+                send_float(temp_point.distance);
+                send_float(temp_point.angle);
+            }
+            count++;
 #endif
 
             // increment angle for next insert
             temp_point.angle += delta_angle;
 
+            // loop back to sig_strength for next measurement
             data_state = DataState::SIG_STRENGTH;
             break;
         }
     }
     if (data_byte_count == data_len_buf.val()) {
-        if (data_state == DataState::SIG_STRENGTH) {
-            DBG("Broken at sig\n");
-        } else if (data_state == DataState::DIST) {
-            DBG("Broken at dist\n");
-        } else {
-            DBG("Broken at invalid\n");
-        }
         return true;
     }
     return false;
@@ -272,10 +259,6 @@ void LidarParser::print_state() {
                 case (DataState::START_ANGLE):
                     DBG("DATA: START ANGLE\n");
                     break;
-                case (DataState::END_ANGLE):
-                    DBG("DATA: END ANGLE\n");
-                    break;
-                // parts below loop
                 case (DataState::SIG_STRENGTH):
                     DBG("DATA: SIGNAL STRENGTH\n");
                     break;

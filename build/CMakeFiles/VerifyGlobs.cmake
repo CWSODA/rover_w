@@ -5,6 +5,7 @@ cmake_policy(SET CMP0009 NEW)
 # SRC at CMakeLists.txt:36 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/Users/admin/rover/rover_wifi/rover_w/src/*.cpp")
 set(OLD_GLOB
+  "/Users/admin/rover/rover_wifi/rover_w/src/dir.cpp"
   "/Users/admin/rover/rover_wifi/rover_w/src/lidar.cpp"
   "/Users/admin/rover/rover_wifi/rover_w/src/pwm.cpp"
   "/Users/admin/rover/rover_wifi/rover_w/src/rover_w.cpp"

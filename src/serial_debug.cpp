@@ -5,10 +5,12 @@
 #include "serial_debug.hpp"
 #include "hardware/irq.h"
 
+constexpr uint UART_DEBUG_BAUDRATE = 115200;
+
 void init_debug_uart() {
     gpio_set_function(DEBUG_TX_PIN, GPIO_FUNC_UART);
     gpio_set_function(DEBUG_RX_PIN, GPIO_FUNC_UART);
-    uart_init(uart0, 115200);
+    uart_init(uart0, UART_DEBUG_BAUDRATE);
 
     uart_set_translate_crlf(uart0, false);  // disable translations
 

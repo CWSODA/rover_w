@@ -1,7 +1,7 @@
 #include "lidar.hpp"
 
 // toggle for debug printf
-#define DEBUG_PARSE false
+#define DEBUG_PARSE true
 #if DEBUG_PARSE
 #define DBG(...) printf(__VA_ARGS__)
 #else

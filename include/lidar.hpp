@@ -25,12 +25,16 @@
 
 /* MEASUREMENT LAYOUT */
 // byte 0: rotational speed as unsigned integer in 0.05rad/s
-// byte 1~2: angle of rotation as signed 16-bit integer in 0.01°
-// byte 3~4: frame start angle
-// byte 5~6: frame end angle
+// byte 1~2: offset as signed 16-bit integer in 0.01°
+// byte 3~4: frame start angle in same format as above
 // pairs of 3 bytes
 // 1 byte unsigned signal strength
 // 2 byte unsigned distance in 0.25mm
+
+// total measurement count = N = (data length - 5)/3
+// angle = start angle + 22.5 * (n - 1)/N
+// where n is measurement index from 1 -> N
+// delta angle = 22.5 * 1/N
 
 void init_lidar_rx();
 void lidar_update();
@@ -100,7 +104,6 @@ class LidarParser {
         ROT_SPEED = 0,
         ANGLE,
         START_ANGLE,
-        END_ANGLE,
         SIG_STRENGTH,
         DIST
     };
@@ -127,12 +130,11 @@ class LidarParser {
     // data parser buffers
     TwoByteBuffer angle_buf;
     TwoByteBuffer start_angle_buf;
-    TwoByteBuffer end_angle_buf;
     TwoByteBuffer dist_buf;
 
     // data vars
-    float rotation_speed = 0.0f;                // in 0.05rad/s increments
-    float start_angle, end_angle, delta_angle;  // calc from buffer
-    DataPoint temp_point;                       // temp
+    float rotation_speed = 0.0f;     // in 0.05rad/s increments
+    float start_angle, delta_angle;  // calc from parser
+    DataPoint temp_point;            // temp
     std::vector<DataPoint> data_vec;
 };

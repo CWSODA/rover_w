@@ -15,7 +15,7 @@
 
 int main() {
     init_data_sending();
-    sleep_ms(100);
+    sleep_ms(1000);
     DBG("Rover Starting...\n");
 
     // INIT MOTORS
