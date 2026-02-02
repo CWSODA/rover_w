@@ -9,9 +9,11 @@
 
 // UART debug
 // screen /dev/tty.usbserial-FTU7C2WR 115200
+// screen /dev/tty.usbserial-FTU7C2WR 460800
 
 // USB debug
 // screen /dev/tty.usbmodem11101
+// screen /dev/tty.usbmodem1101
 
 int main() {
     init_data_sending();

@@ -11,11 +11,15 @@
 
 #define SEND_LIDAR_DATA
 
+#define TIMESTAMP_FRAME true
+#define DEBUG_ROT_SPEED true
+#define DEBUG_SAMPLE_COUNT true
 #define DEBUG_STATES false
 #define DEBUG_LENGTH false
 #define DEBUG_ANGLE false
 
-const int LIDAR_RX_BAUDRATE = 115200;
+constexpr int DATA_THROTTLE_COUNT = 1;
+constexpr int LIDAR_RX_BAUDRATE = 115200;
 
 void lidar_update() {
     static uint16_t n = 0;
@@ -60,6 +64,10 @@ void LidarParser::parse_byte(uint8_t byte) {
 
     switch (state) {
         case (State::START): {
+#if TIMESTAMP_FRAME
+            send_byte('$');
+            send_byte('T');
+#endif
             assert(byte == 0xAA);
             state = State::FRAME_LENGTH;
             break;
@@ -125,6 +133,9 @@ void LidarParser::parse_byte(uint8_t byte) {
             // enforce checksum
             if (checksum_buf.insert(byte)) {
                 // TODO
+#if DEBUG_ROT_SPEED
+                DBG("ROT: %f\n", rotation_speed);
+#endif
                 reset_state();
             }
             break;
@@ -157,7 +168,10 @@ bool LidarParser::parse_data(uint8_t byte) {
             assert(n_measurements != 0);  // should not have zero data
             delta_angle = 22.5f / n_measurements;
 
-// debug angle data
+// debug stuff
+#if DEBUG_SAMPLE_COUNT
+            DBG("N: %d\n", n_measurements);
+#endif
 #if DEBUG_ANGLE
             DBG("SA: %.3f\n", start_angle);
             DBG("N: %d\n", n_measurements);
@@ -186,7 +200,11 @@ bool LidarParser::parse_data(uint8_t byte) {
             // send sig_str, dist, angle
             // only send every 5th data point to avoid overloading uart
             static unsigned int count = 0;
-            if (count % 5 == 0) {
+            if (count % DATA_THROTTLE_COUNT == 0) {
+                // sends 11 bytes total per sample
+                // inputs approximately 3 bytes per sample excluding headers
+                // output baudrate must be 4x faster
+                // at least 460,800
                 send_byte('$');
                 send_byte('L');
                 send_byte(temp_point.sig_strength);

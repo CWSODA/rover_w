@@ -19,7 +19,6 @@ void init_data_sending() {
 #endif
 
 #if UART_SERIAL
-    stdio_init_all();
     // ensure correct uart settings
     init_debug_uart();
 #endif
