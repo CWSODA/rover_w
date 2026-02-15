@@ -26,6 +26,8 @@ int main() {
     // INIT LIDAR
     init_lidar_rx();
 
+    absolute_time_t time = get_absolute_time();
+    int64_t timer_sum = 0;
     while (true) {
         // char c = uart_getc(uart1);
         // printf(" %02X ", c);

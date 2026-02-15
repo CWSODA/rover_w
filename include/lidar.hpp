@@ -102,7 +102,7 @@ class LidarParser {
 
     enum class DataState {
         ROT_SPEED = 0,
-        ANGLE,
+        OFFSET_ANGLE,
         START_ANGLE,
         SIG_STRENGTH,
         DIST
@@ -128,13 +128,13 @@ class LidarParser {
     TwoByteBuffer data_len_buf;
 
     // data parser buffers
-    TwoByteBuffer angle_buf;
+    TwoByteBuffer offset_angle_buf;
     TwoByteBuffer start_angle_buf;
     TwoByteBuffer dist_buf;
 
     // data vars
-    float rotation_speed = 0.0f;     // in 0.05rad/s increments
-    float start_angle, delta_angle;  // calc from parser
-    DataPoint temp_point;            // temp
+    float rotation_speed = 0.0f;  // in 0.05 rotation/s increments
+    float delta_angle;            // calc from parser, in degrees
+    DataPoint temp_point;         // temporary cache
     std::vector<DataPoint> data_vec;
 };

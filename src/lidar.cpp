@@ -11,15 +11,17 @@
 
 #define SEND_LIDAR_DATA
 
-#define TIMESTAMP_FRAME true
-#define DEBUG_ROT_SPEED true
-#define DEBUG_SAMPLE_COUNT true
+#define TIMESTAMP_FRAME false
+#define DEBUG_ROT_SPEED false
+#define DEBUG_SAMPLE_COUNT false
 #define DEBUG_STATES false
 #define DEBUG_LENGTH false
 #define DEBUG_ANGLE false
+#define DEBUG_OFFSET_ANGLE false
 
 constexpr int DATA_THROTTLE_COUNT = 1;
 constexpr int LIDAR_RX_BAUDRATE = 115200;
+constexpr float LIDAR_ANGLE_CONST = 22.5f;
 
 void lidar_update() {
     static uint16_t n = 0;
@@ -68,7 +70,12 @@ void LidarParser::parse_byte(uint8_t byte) {
             send_byte('$');
             send_byte('T');
 #endif
-            assert(byte == 0xAA);
+            // ignore invalid header
+            // assert(byte == 0xAA);
+            if (byte != 0xAA) {
+                reset_state();
+                break;
+            }
             state = State::FRAME_LENGTH;
             break;
         }
@@ -82,7 +89,12 @@ void LidarParser::parse_byte(uint8_t byte) {
             break;
         }
         case (State::TYPE): {
-            assert(byte == 0x61);
+            // ignore invalid type
+            // assert(byte == 0x61);
+            if (byte != 0x61) {
+                reset_state();
+                break;
+            }
             state = State::COMMAND;
             break;
         }
@@ -149,28 +161,34 @@ bool LidarParser::parse_data(uint8_t byte) {
         case (DataState::ROT_SPEED): {
             rotation_speed = byte * 0.05f;
             // assert(rotation_speed != 0);  // shouldnt be 0 in here
-            data_state = DataState::ANGLE;
+            data_state = DataState::OFFSET_ANGLE;
             break;
         }
-        case (DataState::ANGLE): {
-            if (angle_buf.insert(byte)) data_state = DataState::START_ANGLE;
+        case (DataState::OFFSET_ANGLE): {
+            if (offset_angle_buf.insert(byte))
+                data_state = DataState::START_ANGLE;
             break;
         }
         case (DataState::START_ANGLE): {
             if (!start_angle_buf.insert(byte)) break;
 
-            start_angle = start_angle_buf.val() * 0.01f;
+            float offset_angle = offset_angle_buf.val() * 0.01f;
+            float start_angle = start_angle_buf.val() * 0.01f;
+            // temp_point.angle = start_angle - offset_angle;
             temp_point.angle = start_angle;
 
             // data length includes 1+2+2 header for rot speed and angles
             // each data point has 1+2 bytes for strength(1) and distance(2)
             uint16_t n_measurements = (data_len_buf.val() - 5) / 3;
             assert(n_measurements != 0);  // should not have zero data
-            delta_angle = 22.5f / n_measurements;
+            delta_angle = LIDAR_ANGLE_CONST / (float)n_measurements;
 
 // debug stuff
 #if DEBUG_SAMPLE_COUNT
             DBG("N: %d\n", n_measurements);
+#endif
+#if DEBUG_OFFSET_ANGLE
+            DBG("OA: %.3f\n", offset_angle);
 #endif
 #if DEBUG_ANGLE
             DBG("SA: %.3f\n", start_angle);
@@ -187,11 +205,11 @@ bool LidarParser::parse_data(uint8_t byte) {
             data_state = DataState::DIST;
             break;
         case (DataState::DIST): {
-            if (dist_buf.insert(byte)) break;
+            if (!dist_buf.insert(byte)) break;
             // byte finished processing
             // save data to vector
             // increments of 0.25mm = 0.00025 m
-            temp_point.distance = dist_buf.val() * 0.00025f;
+            temp_point.distance = dist_buf.val() * 0.25E-3f;
 
             // data_vec.push_back(temp_point);
 
@@ -271,8 +289,8 @@ void LidarParser::print_state() {
                 case (DataState::ROT_SPEED):
                     DBG("DATA: ROT SPEED\n");
                     break;
-                case (DataState::ANGLE):
-                    DBG("DATA: ANGLE\n");
+                case (DataState::OFFSET_ANGLE):
+                    DBG("DATA: OFFSET ANGLE\n");
                     break;
                 case (DataState::START_ANGLE):
                     DBG("DATA: START ANGLE\n");
