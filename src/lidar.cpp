@@ -11,8 +11,8 @@
 
 #define SEND_LIDAR_DATA
 
-#define TIMESTAMP_FRAME false
-#define DEBUG_ROT_SPEED false
+#define TIMESTAMP_FRAME true
+#define DEBUG_ROT_SPEED true
 #define DEBUG_SAMPLE_COUNT false
 #define DEBUG_STATES false
 #define DEBUG_LENGTH false
