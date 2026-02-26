@@ -1,3 +1,6 @@
+# EXPERIMENT BRANCH
+This version was used for the individual experiment that tested the rotation speed and angular resolution of the LiDAR module. All settings have been preserved for reproducibility. This branch will NOT be updated.
+
 # ROVER DESIGN CODE
 Contains code for an autonomous robot built for the 2nd year rover design module at University of Southampton.
 
