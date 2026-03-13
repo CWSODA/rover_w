@@ -4,6 +4,7 @@
 #include <math.h>
 
 #include "pwm.hpp"
+#include "magnetic_encoder.hpp"
 
 // Motor Pins:
 // assuming we are driving the motors at the same frequency
@@ -22,12 +23,12 @@
 class Motor {
    public:
     Motor(uint pwm_pin, uint dir_pin)
-        : dir_pin(dir_pin), pwm_channel(PWM_Channel(pwm_pin)) {
+        : dir_pin_(dir_pin), pwm_channel_(PWM_Channel(pwm_pin)) {
         assert(dir_pin != pwm_pin);
         // init dir pin as output I/O pin
         gpio_set_function(dir_pin, GPIO_FUNC_SIO);
         gpio_set_dir(dir_pin, true);
-        pwm_channel.enable();
+        pwm_channel_.enable();
     }
 
     // sets pwm for the motor
@@ -35,26 +36,23 @@ class Motor {
     // negative values represent reverse
     void drive(float val) {
         // set direction depending on val sign
-        gpio_put(dir_pin, (val > 0) ? true : false);
-        pwm_channel.set_duty(std::abs(val));
+        gpio_put(dir_pin_, (val > 0) ? true : false);
+        pwm_channel_.set_duty(std::abs(val));
     }
 
    private:
-    PWM_Channel pwm_channel;
-    const uint dir_pin;
+    PWM_Channel pwm_channel_;
+    const uint dir_pin_;
 };
 
 class MotorControl {
    public:
     void update_motors() {
-        static float val = -100.0f;
-        printf("value: %f\n", val);
+        static float val = 100.0f;
         motorFL.drive(val);
         motorFR.drive(val);
         motorBL.drive(val);
         motorBR.drive(val);
-        val += 25.0f;
-        if (val > 100.0f) val = -100.0f;
     }
 
    private:
