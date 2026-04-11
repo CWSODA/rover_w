@@ -5,7 +5,8 @@
 #include "sender.hpp"
 #include "motors.hpp"
 #include "lidar.hpp"
-#include "magnetic_encoder.hpp"
+#include "encoder.hpp"
+#include "imu.hpp"
 #include "global.hpp"
 
 // UART debug
@@ -23,12 +24,24 @@ int main() {
 
     // INIT MOTORS
     MotorControl motor_control;
+    init_encoder();
 
     // INIT LIDAR
     Lidar lidar;
 
+    // init i2c
+    init_i2c1();
+
+    init_imu();
+
+    DBG("Starting loop...\n");
     while (true) {
         // lidar.update_lidar();
         // motor_control.update_motors();
+        // update_encoders();
+        read_xl();
+
+        // sleep_ms(1.0f / 13.0f);
+        sleep_ms(2000);
     }
 }

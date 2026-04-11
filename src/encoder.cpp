@@ -7,15 +7,11 @@ void init_encoder() {
     gpio_put_masked(PIN_MASK, UINT32_MAX);  // set all masked pins high
 }
 
-// Encoder encoder_arr[4] = {
-//     Encoder(FL_PIN),
-//     Encoder(FR_PIN),
-//     Encoder(BL_PIN),
-//     Encoder(BR_PIN),
-// };
-
-Encoder encoder_arr[1] = {
-    Encoder(FL_PIN),
+Encoder encoder_arr[4] = {
+    Encoder(ENCODER_FL_PIN),
+    Encoder(ENCODER_FR_PIN),
+    Encoder(ENCODER_BL_PIN),
+    Encoder(ENCODER_BR_PIN),
 };
 
 // void update_encoders() {

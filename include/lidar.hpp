@@ -1,5 +1,4 @@
 #pragma once
-#define LIDAR_RX_PIN 5
 
 #include "pico/stdlib.h"  // used for type definitions uint16 etc
 #include <vector>

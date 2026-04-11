@@ -4,7 +4,18 @@
 #include "pico/stdlib.h"
 
 #include "sender.hpp"
-#include "serial_debug.hpp"
+#include "global.hpp"
+#include "tcp.hpp"
+
+static void init_debug_uart() {
+    gpio_set_function(DEBUG_TX_PIN, GPIO_FUNC_UART);
+    gpio_set_function(DEBUG_RX_PIN, GPIO_FUNC_UART);
+
+    uart_set_translate_crlf(uart0, false);  // disable translations
+
+    // enable uart0 debug with only TX
+    stdio_uart_init_full(uart0, UART_DEBUG_BAUDRATE, DEBUG_TX_PIN, -1);
+}
 
 void init_data_sending() {
 // common setup for serial debug
@@ -15,7 +26,7 @@ void init_data_sending() {
     while (!stdio_usb_connected()) {
         sleep_ms(10);
     }
-    printf("Connected to USB\n");
+    DBG("Connected to USB\n");
 #endif
 
 #if UART_SERIAL
@@ -26,15 +37,17 @@ void init_data_sending() {
 #if NET_DATA
     // add in network initializer
     // add in wait for connection if required
+    init_wifi();
 #endif
 }
 
-void send_byte(const char c) {
+void send_byte(const uint8_t byte) {
 #if UART_SERIAL | USB_SERIAL
-    serial_send_byte(c);
+    stdio_putchar_raw(byte);
 #endif
 #if NET_DATA
     // send through net
+    tcp_write_data(NULL, NULL, &byte, 1);
 #endif
 }
 

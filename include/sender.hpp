@@ -1,8 +1,5 @@
 // functions to streamline sending data
 // through serial and/or network protocols
-#define UART_SERIAL true
-#define USB_SERIAL false
-#define NET_DATA false
 
 // initializes any enabled streams
 void init_data_sending();

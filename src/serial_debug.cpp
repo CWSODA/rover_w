@@ -2,11 +2,9 @@
 #include "pico/stdlib.h"
 #include "hardware/uart.h"
 
+// #include "hardware/irq.h"
+#include "global.hpp"
 #include "serial_debug.hpp"
-#include "hardware/irq.h"
-
-// 921600 baudrate
-constexpr uint UART_DEBUG_BAUDRATE = 115200 * 8;
 
 void init_debug_uart() {
     gpio_set_function(DEBUG_TX_PIN, GPIO_FUNC_UART);

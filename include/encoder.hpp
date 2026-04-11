@@ -9,24 +9,11 @@
 #include "hardware/gpio.h"
 #include "i2c.hpp"
 
-#define todo assert(false)
-
 constexpr uint8_t ENCODER_ADDR = 0x36;  // I2C address of AS5600 encoder
 constexpr uint8_t ANGLE_ADDR = 0x0C;    // Register address for raw angle MSB
 
-// pin numbers of encoder
-enum class EncoderSel {
-    FL = 18,
-    FR = 19,
-    BL = 20,
-    BR = 21,
-};
-constexpr uint FL_PIN = (uint)EncoderSel::FL;
-constexpr uint FR_PIN = (uint)EncoderSel::FR;
-constexpr uint BL_PIN = (uint)EncoderSel::BL;
-constexpr uint BR_PIN = (uint)EncoderSel::BR;
-constexpr uint32_t PIN_MASK =
-    (1 << FR_PIN) | (1 << FL_PIN) | (1 << BR_PIN) | (1 << BL_PIN);
+constexpr uint32_t PIN_MASK = (1 << ENCODER_FR_PIN) | (1 << ENCODER_FL_PIN) |
+                              (1 << ENCODER_BR_PIN) | (1 << ENCODER_BL_PIN);
 
 class Encoder {
    public:

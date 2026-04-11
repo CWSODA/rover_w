@@ -4,6 +4,8 @@
 #include "pico/stdlib.h"
 #include "i2c.hpp"
 
+#include "timer.hpp"
+
 #define IMU_I2C i2c1
 constexpr uint8_t IMU_ADDR = 0x6A;
 
@@ -39,7 +41,7 @@ struct Vec3 {
 };
 
 // forward declarations
-void calc_rot(Vec3& accel);
+void calc_rot(Vec3& accel, Vec3& gyro);
 
 bool init_imu() {
     // enable and config ODR
@@ -84,47 +86,46 @@ void read_xl() {
     DBG("raw accel(%d, %d, %d)\n", accel_x, accel_y, accel_z);
     DBG("accel(%f, %f, %f)[g]\n", accel.x, accel.y, accel.z);
 
-    calc_rot(accel);
+    calc_rot(accel, accel);
 }
 
-// void read_imu_data() {
-//     uint8_t gyro_data[3 * 2];
-//     uint8_t accel_data[3 * 2];
+void read_imu_data() {
+    uint8_t gyro_data[3 * 2];
+    uint8_t accel_data[3 * 2];
 
-//     // read
-//     i2c_write_blocking(IMU_I2C, IMU_ADDR, &OUTX_L_G, 1, false);
-//     i2c_read_blocking(IMU_I2C, IMU_ADDR, gyro_data, sizeof(gyro_data), true);
-//     i2c_read_blocking(IMU_I2C, IMU_ADDR, accel_data, sizeof(accel_data),
-//     false);
+    // read
+    i2c_write_blocking(IMU_I2C, IMU_ADDR, &OUTX_L_G, 1, false);
+    i2c_read_blocking(IMU_I2C, IMU_ADDR, gyro_data, sizeof(gyro_data), true);
+    i2c_read_blocking(IMU_I2C, IMU_ADDR, accel_data, sizeof(accel_data), false);
 
-//     // extract values from raw data
-//     // values are LSB, MSB with order XYZ
-//     int16_t gyro_x = (int16_t)(gyro_data[0] | (gyro_data[1] << 8));
-//     int16_t gyro_y = (int16_t)(gyro_data[2] | (gyro_data[3] << 8));
-//     int16_t gyro_z = (int16_t)(gyro_data[4] | (gyro_data[5] << 8));
-//     Vec3 gyro;
-//     gyro.x = gyro_x * (G_FULLSCALE / INT16_MAX);
-//     gyro.y = gyro_y * (G_FULLSCALE / INT16_MAX);
-//     gyro.z = gyro_z * (G_FULLSCALE / INT16_MAX);
+    // extract values from raw data
+    // values are LSB, MSB with order XYZ
+    int16_t gyro_x = (int16_t)(gyro_data[0] | (gyro_data[1] << 8));
+    int16_t gyro_y = (int16_t)(gyro_data[2] | (gyro_data[3] << 8));
+    int16_t gyro_z = (int16_t)(gyro_data[4] | (gyro_data[5] << 8));
+    Vec3 gyro;  // values in °/s
+    gyro.x = gyro_x * (G_FULLSCALE / INT16_MAX);
+    gyro.y = gyro_y * (G_FULLSCALE / INT16_MAX);
+    gyro.z = gyro_z * (G_FULLSCALE / INT16_MAX);
 
-//     int16_t accel_x = (int16_t)(accel_data[0] | (accel_data[1] << 8));
-//     int16_t accel_y = (int16_t)(accel_data[2] | (accel_data[3] << 8));
-//     int16_t accel_z = (int16_t)(accel_data[4] | (accel_data[5] << 8));
-//     Vec3 accel;
-//     accel.x = accel_x * (XL_FULLSCALE / INT16_MAX);
-//     accel.y = accel_y * (XL_FULLSCALE / INT16_MAX);
-//     accel.z = accel_z * (XL_FULLSCALE / INT16_MAX);
+    int16_t accel_x = (int16_t)(accel_data[0] | (accel_data[1] << 8));
+    int16_t accel_y = (int16_t)(accel_data[2] | (accel_data[3] << 8));
+    int16_t accel_z = (int16_t)(accel_data[4] | (accel_data[5] << 8));
+    Vec3 accel;  // values in g
+    accel.x = accel_x * (XL_FULLSCALE / INT16_MAX);
+    accel.y = accel_y * (XL_FULLSCALE / INT16_MAX);
+    accel.z = accel_z * (XL_FULLSCALE / INT16_MAX);
 
-//     DBG("raw gyro(%d, %d, %d)\n", gyro_x, gyro_y, gyro_z);
-//     DBG("gyro(%d, %d, %d)[°/s]\n", gyro.x, gyro.y, gyro.z);
+    DBG("raw gyro(%d, %d, %d)\n", gyro_x, gyro_y, gyro_z);
+    DBG("gyro(%d, %d, %d)[°/s]\n", gyro.x, gyro.y, gyro.z);
 
-//     DBG("raw accel(%d, %d, %d)\n", accel_x, accel_y, accel_z);
-//     DBG("accel(%d, %d, %d)[g]\n", accel.x, accel.y, accel.z);
+    DBG("raw accel(%d, %d, %d)\n", accel_x, accel_y, accel_z);
+    DBG("accel(%d, %d, %d)[g]\n", accel.x, accel.y, accel.z);
 
-//     calc_rot(gyro, accel);
-// }
+    calc_rot(accel, gyro);
+}
 
-void calc_rot(Vec3& accel) {
+void calc_rot(Vec3& accel, Vec3& gyro) {
     // use accelerometer to estimate pitch and roll
     float x2 = accel.x * accel.x;
     float y2 = accel.y * accel.y;
@@ -137,7 +138,7 @@ void calc_rot(Vec3& accel) {
     Vec3 tilt;
     tilt.x = acosf(accel.x / length) * RAD2DEG;
     tilt.y = acosf(accel.y / length) * RAD2DEG;
-    tilt.z = acosf(accel.z / length) * RAD2DEG;
+    tilt.z = acosf(accel.z / length) * RAD2DEG;  // tilt from ground plane
 
     DBG("pitch: %f\n", pitch);
     DBG("roll: %f\n", roll);
@@ -146,4 +147,10 @@ void calc_rot(Vec3& accel) {
     DBG("z tilt: %f\n", tilt.z);
 
     // use gyroscope to estimate yaw
+    static Timer timer;
+    static float g_pitch = 0, g_roll = 0, g_yaw = 0;
+    float delta_time = timer.clock();
+    g_pitch += gyro.x * delta_time;
+    g_roll += gyro.y * delta_time;
+    g_yaw += gyro.z * delta_time;
 }

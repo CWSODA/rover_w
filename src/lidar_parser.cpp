@@ -3,17 +3,6 @@
 #include "sender.hpp"
 #include "global.hpp"
 
-#define SEND_LIDAR_DATA
-
-#define TIMESTAMP_FRAME true
-#define DEBUG_ROT_SPEED true
-#define DEBUG_SAMPLE_COUNT false
-#define DEBUG_STATES false
-#define DEBUG_LENGTH false
-#define DEBUG_ANGLE false
-#define DEBUG_OFFSET_ANGLE false
-
-constexpr int DATA_THROTTLE_COUNT = 1;
 constexpr float LIDAR_ANGLE_CONST = 22.5f;
 
 void LidarParser::parse_byte(uint8_t byte) {
@@ -177,7 +166,7 @@ bool LidarParser::parse_data(uint8_t byte) {
 
             // data_vec.push_back(temp_point);
 
-#ifdef SEND_LIDAR_DATA
+#if SEND_LIDAR_DATA
             // send opcode L (lidar)
             // send sig_str, dist, angle
             // only send every 5th data point to avoid overloading uart
