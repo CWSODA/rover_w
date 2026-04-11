@@ -15,22 +15,17 @@
 
 #include "global.hpp"
 
-#define TCP_PORT 4242
-#define BUF_SIZE 2048
-#define POLL_TIME_S 5
-
-#define WIFI_SSID "VM24B898"
-#define WIFI_PASSWORD "xVqtbjdqwyy4"
-
 typedef struct TCP_SERVER_T_ {
     struct tcp_pcb* server_pcb;
     struct tcp_pcb* client_pcb;
     bool complete;
 } TCP_SERVER_T;
 
+TCP_SERVER_T* state = NULL;
+
 // calloc server object
 static TCP_SERVER_T* tcp_server_init(void) {
-    TCP_SERVER_T* state = (TCP_SERVER_T*)calloc(1, sizeof(TCP_SERVER_T));
+    state = (TCP_SERVER_T*)calloc(1, sizeof(TCP_SERVER_T));
     if (!state) {
         DBG("failed to allocate state\n");
         return NULL;
@@ -88,15 +83,15 @@ static err_t tcp_server_sent(void* arg, struct tcp_pcb* tpcb, u16_t len) {
 }
 
 // write to tcp client
-void tcp_write_data(void* arg, struct tcp_pcb* tpcb, const uint8_t* buf,
-                    uint16_t len) {
-    TCP_SERVER_T* state = (TCP_SERVER_T*)arg;
-
+void tcp_write_data(const uint8_t* buf, uint16_t len) {
+    if (state->client_pcb == NULL) {
+        return;  // no connection yet
+    }
     DBG("Writing %ld bytes to client\n", len);
-    err_t err = tcp_write(tpcb, buf, len, TCP_WRITE_FLAG_COPY);
+    err_t err = tcp_write(state->client_pcb, buf, len, TCP_WRITE_FLAG_COPY);
     if (err != ERR_OK) {
         DBG("Failed to write data %d\n", err);
-        tcp_server_result(arg, -1);
+        tcp_server_result(state, -1);
     }
 }
 
@@ -161,7 +156,7 @@ static err_t tcp_server_accept(void* arg, struct tcp_pcb* client_pcb,
     tcp_arg(client_pcb, state);
     tcp_sent(client_pcb, tcp_server_sent);
     tcp_recv(client_pcb, tcp_server_recv);
-    tcp_poll(client_pcb, tcp_server_poll, POLL_TIME_S * 2);
+    tcp_poll(client_pcb, tcp_server_poll, TCP_POLL_TIME_S * 2);
     tcp_err(client_pcb, tcp_server_err);
 
     // return tcp_server_send_data(arg, state->client_pcb);

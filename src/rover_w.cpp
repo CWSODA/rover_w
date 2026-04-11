@@ -2,12 +2,12 @@
 #include "pico/stdlib.h"
 
 // self headers
+#include "global.hpp"
 #include "sender.hpp"
 #include "motors.hpp"
 #include "lidar.hpp"
 #include "encoder.hpp"
 #include "imu.hpp"
-#include "global.hpp"
 
 // UART debug
 // screen /dev/tty.usbserial-FTU7C2WR 115200

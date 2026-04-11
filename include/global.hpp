@@ -1,28 +1,40 @@
 #pragma once
 
-// toggle for debug printf
-#define DEBUG_LOG true
-#if DEBUG_LOG
-#include <stdio.h>
-#define DBG(...) printf(__VA_ARGS__)
+#include "pico/stdlib.h"
+
+// toggles for optimization possible
+// used for tracking
+#define SHOW_OPT false
+#if SHOW_OPT
+#define OPT \
+    fail:)
 #else
-#define DBG(...)
+#define OPT
 #endif
 
-#define todo assert(false)
+#define TODO assert(false)
 
 /* ------------------------------------------------------ */
 /*                        SETTINGS                        */
 /* ------------------------------------------------------ */
 
 /* ---------------------- debugging --------------------- */
-#define UART_SERIAL false
-#define USB_SERIAL true
-#define NET_DATA true
+#define DEBUG_LOG true
+#define UART_DEBUG false
+#define USB_DEBUG true
+#define NET_DEBUG true
 
 constexpr int DEBUG_TX_PIN = 0;
 constexpr int DEBUG_RX_PIN = 1;
 constexpr uint UART_DEBUG_BAUDRATE = 115200 * 8;  // 921600
+
+/* ------------------------- TCP ------------------------ */
+#define TCP_PORT 4242
+#define BUF_SIZE 2048
+#define TCP_POLL_TIME_S 5
+
+#define WIFI_SSID "VM24B898"
+#define WIFI_PASSWORD "xVqtbjdqwyy4"
 
 /* ------------------------- I2C ------------------------ */
 constexpr uint I2C1_BAUDRATE = 100e3;  // max 1M for encoder
@@ -59,3 +71,5 @@ constexpr uint ENCODER_FL_PIN = 18;
 constexpr uint ENCODER_FR_PIN = 19;
 constexpr uint ENCODER_BL_PIN = 20;
 constexpr uint ENCODER_BR_PIN = 21;
+
+#include "sender.hpp"
