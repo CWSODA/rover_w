@@ -21,7 +21,7 @@
 /* ---------------------- debugging --------------------- */
 #define DEBUG_LOG true
 #define UART_DEBUG false
-#define USB_DEBUG true
+#define USB_DEBUG false
 #define NET_DEBUG true
 
 constexpr int DEBUG_TX_PIN = 0;
@@ -33,8 +33,10 @@ constexpr uint UART_DEBUG_BAUDRATE = 115200 * 8;  // 921600
 #define BUF_SIZE 2048
 #define TCP_POLL_TIME_S 5
 
-#define WIFI_SSID "VM24B898"
-#define WIFI_PASSWORD "xVqtbjdqwyy4"
+// #define WIFI_SSID "VM24B898"
+// #define WIFI_PASSWORD "xVqtbjdqwyy4"
+#define WIFI_SSID "Nada"
+#define WIFI_PASSWORD "cvmf8452"
 
 /* ------------------------- I2C ------------------------ */
 constexpr uint I2C1_BAUDRATE = 100e3;  // max 1M for encoder

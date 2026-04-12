@@ -19,6 +19,7 @@ void init_data_sending() {
         while (!stdio_usb_connected()) {
             sleep_ms(10);
         }
+        sleep_ms(10);
         DBG("Connected to USB\n");
     }
 #endif
@@ -42,6 +43,15 @@ void send_byte(const uint8_t byte) {
 #if NET_DEBUG
     // send through net
     tcp_write_data(&byte, 1);
+#endif
+}
+
+void send_bytes(const uint8_t* c, size_t len) {
+#if UART_DEBUG | USB_DEBUG
+    fwrite(c, 1, len, stdout);
+#endif
+#if NET_DEBUG
+    tcp_write_data(c, len);
 #endif
 }
 

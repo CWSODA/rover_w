@@ -32,16 +32,28 @@ int main() {
     // init i2c
     init_i2c1();
 
+    // init accelerometer + gyro
     init_imu();
 
+    /*
+    things that have update loops:
+    - lidar
+    - motors
+    - encoders
+    - imu (xl + gyro)
+    */
     DBG("Starting loop...\n");
     while (true) {
         // lidar.update_lidar();
         // motor_control.update_motors();
         // update_encoders();
-        read_xl();
+        // read_xl();
 
         // sleep_ms(1.0f / 13.0f);
+
+        static uint64_t n = 0;
+        send_byte('k');
+        send_byte('\n');
         sleep_ms(2000);
     }
 }
