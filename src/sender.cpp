@@ -58,20 +58,13 @@ void send_bytes(const uint8_t* c, size_t len) {
 void send_float(const float val) {
     uint8_t bytes[4];
     memcpy(bytes, &val, 4);
-    send_byte(bytes[0]);
-    send_byte(bytes[1]);
-    send_byte(bytes[2]);
-    send_byte(bytes[3]);
-
-    // can send all bytes at once for net
-    OPT
+    send_bytes(bytes, sizeof(bytes));
 }
 
 static const char hex_table[] = "0123456789ABCDEF";
 void send_hex(const uint8_t byte) {
-    send_byte(hex_table[byte >> 4]);
-    send_byte(hex_table[byte & 0x0F]);
-    send_byte('\n');
+    uint8_t msg[] = {hex_table[byte >> 4], hex_table[byte & 0x0F], '\n'};
+    send_bytes(msg, sizeof(msg));
 }
 
 static void init_debug_uart() {

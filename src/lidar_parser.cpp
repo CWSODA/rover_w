@@ -1,5 +1,7 @@
 #include "lidar_parser.hpp"
 
+#include <cstring>
+
 #include "sender.hpp"
 #include "global.hpp"
 
@@ -20,8 +22,8 @@ void LidarParser::parse_byte(uint8_t byte) {
     switch (state) {
         case (State::START): {
 #if TIMESTAMP_FRAME
-            send_byte('$');
-            send_byte('T');
+            uint8_t msg[] = {'$', 'T'};
+            send_bytes(msg, sizeof(msg));
 #endif
             // ignore invalid header
             // assert(byte == 0xAA);
@@ -176,11 +178,13 @@ bool LidarParser::parse_data(uint8_t byte) {
                 // inputs approximately 3 bytes per sample excluding headers
                 // output baudrate must be 4x faster
                 // at least 460,800
-                send_byte('$');
-                send_byte('L');
-                send_byte(temp_point.sig_strength);
-                send_float(temp_point.distance);
-                send_float(temp_point.angle);
+                uint8_t msg[1 + 1 + 1 + 4 + 4];
+                msg[0] = '$';
+                msg[1] = 'L';
+                msg[2] = temp_point.sig_strength;
+                memcpy(&msg[3], &temp_point.distance, 4);
+                memcpy(&msg[7], &temp_point.angle, 4);
+                send_bytes(msg, sizeof(msg));
             }
             count++;
 #endif
