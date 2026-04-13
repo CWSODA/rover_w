@@ -45,7 +45,7 @@ class CooldownTimer {
         }
 
         float dt = absolute_time_diff_us(prev_time_, time);
-        if (dt * 1E3 >= cooldown_ms_) {
+        if (dt * 1E-3 >= cooldown_ms_) {
             prev_time_ = time;
             return true;
         }
