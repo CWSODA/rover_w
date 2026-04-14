@@ -15,7 +15,7 @@ void LidarParser::parse_byte(uint8_t byte) {
     }
 
     // debug state
-#if DEBUG_STATES
+#if DEBUG_LIDAR_STATE
     print_state();
 #endif
 

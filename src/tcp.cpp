@@ -20,16 +20,6 @@ typedef struct TCP_SERVER_T_ {
 
 static TCP_SERVER_T state = {NULL, NULL, false};
 
-// calloc server object
-// static TCP_SERVER_T* tcp_server_init(void) {
-//     state = (TCP_SERVER_T*)calloc(1, sizeof(TCP_SERVER_T));
-//     if (!state) {
-//         DBG("failed to allocate state\n");
-//         return NULL;
-//     }
-//     return state;
-// }
-
 static err_t close_client() {
     err_t err = ERR_OK;
 
@@ -82,25 +72,47 @@ static err_t tcp_server_result(int status) {
 
 // on pico sent data
 static err_t tcp_server_sent(void* arg, struct tcp_pcb* tpcb, u16_t len) {
+    if (len != 14 && len != 14 * 2 && len != 14 * 3) {
+        printf("Long packet sent: %zu", len);
+    }
+
     return ERR_OK;
 }
 
 // write to tcp client
 void tcp_write_data(const uint8_t* buf, uint16_t len) {
-    if (state.client_pcb == NULL) {
-        return;  // no connection yet
+    if (state.client_pcb == NULL) return;  // no connection yet
+    cyw43_arch_lwip_begin();
+    uint16_t free = tcp_sndbuf(state.client_pcb);
+    uint16_t queued = tcp_sndqueuelen(state.client_pcb);
+#if DEBUG_TCP_WRITE
+    printf("Free %zu, Len %zu, Queue: %zu/%zu\n", free, len, queued,
+           TCP_SND_QUEUELEN);
+#endif
+    if (len > free) {
+        // drop or skip send
+        printf("Dropped data, mem overflow\n");
+        cyw43_arch_lwip_end();
+        return;
+    }
+    if (queued >= TCP_SND_QUEUELEN) {
+        // drop or skip send
+        printf("Dropped data, queue length overflow\n");
+        cyw43_arch_lwip_end();
+        return;
     }
     err_t err = tcp_write(state.client_pcb, buf, len, TCP_WRITE_FLAG_COPY);
     if (err != ERR_OK) {
-        DBG("Failed to write data %d\n", err);
-        tcp_server_result(-1);
+        printf("Failed to queue data %d\n", err);
+        // tcp_server_result(-1);
     }
     tcp_output(state.client_pcb);  // flush
+    cyw43_arch_lwip_end();
 }
 
 // on pico receive data from client
-err_t tcp_server_recv(void* arg, struct tcp_pcb* tpcb, struct pbuf* p,
-                      err_t err) {
+static err_t tcp_server_recv(void* arg, struct tcp_pcb* tpcb, struct pbuf* p,
+                             err_t err) {
     // TCP_SERVER_T* state = (TCP_SERVER_T*)arg;
     if (p == NULL) {
         // client has closed the connection
@@ -113,7 +125,7 @@ err_t tcp_server_recv(void* arg, struct tcp_pcb* tpcb, struct pbuf* p,
     // cyw43_arch_lwip_check();
 
     // tot_len is length of packet, len is length of this buffer
-    if (p->len > 0) {
+    if (p->tot_len > 0) {
         DBG("tcp_server_recv %d err %d\n", p->len, err);
 
         /* ------------------------------------------------------ */
@@ -121,7 +133,7 @@ err_t tcp_server_recv(void* arg, struct tcp_pcb* tpcb, struct pbuf* p,
         /* ------------------------------------------------------ */
 
         // lets lwip know that the data has been processed
-        tcp_recved(tpcb, p->len);
+        tcp_recved(tpcb, p->tot_len);
     }
     pbuf_free(p);
     return ERR_OK;
@@ -137,6 +149,7 @@ static err_t tcp_server_poll(void* arg, struct tcp_pcb* tpcb) {
 static void tcp_server_err(void* arg, err_t err) {
     if (err != ERR_ABRT) {
         DBG("tcp_client_err_fn %d\n", err);
+        if (err == -1) return;  // do nothing on reconnect
         tcp_server_result(err);
     }
 }
@@ -152,7 +165,7 @@ static err_t tcp_server_accept(void* arg, struct tcp_pcb* client_pcb,
     DBG("Client connected\n");
 
     if (state.client_pcb != NULL) {
-        DBG("Additional client connecting. Old client will be disconnected!");
+        DBG("Additional client connecting. Old client will be disconnected!\n");
         // probably close connection here
         // code below will lose the pcb handle to old client
     }
@@ -202,16 +215,12 @@ static bool tcp_server_open() {
     return true;
 }
 
-void run_tcp_server() {
+static void run_tcp_server() {
     if (!tcp_server_open()) {
         tcp_server_result(-1);
         DBG("failed to open tcp server\n");
         return;
     }
-    // while (!state.complete) {
-    //     DBG("looping\n");
-    //     sleep_ms(2000);
-    // }
 }
 
 void init_wifi() {
@@ -227,7 +236,6 @@ void init_wifi() {
         printf("Failed to connect to wifi!\n");
     } else {
         printf("Connected.\n");
+        run_tcp_server();
     }
-
-    run_tcp_server();
 }

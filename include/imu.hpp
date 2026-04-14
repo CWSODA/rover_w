@@ -2,8 +2,9 @@
 #pragma once
 
 #include "pico/stdlib.h"
-#include "i2c.hpp"
+#include <cstring>
 
+#include "i2c.hpp"
 #include "timer.hpp"
 
 #define IMU_I2C i2c1
@@ -116,11 +117,11 @@ void read_imu_data() {
     accel.y = accel_y * (XL_FULLSCALE / INT16_MAX);
     accel.z = accel_z * (XL_FULLSCALE / INT16_MAX);
 
-    DBG("raw gyro(%d, %d, %d)\n", gyro_x, gyro_y, gyro_z);
-    DBG("gyro(%d, %d, %d)[°/s]\n", gyro.x, gyro.y, gyro.z);
+    // DBG("raw gyro(%d, %d, %d)\n", gyro_x, gyro_y, gyro_z);
+    // DBG("gyro(%d, %d, %d)[°/s]\n", gyro.x, gyro.y, gyro.z);
 
-    DBG("raw accel(%d, %d, %d)\n", accel_x, accel_y, accel_z);
-    DBG("accel(%d, %d, %d)[g]\n", accel.x, accel.y, accel.z);
+    // DBG("raw accel(%d, %d, %d)\n", accel_x, accel_y, accel_z);
+    // DBG("accel(%d, %d, %d)[g]\n", accel.x, accel.y, accel.z);
 
     calc_rot(accel, gyro);
 }
@@ -140,17 +141,38 @@ void calc_rot(Vec3& accel, Vec3& gyro) {
     tilt.y = acosf(accel.y / length) * RAD2DEG;
     tilt.z = acosf(accel.z / length) * RAD2DEG;  // tilt from ground plane
 
-    DBG("pitch: %f\n", pitch);
-    DBG("roll: %f\n", roll);
-    DBG("x tilt: %f\n", tilt.x);
-    DBG("y tilt: %f\n", tilt.y);
-    DBG("z tilt: %f\n", tilt.z);
+    // DBG("pitch: %f\n", pitch);
+    // DBG("roll: %f\n", roll);
+    // DBG("x tilt: %f\n", tilt.x);
+    // DBG("y tilt: %f\n", tilt.y);
+    // DBG("z tilt: %f\n", tilt.z);
 
     // use gyroscope to estimate yaw
     static Timer timer;
     static float g_pitch = 0, g_roll = 0, g_yaw = 0;
-    float delta_time = timer.clock();
-    g_pitch += gyro.x * delta_time;
-    g_roll += gyro.y * delta_time;
-    g_yaw += gyro.z * delta_time;
+    auto delta_time_us = timer.clock_us();
+    if (delta_time_us != None) {
+        float delta_time = delta_time_us.value() * 1e-6;  // convert to s
+
+        g_pitch += gyro.x * delta_time;
+        g_roll += gyro.y * delta_time;
+        g_yaw += gyro.z * delta_time;
+        // DBG("delta time: %f\n", delta_time);
+        // DBG("pitch: %f\n", g_pitch);
+        // DBG("roll: %f\n", g_roll);
+        // DBG("yaw: %f\n", g_yaw);
+    }
+
+#if SEND_IMU_DATA
+    static CooldownTimer imu_cd(IMU_SEND_CD_MS);
+    if (imu_cd.check()) {
+        uint8_t msg[1 + 1 + 4 + 4 + 4];
+        msg[0] = '$';
+        msg[1] = 'R';
+        memcpy(&msg[2], &g_pitch, 4);
+        memcpy(&msg[2 + 4], &g_roll, 4);
+        memcpy(&msg[2 + 4 + 4], &g_yaw, 4);
+        send_bytes(msg, sizeof(msg));
+    }
+#endif
 }

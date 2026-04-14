@@ -11,7 +11,7 @@ static void init_debug_uart();
 
 void init_data_sending() {
 // common setup for serial debug
-#if USB_DEBUG
+#if USB_DEBUG | USB_SEND
     if (!stdio_usb_init()) {
         DBG("Failed to initialize USB debugging\n");
     } else {
@@ -37,7 +37,7 @@ void init_data_sending() {
 }
 
 void send_byte(const uint8_t byte) {
-#if UART_DEBUG | USB_DEBUG
+#if UART_DEBUG | USB_SEND
     stdio_putchar_raw(byte);
 #endif
 #if NET_DEBUG
@@ -47,7 +47,7 @@ void send_byte(const uint8_t byte) {
 }
 
 void send_bytes(const uint8_t* c, size_t len) {
-#if UART_DEBUG | USB_DEBUG
+#if UART_DEBUG | USB_SEND
     fwrite(c, 1, len, stdout);
 #endif
 #if NET_DEBUG
@@ -88,7 +88,7 @@ void dbg_log(const char* fmt, ...) {
     if (len <= 0) return;
     if (len > sizeof(buf)) len = sizeof(buf);
 
-#if UART_DEBUG | USB_DEBUG
+#if UART_DEBUG | USB_DEBUG | USB_SEND
     fwrite(buf, 1, len, stdout);
 #endif
 

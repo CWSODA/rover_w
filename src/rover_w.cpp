@@ -22,15 +22,15 @@ int main() {
     sleep_ms(1000);
     DBG("Rover Starting...\n");
 
+    // init i2c
+    init_i2c1();
+
     // INIT MOTORS
     MotorControl motor_control;
     init_encoder();
 
     // INIT LIDAR
     Lidar lidar;
-
-    // init i2c
-    init_i2c1();
 
     // init accelerometer + gyro
     init_imu();
@@ -51,9 +51,22 @@ int main() {
 
         // sleep_ms(1.0f / 13.0f);
 
-        static uint64_t n = 0;
-        send_byte('k');
-        send_byte('\n');
-        sleep_ms(2000);
+        // static uint64_t n = 0;
+
+        read_imu_data();
+        // static CooldownTimer t(IMU_SEND_CD_MS);
+        // static float x = 45, y = 45, z = 45;
+        // if (t.check()) {
+        //     uint8_t msg[1 + 1 + 4 + 4 + 4];
+        //     msg[0] = '$';
+        //     msg[1] = 'R';
+        //     memcpy(&msg[2], &x, 4);
+        //     memcpy(&msg[2 + 4], &y, 4);
+        //     memcpy(&msg[2 + 4 + 4], &z, 4);
+        //     send_bytes(msg, sizeof(msg));
+        // }
+        // x += 1.0f;
+
+        sleep_ms(10);
     }
 }

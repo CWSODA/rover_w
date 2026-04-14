@@ -21,7 +21,8 @@
 /* ---------------------- debugging --------------------- */
 #define DEBUG_LOG true
 #define UART_DEBUG false
-#define USB_DEBUG false
+#define USB_DEBUG true
+#define USB_SEND false
 #define NET_DEBUG true
 
 constexpr int DEBUG_TX_PIN = 0;
@@ -38,20 +39,24 @@ constexpr uint UART_DEBUG_BAUDRATE = 115200 * 8;  // 921600
 #define WIFI_SSID "Nada"
 #define WIFI_PASSWORD "cvmf8452"
 
+#define DEBUG_TCP_WRITE false
+
 /* ------------------------- I2C ------------------------ */
-constexpr uint I2C1_BAUDRATE = 100e3;  // max 1M for encoder
+constexpr uint I2C1_BAUDRATE = 400e3;  // max 1M for encoder
 constexpr uint I2C1_SDA_PIN = 2;
 constexpr uint I2C1_SCL_PIN = 3;
 
 /* ------------------------- IMU ------------------------ */
+#define SEND_IMU_DATA true
+constexpr float IMU_SEND_CD_MS = 1000.0f / 100.0f;
 
-/* ------------------------ Lidar ----------------------- */
+/* ------------------------ LiDAR ----------------------- */
 constexpr uint LIDAR_RX_PIN = 5;
 #define SEND_LIDAR_DATA true
 #define TIMESTAMP_FRAME true
 #define DEBUG_ROT_SPEED true
 #define DEBUG_SAMPLE_COUNT false
-#define DEBUG_STATES false
+#define DEBUG_LIDAR_STATE false
 #define DEBUG_LENGTH false
 #define DEBUG_ANGLE false
 #define DEBUG_OFFSET_ANGLE false

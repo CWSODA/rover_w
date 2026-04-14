@@ -6,9 +6,11 @@
 void init_data_sending();
 
 // sends byte through ALL enabled streams
+// sending through TCP does not flush!
+// send as bytes to flush
 void send_byte(const uint8_t c);
 
-// sends byte through ALL enabled streams
+// sends bytes through ALL enabled streams
 void send_bytes(const uint8_t* c, size_t len);
 
 // sends float as 4 raw bytes
