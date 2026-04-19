@@ -82,9 +82,11 @@ static err_t tcp_server_sent(void* arg, struct tcp_pcb* tpcb, u16_t len) {
 // write to tcp client
 void tcp_write_data(const uint8_t* buf, uint16_t len) {
     if (state.client_pcb == NULL) return;  // no connection yet
-    cyw43_arch_lwip_begin();
+    cyw43_arch_lwip_begin();  // lock lwip state since it is not thread safe.
+                              // MUST USE!!!
     uint16_t free = tcp_sndbuf(state.client_pcb);
     uint16_t queued = tcp_sndqueuelen(state.client_pcb);
+    // temporarily use printf here so it does not trigger more TCP outputs
 #if DEBUG_TCP_WRITE
     printf("Free %zu, Len %zu, Queue: %zu/%zu\n", free, len, queued,
            TCP_SND_QUEUELEN);
@@ -107,7 +109,7 @@ void tcp_write_data(const uint8_t* buf, uint16_t len) {
         // tcp_server_result(-1);
     }
     tcp_output(state.client_pcb);  // flush
-    cyw43_arch_lwip_end();
+    cyw43_arch_lwip_end();         // release lock
 }
 
 // on pico receive data from client
