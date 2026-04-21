@@ -20,18 +20,16 @@ class Encoder {
     Encoder(uint pin) : pin(pin) {}
     const uint pin;
 
-    // private:
-    uint16_t prev = 0, curr = 0;
-    float speed_rpm = 0.0f;
+    bool update_speed(float delta_time);
+    float get_speed() const { return speed_rpm_; }
+
+   private:
+    // Reads the raw 12-bit angle value from AS5600 via I2C,
+    // Returns true if read successful, false otherwise
+    bool read_raw_angle();
+
+    uint16_t prev_ = 0, curr_ = 0;
+    float speed_rpm_ = 0.0f;
 };
 
-void init_encoder();
-
-void update_encoders();
-
-// Reads the raw 12-bit angle value from AS5600 via I2C,
-// Returns true if read successful, false otherwise
-bool read_raw_angle(uint16_t& output, uint pin);
-
-// Calculates the wrapped delta between two 12-bit angle values
-int16_t calc_wrap_delta(uint16_t current, uint16_t prev);
+void init_encoder_pins();

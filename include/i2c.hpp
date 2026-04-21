@@ -8,4 +8,4 @@
 
 void init_i2c1();
 
-void write_byte_i2c1(const uint8_t addr, const uint8_t byte);
+int write_byte_i2c1(const uint8_t addr, const uint8_t byte);

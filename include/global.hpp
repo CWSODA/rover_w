@@ -22,8 +22,8 @@
 #define DEBUG_LOG true
 #define UART_DEBUG false
 #define USB_DEBUG true
-#define USB_SEND false
-#define NET_DEBUG true
+#define USB_SEND false  // send byte data to USB, disable to only use printf/DBG
+#define NET_DEBUG false
 
 constexpr int DEBUG_TX_PIN = 0;
 constexpr int DEBUG_RX_PIN = 1;
@@ -42,13 +42,13 @@ constexpr uint UART_DEBUG_BAUDRATE = 115200 * 8;  // 921600
 #define DEBUG_TCP_WRITE false
 
 /* ------------------------- I2C ------------------------ */
-constexpr uint I2C1_BAUDRATE = 400e3;  // max 1M for encoder
+constexpr uint I2C1_BAUDRATE = 400e3;  // max 1M for encoder, 400k for IMU
 constexpr uint I2C1_SDA_PIN = 2;
 constexpr uint I2C1_SCL_PIN = 3;
 
 /* ------------------------- IMU ------------------------ */
 #define SEND_IMU_DATA true
-constexpr float IMU_SEND_CD_MS = 1000.0f / 100.0f;
+constexpr float IMU_SEND_CD_MS = 1000.0f / 100.0f;  // 100 Hz
 
 /* ------------------------ LiDAR ----------------------- */
 constexpr uint LIDAR_RX_PIN = 5;
@@ -61,6 +61,7 @@ constexpr uint LIDAR_RX_PIN = 5;
 #define DEBUG_ANGLE false
 #define DEBUG_OFFSET_ANGLE false
 
+// one lidar sample per throttle count
 constexpr int DATA_THROTTLE_COUNT = 1;
 
 /* ----------------------- Motors ----------------------- */
@@ -73,10 +74,19 @@ constexpr uint MOTOR_BL_DIR_PIN = 11;
 constexpr uint MOTOR_BR_PWM_PIN = 12;
 constexpr uint MOTOR_BR_DIR_PIN = 13;
 
+// PID
+constexpr float MOTOR_P = 1.0f;
+constexpr float MOTOR_I = 1.0f;
+constexpr float MOTOR_D = 1.0f;
+
 /* ----------------------- Encoder ---------------------- */
 constexpr uint ENCODER_FL_PIN = 18;
 constexpr uint ENCODER_FR_PIN = 19;
 constexpr uint ENCODER_BL_PIN = 20;
 constexpr uint ENCODER_BR_PIN = 21;
+
+/* ---------------------- Algorithm --------------------- */
+// threshold to ignore lidar sample in meters
+constexpr float DIST_THRESHOLD = 1.0f;
 
 #include "sender.hpp"

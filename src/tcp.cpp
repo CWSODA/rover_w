@@ -73,7 +73,7 @@ static err_t tcp_server_result(int status) {
 // on pico sent data
 static err_t tcp_server_sent(void* arg, struct tcp_pcb* tpcb, u16_t len) {
     if (len != 14 && len != 14 * 2 && len != 14 * 3) {
-        printf("Long packet sent: %zu", len);
+        printf("Long packet sent: %zu\n", len);
     }
 
     return ERR_OK;
@@ -151,7 +151,7 @@ static err_t tcp_server_poll(void* arg, struct tcp_pcb* tpcb) {
 static void tcp_server_err(void* arg, err_t err) {
     if (err != ERR_ABRT) {
         DBG("tcp_client_err_fn %d\n", err);
-        if (err == -1) return;  // do nothing on reconnect
+        if (err == -14) return;  // do nothing on reconnect (code -14)
         tcp_server_result(err);
     }
 }

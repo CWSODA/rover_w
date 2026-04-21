@@ -1,5 +1,6 @@
-#include "pico/stdlib.h"
+#pragma once
 
+#include "pico/stdlib.h"
 #include <optional>
 
 // cursed rust syntax

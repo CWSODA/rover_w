@@ -4,7 +4,7 @@
 // self headers
 #include "global.hpp"
 #include "sender.hpp"
-#include "motors.hpp"
+#include "motor.hpp"
 #include "lidar.hpp"
 #include "encoder.hpp"
 #include "imu.hpp"
@@ -19,7 +19,7 @@
 
 int main() {
     init_data_sending();
-    sleep_ms(1000);
+    sleep_ms(1000);  // allow time for connection
     DBG("Rover Starting...\n");
 
     // init i2c
@@ -27,45 +27,29 @@ int main() {
 
     // INIT MOTORS
     MotorControl motor_control;
-    init_encoder();
 
     // INIT LIDAR
-    Lidar lidar;
+    // Lidar lidar;
 
     // init accelerometer + gyro
-    init_imu();
+    // init_imu();
 
     /*
-    things that have update loops:
-    - lidar
-    - motors
-    - encoders
+    things that have seperate update loops:
+    - spinning lidar
+    - motors (encoders included)
     - imu (xl + gyro)
     */
     DBG("Starting loop...\n");
     while (true) {
         // lidar.update_lidar();
-        // motor_control.update_motors();
-        // update_encoders();
-        // read_xl();
+        motor_control.update_motors();
 
         // sleep_ms(1.0f / 13.0f);
 
         // static uint64_t n = 0;
 
-        read_imu_data();
-        // static CooldownTimer t(IMU_SEND_CD_MS);
-        // static float x = 45, y = 45, z = 45;
-        // if (t.check()) {
-        //     uint8_t msg[1 + 1 + 4 + 4 + 4];
-        //     msg[0] = '$';
-        //     msg[1] = 'R';
-        //     memcpy(&msg[2], &x, 4);
-        //     memcpy(&msg[2 + 4], &y, 4);
-        //     memcpy(&msg[2 + 4 + 4], &z, 4);
-        //     send_bytes(msg, sizeof(msg));
-        // }
-        // x += 1.0f;
+        // read_imu_data();
 
         sleep_ms(10);
     }
