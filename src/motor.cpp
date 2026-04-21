@@ -23,3 +23,15 @@ void Motor::update_motor_pid() {
 
     float output = tgt_speed_ + error * MOTOR_P;
 }
+
+void MotorControl::update_encoders() {
+    auto delta_time_us = timer_.clock_us();
+    if (delta_time_us == None) return;  // ignore first call
+
+    // unwrap and convert to seconds
+    float delta_time = delta_time_us.value() * 1e-6;
+
+    for (auto motor : motor_vec_) {
+        motor->get_encoder().update_speed(delta_time);
+    }
+}

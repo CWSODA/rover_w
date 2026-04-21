@@ -21,7 +21,11 @@ bool Encoder::update_speed(float delta_time) {
     // 360 degrees split into ±4096
     // speed = delta_degree / time
     speed_rpm_ = delta * (360.0f / 4096.0f) / (delta_time);
-    // DBG("\nspeed: %f\n", speed_rpm_);
+
+#ifdef DEBUG_ENCODER
+    DBG("prev: %zu, curr: %zu, delta: %d, delta_time: %f, speed: %f\n", prev_,
+        curr_, delta, delta_time, speed_rpm_);
+#endif
 
     prev_ = curr_;  // change prev for next cycle
     return true;
@@ -53,7 +57,7 @@ bool Encoder::read_raw_angle() {
 
 int16_t calc_wrap_delta(uint16_t curr, uint16_t prev) {
     // delta in range -4096 to +4096 (maximum of 12-bit integer)
-    int16_t delta = (int16_t)curr - prev;
+    int16_t delta = (int16_t)curr - (int16_t)prev;
     if (delta > 2048) delta -= 4096;
     if (delta < -2048) delta += 4096;
     return delta;

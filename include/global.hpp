@@ -85,6 +85,8 @@ constexpr uint ENCODER_FR_PIN = 19;
 constexpr uint ENCODER_BL_PIN = 20;
 constexpr uint ENCODER_BR_PIN = 21;
 
+#define DEBUG_ENCODER false
+
 /* ---------------------- Algorithm --------------------- */
 // threshold to ignore lidar sample in meters
 constexpr float DIST_THRESHOLD = 1.0f;

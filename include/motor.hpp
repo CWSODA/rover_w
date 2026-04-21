@@ -77,15 +77,5 @@ class MotorControl {
 
     Timer timer_;  // timer used for calculating encoder speed
     // updates the speed for all encoders
-    void update_encoders() {
-        auto delta_time_us = timer_.clock_us();
-        if (delta_time_us == None) return;  // ignore first call
-
-        // unwrap and convert to seconds
-        float delta_time = delta_time_us.value() * 1e-6;
-
-        for (auto motor : motor_vec_) {
-            motor->get_encoder().update_speed(delta_time);
-        }
-    }
+    void update_encoders();
 };
