@@ -2,8 +2,8 @@
 
 #include <cstring>
 
+#include "settings.hpp"
 #include "sender.hpp"
-#include "global.hpp"
 
 constexpr float LIDAR_ANGLE_CONST = 22.5f;
 

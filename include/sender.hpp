@@ -1,6 +1,6 @@
 // functions to streamline sending data
 // through serial and/or network protocols
-#include "global.hpp"
+#include "settings.hpp"
 
 // initializes any enabled streams
 void init_data_sending();

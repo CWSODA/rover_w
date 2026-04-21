@@ -3,8 +3,8 @@
 #include <cstring>
 #include "pico/stdlib.h"
 
+#include "settings.hpp"
 #include "sender.hpp"
-#include "global.hpp"
 #include "tcp.hpp"
 
 static void init_debug_uart();

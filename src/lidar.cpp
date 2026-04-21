@@ -5,7 +5,7 @@
 #include "hardware/uart.h"
 #include "hardware/irq.h"
 
-#include "global.hpp"
+#include "settings.hpp"
 #include "sender.hpp"
 #include "uart1_ringbuf.h"  // has uart1_rx_handler
 

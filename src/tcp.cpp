@@ -10,7 +10,7 @@
 #include "lwip/pbuf.h"
 #include "lwip/tcp.h"
 
-#include "global.hpp"
+#include "settings.hpp"
 
 typedef struct TCP_SERVER_T_ {
     struct tcp_pcb* server_pcb;

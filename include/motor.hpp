@@ -3,7 +3,7 @@
 #include "hardware/pwm.h"
 #include <math.h>
 
-#include "global.hpp"
+#include "settings.hpp"
 #include "pwm.hpp"
 #include "encoder.hpp"
 #include "timer.hpp"

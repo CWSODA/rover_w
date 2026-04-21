@@ -2,7 +2,7 @@
 #include "pico/stdlib.h"
 
 // self headers
-#include "global.hpp"
+#include "settings.hpp"
 #include "sender.hpp"
 #include "motor.hpp"
 #include "lidar.hpp"
@@ -51,6 +51,6 @@ int main() {
 
         // read_imu_data();
 
-        sleep_ms(10);
+        sleep_ms(1000);
     }
 }

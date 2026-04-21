@@ -1,7 +1,7 @@
 #include <vector>
 #include <math.h>
 
-#include "global.hpp"
+#include "settings.hpp"
 
 struct Polar {
     float distance = 0.0f;  // distance in meters

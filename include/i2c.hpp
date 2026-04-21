@@ -4,7 +4,7 @@
 #include "hardware/i2c.h"
 #include "hardware/gpio.h"
 
-#include "global.hpp"
+#include "settings.hpp"
 
 void init_i2c1();
 

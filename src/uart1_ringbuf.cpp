@@ -1,5 +1,5 @@
 #include "uart1_ringbuf.h"
-#include "global.hpp"
+#include "settings.hpp"
 
 constexpr uint16_t RB_MASK = 0b11'1111'1111;
 constexpr uint16_t RB_SIZE = RB_MASK + 1;
