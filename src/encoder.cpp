@@ -1,4 +1,6 @@
 #include "encoder.hpp"
+
+#include "settings.hpp"
 #include "timer.hpp"
 
 // Calculates the wrapped delta between two 12-bit angle values
@@ -22,9 +24,9 @@ bool Encoder::update_speed(float delta_time) {
     // speed = delta_degree / time
     speed_rpm_ = delta * (360.0f / 4096.0f) / (delta_time);
 
-#ifdef DEBUG_ENCODER
-    DBG("prev: %zu, curr: %zu, delta: %d, delta_time: %f, speed: %f\n", prev_,
-        curr_, delta, delta_time, speed_rpm_);
+#if DEBUG_ENCODER
+    DBG("prev: %4zu, curr: %4zu, delta: %4d, delta_time: %.6f, speed: %.6f\n",
+        prev_, curr_, delta, delta_time, speed_rpm_);
 #endif
 
     prev_ = curr_;  // change prev for next cycle

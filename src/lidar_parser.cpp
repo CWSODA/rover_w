@@ -166,8 +166,8 @@ bool LidarParser::parse_data(uint8_t byte) {
             // increments of 0.25mm = 0.00025 m
             temp_point.distance = dist_buf.val() * 0.25E-3f;
 
-            // data_vec.push_back(temp_point);
-
+            // STORE DATA
+            data_queue_p->push(temp_point);
 #if SEND_LIDAR_DATA
             // send opcode L (lidar)
             // send sig_str, dist, angle

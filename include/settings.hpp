@@ -6,7 +6,7 @@
 // used for tracking
 #define SHOW_OPT false
 #if SHOW_OPT
-#define OPT \
+#define OPT(...) \
     fail:)
 #else
 #define OPT
@@ -23,7 +23,7 @@
 #define UART_DEBUG false
 #define USB_DEBUG true
 #define USB_SEND false  // send byte data to USB, disable to only use printf/DBG
-#define NET_DEBUG false
+#define NET_DEBUG true
 
 constexpr int DEBUG_TX_PIN = 0;
 constexpr int DEBUG_RX_PIN = 1;
@@ -47,14 +47,16 @@ constexpr uint I2C1_SDA_PIN = 2;
 constexpr uint I2C1_SCL_PIN = 3;
 
 /* ------------------------- IMU ------------------------ */
+#define DEBUG_IMU false
+
 #define SEND_IMU_DATA true
 constexpr float IMU_SEND_CD_MS = 1000.0f / 100.0f;  // 100 Hz
 
 /* ------------------------ LiDAR ----------------------- */
 constexpr uint LIDAR_RX_PIN = 5;
 #define SEND_LIDAR_DATA true
-#define TIMESTAMP_FRAME true
-#define DEBUG_ROT_SPEED true
+#define TIMESTAMP_FRAME false
+#define DEBUG_ROT_SPEED false
 #define DEBUG_SAMPLE_COUNT false
 #define DEBUG_LIDAR_STATE false
 #define DEBUG_LENGTH false
@@ -88,7 +90,11 @@ constexpr uint ENCODER_BR_PIN = 21;
 #define DEBUG_ENCODER false
 
 /* ---------------------- Algorithm --------------------- */
-// threshold to ignore lidar sample in meters
-constexpr float DIST_THRESHOLD = 1.0f;
+constexpr float DIST_THRESHOLD = 1.0f;     // ignore if above in meters
+constexpr uint8_t SIG_STR_THRESHOLD = 10;  // ignore if below in (0 to 255)
+constexpr float FOV = 180.0f;              // ignore if above in degrees
+
+constexpr float TURN_MULTIPLIER = 10.0f;
+constexpr float SPEED_MULTIPLIER = 10.0f;
 
 #include "sender.hpp"

@@ -2,13 +2,8 @@
 #include <math.h>
 
 #include "settings.hpp"
-
-struct Polar {
-    float distance = 0.0f;  // distance in meters
-    float angle = 0.0f;     // angle in RADIANS!!!
-
-    Polar(float dist, float angle) : distance(dist), angle(angle) {}
-};
+#include "lidar_parser.hpp"
+#include "motor.hpp"
 
 struct Vec2 {
     float x, y;
@@ -17,7 +12,11 @@ struct Vec2 {
     Vec2 operator+(const Vec2& other) { return Vec2(x + other.x, y + other.y); }
     void operator+=(const Vec2& other) {
         this->x += other.x;
-        this->y + other.y;
+        this->y += other.y;
+    }
+    void operator-=(const Vec2& other) {
+        this->x -= other.x;
+        this->y -= other.y;
     }
     Vec2 operator*(const float factor) { return Vec2(x * factor, y * factor); }
     void operator*=(const float factor) {
@@ -26,33 +25,66 @@ struct Vec2 {
     }
 };
 
-void calc_vec(std::vector<Polar> lidar_data) {
-    // lidar inputs angle + distance
-    // sums -angle for repulsion
-    // modulated by 1 / distance
-    // can be quadratic: 1 / (ax^2 + bx + c)
-    // depending on how much it needs to be tuned
+void update_motor_ctrl(Vec2& vec, MotorControl& motor_ctrl);
 
-    // calculate overall vector
-    Vec2 vector(0, 0);
+OPT;
+// can use queue<list> instead of queue<deque> because FIFO data is always read
+// sequentially
+void run_algorithm(std::queue<DataPoint>& lidar_data,
+                   MotorControl& motor_ctrl) {
+    static Vec2 calc_vec(0, 0);       // vector used for calculation
+    static float last_angle = -1.0f;  // -1 ensures no angle will be smaller
 
-    for (auto& data : lidar_data) {
-        // filter data by distance, can do this in parser
-        if (data.distance > DIST_THRESHOLD) return;
+    // empty all vectors
+    while (!lidar_data.empty()) {
+        DataPoint data = lidar_data.front();  // get oldest
+        lidar_data.pop();                     // and pop to remove
 
-        // convert to vector form
-        Vec2 data_vec(cosf(data.angle), sinf(data.angle));
+        // check for within threshold
+        bool is_dist = data.distance < DIST_THRESHOLD;
+        bool is_str = data.sig_strength > SIG_STR_THRESHOLD;
+        bool is_fov = data.angle <= FOV && data.angle >= (360 - FOV);
+        if (is_dist && is_str && is_fov) {
+            // convert to vector form for summing
+            float angle_in_rad = data.angle * 3.1415f / 180.0f;
+            Vec2 data_vec(cosf(angle_in_rad), sinf(angle_in_rad));
 
-        // 1/(x + 1) modulation
-        vector += data_vec * (1.0f / (data.distance + 1.0f));
+            // attenuate effect based on distance
+            // negative to repel
+            calc_vec -= data_vec * (1.0f / (data.distance + 1.0f));
+        }
+
+        // check if angle has wrapped back to 0, indicating full rotation
+        if (data.angle < last_angle) {
+            /* if multiple rotations within same update loop, only
+            calculate the later one. Although this should be pretty rare
+            since update loop should be much faster than the LiDAR */
+            OPT;
+
+            update_motor_ctrl(calc_vec, motor_ctrl);
+            last_angle = -1.0f;  // -1 ensures no angle will be smaller
+        } else {
+            last_angle = data.angle;  // update angle
+        }
     }
+}
+
+// updates motor control with calculated vector
+// clears vector afterwards
+void update_motor_ctrl(Vec2& vec, MotorControl& motor_ctrl) {
+    // add target vector
+    // straight for testing
+    vec += Vec2(0.0f, 1.0f);
 
     // convert back to length + angle (rad)
-    float length = sqrtf(vector.x * vector.x + vector.y * vector.y);
-    float angle = atan2f(vector.y, vector.x);  // range of -PI to + PI
+    float length = sqrtf(vec.x * vec.x + vec.y * vec.y);
+    float angle = atan2f(vec.y, vec.x);  // range of -PI to + PI
 
-    // float turn = angle * multiplier;
+    float turn_val = angle * TURN_MULTIPLIER;
+    float speed = length * SPEED_MULTIPLIER;
 
-    // slow down if angle is high
-    // float speed = length * multiplier / (angle + 1);
+    // motor_ctrl.set_speed();
+    motor_ctrl.turn(turn_val);
+
+    vec = Vec2(0, 0);  // reset vector
 }

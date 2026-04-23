@@ -64,7 +64,6 @@ static err_t close_tcp_server() {
 
 // ends the server on error
 static err_t tcp_server_result(int status) {
-    // TCP_SERVER_T* state = (TCP_SERVER_T*)arg;
     DBG("closing server: code %d\n", status);
     state.complete = true;
     return close_tcp_server();
@@ -72,10 +71,6 @@ static err_t tcp_server_result(int status) {
 
 // on pico sent data
 static err_t tcp_server_sent(void* arg, struct tcp_pcb* tpcb, u16_t len) {
-    if (len != 14 && len != 14 * 2 && len != 14 * 3) {
-        printf("Long packet sent: %zu\n", len);
-    }
-
     return ERR_OK;
 }
 
@@ -133,6 +128,16 @@ static err_t tcp_server_recv(void* arg, struct tcp_pcb* tpcb, struct pbuf* p,
         /* ------------------------------------------------------ */
         /*                    process data here                   */
         /* ------------------------------------------------------ */
+        uint8_t* data = (uint8_t*)malloc(p->tot_len);
+        if (data == nullptr) {
+            printf("failed to allocate buffer for TCP message\n");
+        }
+        memcpy(data, p->payload, p->tot_len);
+        printf("TCP MSG: ");
+        for (size_t idx = 0; idx < p->tot_len; idx++) {
+            printf("(%02X)", data[idx]);
+        }
+        printf("\n");
 
         // lets lwip know that the data has been processed
         tcp_recved(tpcb, p->tot_len);
@@ -143,7 +148,7 @@ static err_t tcp_server_recv(void* arg, struct tcp_pcb* tpcb, struct pbuf* p,
 
 // should not be called since there should be something sent within 5 seconds
 static err_t tcp_server_poll(void* arg, struct tcp_pcb* tpcb) {
-    DBG("polling server\n");
+    DBG("Pinging server\n");
     // return tcp_server_result(arg, -1);  // no response is an error?
     return ERR_OK;
 }

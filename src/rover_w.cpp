@@ -26,13 +26,13 @@ int main() {
     init_i2c1();
 
     // INIT MOTORS
-    MotorControl motor_control;
+    // MotorControl motor_control;
 
     // INIT LIDAR
     // Lidar lidar;
 
     // init accelerometer + gyro
-    // init_imu();
+    // IMU imu;
 
     /*
     things that have seperate update loops:
@@ -42,15 +42,7 @@ int main() {
     */
     DBG("Starting loop...\n");
     while (true) {
-        // lidar.update_lidar();
-        motor_control.update_motors();
-
-        // sleep_ms(1.0f / 13.0f);
-
-        // static uint64_t n = 0;
-
-        // read_imu_data();
-
+        // motor_control.update_motors();
         sleep_ms(1000);
     }
 }

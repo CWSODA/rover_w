@@ -1,8 +1,4 @@
-// ########################################
-//  02.03.26 - Basic AS5600 reader
-//  Measures the angle and just prints the RPM to Serial
-//  Commented by ChatGPT, 02.03.26
-// ########################################
+// AS5600 reader
 #pragma once
 
 #include "pico/stdlib.h"
