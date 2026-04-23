@@ -23,8 +23,9 @@ void send_hex(const uint8_t byte);
 void dbg_log(const char* fmt, ...);
 #if DEBUG_LOG
 #include <stdio.h>
-// #define DBG(...) printf(__VA_ARGS__)
-#define DBG(...) dbg_log(__VA_ARGS__)
+#define DBG(...) dbg_log(__VA_ARGS__)  // prints to net + wired
+#define WBDG(...) printf(__VA_ARGS__)  // only prints to wired (USB/UART)
 #else
 #define DBG(...)
+#define WBDG(...)
 #endif
