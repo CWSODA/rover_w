@@ -11,6 +11,7 @@
 #include "lwip/tcp.h"
 
 #include "settings.hpp"
+#include "global_vars.hpp"
 
 typedef struct TCP_SERVER_T_ {
     struct tcp_pcb* server_pcb;
@@ -81,26 +82,26 @@ void tcp_write_data(const uint8_t* buf, uint16_t len) {
                               // MUST USE!!!
     uint16_t free = tcp_sndbuf(state.client_pcb);
     uint16_t queued = tcp_sndqueuelen(state.client_pcb);
-    // use WBDG here so it does not trigger more TCP outputs
+    // use WDBG here so it does not trigger more TCP outputs
 #if DEBUG_TCP_WRITE
-    WBDG("Free %zu, Len %zu, Queue: %zu/%zu\n", free, len, queued,
+    WDBG("Free %zu, Len %zu, Queue: %zu/%zu\n", free, len, queued,
          TCP_SND_QUEUELEN);
 #endif
     if (len > free) {
         // drop or skip send
-        WBDG("Dropped data, mem overflow\n");
+        WDBG("Dropped data, mem overflow\n");
         cyw43_arch_lwip_end();
         return;
     }
     if (queued >= TCP_SND_QUEUELEN) {
         // drop or skip send
-        WBDG("Dropped data, queue length overflow\n");
+        WDBG("Dropped data, queue length overflow\n");
         cyw43_arch_lwip_end();
         return;
     }
     err_t err = tcp_write(state.client_pcb, buf, len, TCP_WRITE_FLAG_COPY);
     if (err != ERR_OK) {
-        WBDG("Failed to queue data %d\n", err);
+        WDBG("Failed to queue data %d\n", err);
         // tcp_server_result(-1);
     }
     tcp_output(state.client_pcb);  // flush
@@ -110,7 +111,6 @@ void tcp_write_data(const uint8_t* buf, uint16_t len) {
 // on pico receive data from client
 static err_t tcp_server_recv(void* arg, struct tcp_pcb* tpcb, struct pbuf* p,
                              err_t err) {
-    // TCP_SERVER_T* state = (TCP_SERVER_T*)arg;
     if (p == NULL) {
         // client has closed the connection
         DBG("client has closed the connection\n");
@@ -123,21 +123,18 @@ static err_t tcp_server_recv(void* arg, struct tcp_pcb* tpcb, struct pbuf* p,
 
     // tot_len is length of packet, len is length of this buffer
     if (p->tot_len > 0) {
-        WBDG("tcp_server_recv %d err %d\n", p->len, err);
+        WDBG("tcp_server_recv %d err %d\n", p->len, err);
 
         /* ------------------------------------------------------ */
         /*                    process data here                   */
         /* ------------------------------------------------------ */
-        uint8_t* data = (uint8_t*)malloc(p->tot_len);
-        if (data == nullptr) {
-            WBDG("failed to allocate buffer for TCP message\n");
-        }
-        memcpy(data, p->payload, p->tot_len);
-        WBDG("TCP MSG: ");
         for (size_t idx = 0; idx < p->tot_len; idx++) {
-            WBDG("(%02X)", data[idx]);
+            uint8_t byte = ((uint8_t*)(p->payload))[idx];
+
+            WDBG("(%02X)", byte);
+            tcp_buffer.push_byte(byte);
         }
-        WBDG("\n");
+        WDBG("\n");
 
         // lets lwip know that the data has been processed
         tcp_recved(tpcb, p->tot_len);
@@ -148,7 +145,7 @@ static err_t tcp_server_recv(void* arg, struct tcp_pcb* tpcb, struct pbuf* p,
 
 // should not be called since there should be something sent within 5 seconds
 static err_t tcp_server_poll(void* arg, struct tcp_pcb* tpcb) {
-    WBDG("Pinging server\n");
+    WDBG("Pinging server\n");
     uint8_t buffer[] = {'$', 'H'};
     tcp_write_data(buffer, sizeof(buffer));
     // return tcp_server_result(arg, -1);  // no response is an error?
@@ -242,9 +239,10 @@ void init_wifi() {
     DBG("Connecting to Wi-Fi...\n");
     if (cyw43_arch_wifi_connect_timeout_ms(WIFI_SSID, WIFI_PASSWORD,
                                            CYW43_AUTH_WPA2_AES_PSK, 30000)) {
-        WBDG("Failed to connect to wifi!\n");
+        WDBG("Failed to connect to wifi!\n");
     } else {
-        WBDG("Connected.\n");
+        WDBG("Connected.\n");
+        // init tcp buffer before starting server
         run_tcp_server();
     }
 }

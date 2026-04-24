@@ -3,6 +3,7 @@
 
 // self headers
 #include "settings.hpp"
+#include "global_vars.hpp"
 #include "sender.hpp"
 #include "motor.hpp"
 #include "lidar.hpp"
@@ -16,6 +17,10 @@
 // USB debug
 // screen /dev/tty.usbmodem11101
 // screen /dev/tty.usbmodem1101
+
+// global extern variables
+bool is_motor_fine = true;
+TCP_Buffer tcp_buffer;
 
 int main() {
     init_data_sending();
@@ -39,6 +44,7 @@ int main() {
     - spinning lidar
     - motors (encoders included)
     - imu (xl + gyro)
+    - tcp parser
     */
     DBG("Starting loop...\n");
     while (true) {

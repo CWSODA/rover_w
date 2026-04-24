@@ -1,3 +1,5 @@
+#pragma once
+
 // functions to streamline sending data
 // through serial and/or network protocols
 #include "settings.hpp"
@@ -24,8 +26,8 @@ void dbg_log(const char* fmt, ...);
 #if DEBUG_LOG
 #include <stdio.h>
 #define DBG(...) dbg_log(__VA_ARGS__)  // prints to net + wired
-#define WBDG(...) printf(__VA_ARGS__)  // only prints to wired (USB/UART)
+#define WDBG(...) printf(__VA_ARGS__)  // only prints to wired (USB/UART)
 #else
 #define DBG(...)
-#define WBDG(...)
+#define WDBG(...)
 #endif

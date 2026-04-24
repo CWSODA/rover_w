@@ -2,6 +2,8 @@
 
 #include "pico/stdlib.h"
 
+#include "tcp_parser.hpp"
+
 // toggles for optimization possible
 // used for tracking
 #define SHOW_OPT false
@@ -30,9 +32,9 @@ constexpr int DEBUG_RX_PIN = 1;
 constexpr uint UART_DEBUG_BAUDRATE = 115200 * 8;  // 921600
 
 /* ------------------------- TCP ------------------------ */
-#define TCP_PORT 4242
-#define BUF_SIZE 2048
-#define TCP_POLL_TIME_S 5
+constexpr uint16_t TCP_PORT = 4242;
+constexpr uint8_t TCP_POLL_TIME_S = 5;
+constexpr uint TCP_BUFFER_SIZE = 2048;
 
 // #define WIFI_SSID "VM24B898"
 // #define WIFI_PASSWORD "xVqtbjdqwyy4"
