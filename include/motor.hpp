@@ -22,7 +22,7 @@ class Motor {
     void drive(float val);
 
     // sets target speed of the motor
-    void set_speed(float speed) { tgt_speed_ = speed; }
+    void set_target_speed(float speed) { tgt_speed_ = speed; }
 
     // PID adjust motor duty cycle based on target speed
     void update_motor_pid();
@@ -50,10 +50,7 @@ class MotorControl {
     // negative is left, positive is right
     // 100 would have the motors on either side drive in full reverse
     // linear
-    void turn(float turn_strength) {
-        float left;
-        float right;
-    }
+    void steer(float speed, float turn_strength);
 
     void update_motors() {
         update_encoders();

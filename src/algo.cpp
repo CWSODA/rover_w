@@ -80,11 +80,11 @@ void update_motor_ctrl(Vec2& vec, MotorControl& motor_ctrl) {
     float length = sqrtf(vec.x * vec.x + vec.y * vec.y);
     float angle = atan2f(vec.y, vec.x);  // range of -PI to + PI
 
-    float turn_val = angle * TURN_MULTIPLIER;
     float speed = length * SPEED_MULTIPLIER;
+    float turn_val = angle * TURN_MULTIPLIER;
 
     // motor_ctrl.set_speed();
-    motor_ctrl.turn(turn_val);
+    motor_ctrl.steer(speed, turn_val);
 
     vec = Vec2(0, 0);  // reset vector
 }

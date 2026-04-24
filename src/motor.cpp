@@ -35,3 +35,32 @@ void MotorControl::update_encoders() {
         motor->get_encoder().update_speed(delta_time);
     }
 }
+
+// speed of each motor from 0 to speed
+// negative speed is backwards
+// turns the rover, strength between (0 to ±100)
+// negative is left, positive is right
+// linear
+void MotorControl::steer(float speed, float turn_strength) {
+    float speed_abs = abs(speed);
+
+    // left is max for ranges 100 to 0, linear decrease from 0 to -100
+    float left = 1.0f;
+    float right = 1.0f;
+
+    // remap from 1.0 to -1.0, turn factor between 0 and 2
+    float turn_factor = 2 * turn_strength / 100.0f;
+    if (turn_strength < 0) {  // left turn, reduce left motors
+        left -= turn_factor;
+    } else {  // right turn, reduce left motors
+        right -= turn_factor;
+    }
+
+    left *= speed;
+    right *= speed;
+
+    motorFL_.set_target_speed(left);
+    motorBL_.set_target_speed(left);
+    motorFR_.set_target_speed(right);
+    motorBR_.set_target_speed(right);
+}
