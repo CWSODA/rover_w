@@ -20,7 +20,7 @@
 
 // global extern variables
 bool is_motor_fine = true;
-TCP_Buffer tcp_buffer;
+TCP_Buffer tcp_buffer;  // init TCP buffer here since it is global
 
 int main() {
     init_data_sending();
@@ -31,7 +31,7 @@ int main() {
     init_i2c1();
 
     // INIT MOTORS
-    // MotorControl motor_control;
+    MotorControl motor_control;
 
     // INIT LIDAR
     // Lidar lidar;
@@ -44,11 +44,12 @@ int main() {
     - spinning lidar
     - motors (encoders included)
     - imu (xl + gyro)
-    - tcp parser
+    - tcp parser / buffer
     */
     DBG("Starting loop...\n");
     while (true) {
-        // motor_control.update_motors();
-        sleep_ms(1000);
+        tcp_buffer.parse_tcp_buffer(motor_control);
+        motor_control.update_motors();
+        sleep_ms(10);
     }
 }

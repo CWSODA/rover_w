@@ -23,8 +23,15 @@ void PWM_Channel::set_duty(float duty) {
 
     // set level
     pwm_set_chan_level(slice_, channel_, new_level);
-    printf("Set duty: %f, level: %u, top: %u\n", duty, new_level, top_);
 
-    // ensures count always lower than TOP
-    pwm_set_counter(slice_, 0);
+#if DEBUG_PWM
+    if (duty != 0) {
+        DBG("Set duty: %f, level: %zu, top: %zu\n", duty, new_level, top_);
+    }
+#endif
+
+    // ensures count always lower than level
+    // if (pwm_get_counter(slice_) > new_level) {
+    //     pwm_set_counter(slice_, 0);
+    // }
 }

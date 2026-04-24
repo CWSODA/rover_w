@@ -5,6 +5,8 @@
 #include "hardware/gpio.h"
 #include "i2c.hpp"
 
+#include "settings.hpp"
+
 constexpr uint8_t ENCODER_ADDR = 0x36;  // I2C address of AS5600 encoder
 constexpr uint8_t ANGLE_ADDR = 0x0C;    // Register address for raw angle MSB
 

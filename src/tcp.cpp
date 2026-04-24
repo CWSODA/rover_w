@@ -123,18 +123,14 @@ static err_t tcp_server_recv(void* arg, struct tcp_pcb* tpcb, struct pbuf* p,
 
     // tot_len is length of packet, len is length of this buffer
     if (p->tot_len > 0) {
-        WDBG("tcp_server_recv %d err %d\n", p->len, err);
+        // WDBG("tcp_server_recv %d err %d\n", p->len, err);
 
-        /* ------------------------------------------------------ */
-        /*                    process data here                   */
-        /* ------------------------------------------------------ */
+        // copy data to buffer
         for (size_t idx = 0; idx < p->tot_len; idx++) {
             uint8_t byte = ((uint8_t*)(p->payload))[idx];
 
-            WDBG("(%02X)", byte);
             tcp_buffer.push_byte(byte);
         }
-        WDBG("\n");
 
         // lets lwip know that the data has been processed
         tcp_recved(tpcb, p->tot_len);

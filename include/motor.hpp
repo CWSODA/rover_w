@@ -22,7 +22,10 @@ class Motor {
     void drive(float val);
 
     // sets target speed of the motor
-    void set_target_speed(float speed) { tgt_speed_ = speed; }
+    void set_target_speed(float speed) {
+        tgt_speed_ = speed;
+        drive(tgt_speed_);
+    }
 
     // PID adjust motor duty cycle based on target speed
     void update_motor_pid();
@@ -52,15 +55,11 @@ class MotorControl {
     // linear
     void steer(float speed, float turn_strength);
 
-    void update_motors() {
-        update_encoders();
+    void update_motors();
 
-        return;
-
-        for (auto motor : motor_vec_) {
-            motor->update_motor_pid();
-        }
-    }
+    // TCP controls
+    void steer_with_timeout(float speed, float turn_strength);
+    void enable_algo() { is_algo_on = true; }
 
    private:
     // preinitialize all motor pins
@@ -72,7 +71,11 @@ class MotorControl {
     // array of motors for looping
     Motor* motor_vec_[4] = {&motorFL_, &motorFR_, &motorBL_, &motorBR_};
 
-    Timer timer_;  // timer used for calculating encoder speed
-    // updates the speed for all encoders
-    void update_encoders();
+    Timer timer_;            // timer used for calculating encoder speed
+    void update_encoders();  // updates the speed for all encoders
+
+    bool is_algo_on = true;
+
+    // timer used for control timeout
+    TimeoutTimer manual_drive_timer_ = TimeoutTimer(MANUAL_DRIVE_TIMEOUT_MS);
 };

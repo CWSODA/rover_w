@@ -59,3 +59,34 @@ class CooldownTimer {
     float cooldown_ms_;
     bool is_first_ = true;
 };
+
+class TimeoutTimer {
+   public:
+    TimeoutTimer(float timeout_ms) : timeout_ms_(timeout_ms) {}
+
+    // checks if timer has expired
+    bool check_expired() {
+        auto time = get_absolute_time();
+        float dt = absolute_time_diff_us(start_time_, time) * 1e-3;
+
+        if (dt > timeout_ms_) {
+            has_expired_ = true;
+            WDBG("timeout: %f\n", dt);
+            return true;
+        }
+        return false;
+    }
+
+    // refresh timer
+    void reset() {
+        start_time_ = get_absolute_time();
+        has_expired_ = false;
+    }
+
+    bool has_expired() { return has_expired_; };
+
+   private:
+    absolute_time_t start_time_;
+    float timeout_ms_;
+    bool has_expired_ = true;
+};

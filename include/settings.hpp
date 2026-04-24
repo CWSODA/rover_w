@@ -2,8 +2,6 @@
 
 #include "pico/stdlib.h"
 
-#include "tcp_parser.hpp"
-
 // toggles for optimization possible
 // used for tracking
 #define SHOW_OPT false
@@ -82,6 +80,10 @@ constexpr uint MOTOR_BR_DIR_PIN = 13;
 constexpr float MOTOR_P = 1.0f;
 constexpr float MOTOR_I = 1.0f;
 constexpr float MOTOR_D = 1.0f;
+
+constexpr float MANUAL_DRIVE_TIMEOUT_MS = 100.0f;
+
+#define DEBUG_PWM false
 
 /* ----------------------- Encoder ---------------------- */
 constexpr uint ENCODER_FL_PIN = 18;

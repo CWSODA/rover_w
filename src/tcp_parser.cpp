@@ -5,8 +5,11 @@
 #include <deque>
 
 #include "settings.hpp"
+#include "motor.hpp"
 
-void TCP_Buffer::parse_tcp_buffer(bool& is_algo_on) {
+// parses TCP buffer
+// can change motor control and toggle algorithm
+void TCP_Buffer::parse_tcp_buffer(MotorControl& motor_ctrl) {
     // loop until buffer consumed
     while (buf_size() >= 2) {  // start byte + command
         if (get_byte(0) != '$') {
@@ -16,23 +19,29 @@ void TCP_Buffer::parse_tcp_buffer(bool& is_algo_on) {
 
         // switch command, size of frame
         // return if not full command received, REMEMBER TO EXIT lock
-        switch (get_byte(1)) {
+        uint8_t cmd = get_byte(1);
+        switch (cmd) {
             case 'C': {  // drive control, 2 + speed(1) + dir(1) = 4
                 if (buf_size() < 4) {
                     return;  // wait for all bytes
                 }
 
-                is_algo_on = false;  // turn off algorithm
                 uint8_t speed = get_byte(2);
                 uint8_t dir = get_byte(3);
+                pop_to_idx(4);
                 // convert
                 // N, NE, E, SE, S, SW, W, NW
-                WDBG("ctrl: %d, %d\n", speed, dir);
+                // WDBG("ctrl: %d, %d\n", speed, dir);
+
+                float s = speed;
+                float t = 0;
+                motor_ctrl.steer_with_timeout(s, t);
 
                 break;
             }
             case 'A': {  // turn on algorithm, 2 + 0 = 2
-                is_algo_on = true;
+                pop_to_idx(2);
+                motor_ctrl.enable_algo();
                 WDBG("toggle algo\n");
                 break;
             }
@@ -42,7 +51,7 @@ void TCP_Buffer::parse_tcp_buffer(bool& is_algo_on) {
 
 void TCP_Buffer::push_byte(uint8_t byte) {
     critical_section_enter_blocking(&lock_);
-    buffer_.push_front(byte);
+    buffer_.push_back(byte);
     critical_section_exit(&lock_);
 }
 
@@ -50,6 +59,7 @@ void TCP_Buffer::push_byte(uint8_t byte) {
 uint8_t TCP_Buffer::get_byte(size_t idx) {
     critical_section_enter_blocking(&lock_);
     uint8_t byte = buffer_.at(idx);
+    // WDBG("got: (%02X)\n", byte);
     critical_section_exit(&lock_);
     return byte;
 }

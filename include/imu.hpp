@@ -60,4 +60,6 @@ class IMU {
    private:
     void read_imu_data();
     void calc_rot(Vec3& accel, Vec3& gyro);
+
+    CooldownTimer imu_cd_timer = CooldownTimer(IMU_SEND_CD_MS);
 };

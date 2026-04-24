@@ -4,11 +4,13 @@
 #include <pico/critical_section.h>
 #include <deque>
 
+#include "motor.hpp"
+
 class TCP_Buffer {
    public:
     TCP_Buffer() { critical_section_init(&lock_); }
 
-    void parse_tcp_buffer(bool& is_algo_on);
+    void parse_tcp_buffer(MotorControl& motor_ctrl);
 
     void push_byte(uint8_t byte);
 

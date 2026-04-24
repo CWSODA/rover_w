@@ -86,8 +86,7 @@ void IMU::calc_rot(Vec3& accel, Vec3& gyro) {
     }
 
 #if SEND_IMU_DATA
-    static CooldownTimer imu_cd(IMU_SEND_CD_MS);
-    if (imu_cd.check()) {
+    if (imu_cd_timer.check()) {
         uint8_t msg[1 + 1 + 4 + 4 + 4];
         msg[0] = '$';
         msg[1] = 'R';

@@ -1,5 +1,8 @@
 #include "motor.hpp"
 
+/* ------------------------------------------------------ */
+/*                         MOTORS                         */
+/* ------------------------------------------------------ */
 Motor::Motor(uint pwm_pin, uint dir_pin, uint encoder_pin)
     : dir_pin_(dir_pin),
       pwm_channel_(PWM_Channel(pwm_pin)),
@@ -8,6 +11,7 @@ Motor::Motor(uint pwm_pin, uint dir_pin, uint encoder_pin)
     gpio_set_function(dir_pin, GPIO_FUNC_SIO);
     gpio_set_dir(dir_pin, true);
     pwm_channel_.enable();
+    pwm_channel_.set_duty(0);  // start stationary
 };
 
 constexpr bool MOTOR_FORWARD = true;
@@ -22,6 +26,27 @@ void Motor::update_motor_pid() {
     float error = tgt_speed_ - encoder_.get_speed();
 
     float output = tgt_speed_ + error * MOTOR_P;
+}
+
+/* ------------------------------------------------------ */
+/*                      MOTOR CONTROL                     */
+/* ------------------------------------------------------ */
+void MotorControl::update_motors() {
+    if (is_algo_on) {
+        // run algorithm
+    } else {
+        // manual drive
+        // check timeout if it has not expired yet
+        if (!manual_drive_timer_.has_expired() &&
+            manual_drive_timer_.check_expired()) {
+            steer(0, 0);  // turn off motors
+        }
+    }
+
+    // update_encoders();
+    // for (auto& motor : motor_vec_) {
+    //     motor->update_motor_pid();
+    // }
 }
 
 void MotorControl::update_encoders() {
@@ -63,4 +88,16 @@ void MotorControl::steer(float speed, float turn_strength) {
     motorBL_.set_target_speed(left);
     motorFR_.set_target_speed(right);
     motorBR_.set_target_speed(right);
+}
+
+void MotorControl::steer_with_timeout(float speed, float turn_strength) {
+    is_algo_on = false;
+    steer(speed, turn_strength);
+    manual_drive_timer_.reset();
+
+    static Timer t;
+    float dt = t.clock_us().value_or(0) * 1e-3;
+    if (dt > 30) {
+        WDBG("elapsed: %fms\n", dt);
+    }
 }
