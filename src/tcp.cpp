@@ -178,6 +178,7 @@ static err_t tcp_server_accept(void* arg, struct tcp_pcb* client_pcb,
     tcp_recv(client_pcb, tcp_server_recv);
     tcp_poll(client_pcb, tcp_server_poll, TCP_POLL_TIME_S * 2);
     tcp_err(client_pcb, tcp_server_err);
+    tcp_nagle_disable(client_pcb);
 
     // return tcp_server_send_data(arg, state.client_pcb);
     return ERR_OK;

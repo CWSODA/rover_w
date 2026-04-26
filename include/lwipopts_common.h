@@ -89,4 +89,7 @@
 #define SLIP_DEBUG LWIP_DBG_OFF
 #define DHCP_DEBUG LWIP_DBG_OFF
 
+// below is added
+#define TCP_TMR_INTERVAL 100  // default is 250ms
+
 #endif /* __LWIPOPTS_H__ */
