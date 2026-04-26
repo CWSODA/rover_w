@@ -9,6 +9,7 @@
 #include "lidar.hpp"
 #include "encoder.hpp"
 #include "imu.hpp"
+#include "led.hpp"
 
 // UART debug
 // screen /dev/tty.usbserial-FTU7C2WR 115200
@@ -23,20 +24,18 @@ bool is_motor_fine = true;
 TCP_Buffer tcp_buffer;  // init TCP buffer here since it is global
 
 int main() {
+    LED led;  // init LED first for indicator
+    led.set_indicator(LED_INDICATOR::POWER_ON);
+
     init_data_sending();
     sleep_ms(1000);  // allow time for connection
     DBG("Rover Starting...\n");
 
     // init i2c
-    init_i2c1();
+    // init_i2c1();
 
-    // INIT MOTORS
     MotorControl motor_control;
-
-    // INIT LIDAR
     // Lidar lidar;
-
-    // init accelerometer + gyro
     // IMU imu;
 
     /*
@@ -47,9 +46,10 @@ int main() {
     - tcp parser / buffer
     */
     DBG("Starting loop...\n");
+    led.set_indicator(LED_INDICATOR::START_LOOP);
     while (true) {
         tcp_buffer.parse_tcp_buffer(motor_control);
-        motor_control.update_motors();
+        // motor_control.update_motors();
         sleep_ms(10);
     }
 }

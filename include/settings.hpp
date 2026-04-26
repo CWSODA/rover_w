@@ -21,8 +21,9 @@
 /* ---------------------- debugging --------------------- */
 #define DEBUG_LOG true
 #define UART_DEBUG false
-#define USB_DEBUG true
+#define USB_DEBUG true  // set true for easy flashing
 #define USB_SEND false  // send byte data to USB, disable to only use printf/DBG
+#define USB_WAIT false  // configures whether to wait for usb connection
 #define NET_DEBUG true
 
 constexpr int DEBUG_TX_PIN = 0;
@@ -31,7 +32,7 @@ constexpr uint UART_DEBUG_BAUDRATE = 115200 * 8;  // 921600
 
 /* ------------------------- TCP ------------------------ */
 constexpr uint16_t TCP_PORT = 4242;
-constexpr uint8_t TCP_POLL_TIME_S = 5;
+constexpr uint8_t TCP_POLL_TIME_S = 1;
 constexpr uint TCP_BUFFER_SIZE = 2048;
 
 // #define WIFI_SSID "VM24B898"
@@ -81,7 +82,7 @@ constexpr float MOTOR_P = 1.0f;
 constexpr float MOTOR_I = 1.0f;
 constexpr float MOTOR_D = 1.0f;
 
-constexpr float MANUAL_DRIVE_TIMEOUT_MS = 100.0f;
+constexpr float MANUAL_DRIVE_TIMEOUT_MS = 1000.0f;
 
 #define DEBUG_PWM false
 
@@ -100,5 +101,10 @@ constexpr float FOV = 180.0f;              // ignore if above in degrees
 
 constexpr float TURN_MULTIPLIER = 10.0f;
 constexpr float SPEED_MULTIPLIER = 10.0f;
+
+/* ------------------------ LEDS ------------------------ */
+constexpr uint LED_R_PIN = 27;
+constexpr uint LED_G_PIN = 26;
+constexpr uint LED_B_PIN = 22;
 
 #include "sender.hpp"

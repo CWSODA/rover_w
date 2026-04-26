@@ -15,12 +15,14 @@ void init_data_sending() {
     if (!stdio_usb_init()) {
         DBG("Failed to initialize USB debugging\n");
     } else {
+#if USB_WAIT
         // wait for usb to connect
         while (!stdio_usb_connected()) {
             sleep_ms(10);
         }
         sleep_ms(10);
         DBG("Connected to USB\n");
+#endif
     }
 #endif
 

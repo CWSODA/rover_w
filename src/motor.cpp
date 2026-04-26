@@ -14,8 +14,8 @@ Motor::Motor(uint pwm_pin, uint dir_pin, uint encoder_pin)
     pwm_channel_.set_duty(0);  // start stationary
 };
 
-constexpr bool MOTOR_FORWARD = true;
-constexpr bool MOTOR_BACKWARD = false;
+constexpr bool MOTOR_FORWARD = false;
+constexpr bool MOTOR_BACKWARD = true;
 void Motor::drive(float val) {
     // set direction depending on val sign
     gpio_put(dir_pin_, (val > 0) ? MOTOR_FORWARD : MOTOR_BACKWARD);
@@ -34,7 +34,7 @@ void Motor::update_motor_pid() {
 void MotorControl::update_motors() {
     if (is_algo_on) {
         // run algorithm
-    } else {
+    } else if (is_manual) {
         // manual drive
         // check timeout if it has not expired yet
         if (!manual_drive_timer_.has_expired() &&
@@ -67,7 +67,7 @@ void MotorControl::update_encoders() {
 // negative is left, positive is right
 // linear
 void MotorControl::steer(float speed, float turn_strength) {
-    float speed_abs = abs(speed);
+    // float speed_abs = abs(speed);
 
     // left is max for ranges 100 to 0, linear decrease from 0 to -100
     float left = 1.0f;
@@ -92,6 +92,8 @@ void MotorControl::steer(float speed, float turn_strength) {
 
 void MotorControl::steer_with_timeout(float speed, float turn_strength) {
     is_algo_on = false;
+    is_manual = true;
+
     steer(speed, turn_strength);
     manual_drive_timer_.reset();
 

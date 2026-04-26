@@ -59,7 +59,10 @@ class MotorControl {
 
     // TCP controls
     void steer_with_timeout(float speed, float turn_strength);
-    void enable_algo() { is_algo_on = true; }
+    void enable_algo() {
+        is_algo_on = true;
+        is_manual = false;
+    }
 
    private:
     // preinitialize all motor pins
@@ -75,6 +78,7 @@ class MotorControl {
     void update_encoders();  // updates the speed for all encoders
 
     bool is_algo_on = true;
+    bool is_manual = false;
 
     // timer used for control timeout
     TimeoutTimer manual_drive_timer_ = TimeoutTimer(MANUAL_DRIVE_TIMEOUT_MS);

@@ -7,6 +7,8 @@
 #include "settings.hpp"
 #include "motor.hpp"
 
+void set_ctrl_from_dir(uint8_t dir, float& speed, float& turn);
+
 // parses TCP buffer
 // can change motor control and toggle algorithm
 void TCP_Buffer::parse_tcp_buffer(MotorControl& motor_ctrl) {
@@ -26,16 +28,17 @@ void TCP_Buffer::parse_tcp_buffer(MotorControl& motor_ctrl) {
                     return;  // wait for all bytes
                 }
 
-                uint8_t speed = get_byte(2);
-                uint8_t dir = get_byte(3);
+                uint8_t speed_byte = get_byte(2);
+                uint8_t dir_byte = get_byte(3);
                 pop_to_idx(4);
                 // convert
                 // N, NE, E, SE, S, SW, W, NW
                 // WDBG("ctrl: %d, %d\n", speed, dir);
+                float turn;
+                float speed = speed_byte;
+                set_ctrl_from_dir(dir_byte, speed, turn);
 
-                float s = speed;
-                float t = 0;
-                motor_ctrl.steer_with_timeout(s, t);
+                motor_ctrl.steer_with_timeout(speed, turn);
 
                 break;
             }
@@ -98,4 +101,49 @@ void TCP_Buffer::pop_to_idx(size_t idx) {
         buffer_.pop_front();
     }
     critical_section_exit(&lock_);
+}
+
+// decodes dir_byte into speed and turn
+// sets speed to negative for south
+void set_ctrl_from_dir(uint8_t dir, float& speed, float& turn) {
+    switch (dir) {
+        case (1 << 0): {  // N
+            turn = 0.0f;
+            break;
+        }
+        case (1 << 1): {  // NE
+            turn = 50.0f;
+            break;
+        }
+        case (1 << 2): {  // E
+            turn = 100.0f;
+            break;
+        }
+        case (1 << 3): {  // SE
+            turn = 50.0f;
+            speed *= -1;
+            break;
+        }
+        case (1 << 4): {  // S
+            turn = 0.0f;
+            speed *= -1;
+            break;
+        }
+        case (1 << 5): {  // SW
+            turn = -50.0f;
+            speed *= -1;
+            break;
+        }
+        case (1 << 6): {  // W
+            turn = -100.0f;
+            break;
+        }
+        case (1 << 7): {  // NW
+            turn = -50.0f;
+            break;
+        }
+        default: {
+            speed = 0;  // unknown, turn off motors
+        }
+    }
 }
