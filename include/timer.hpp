@@ -7,6 +7,7 @@
 using Some = std::optional<float>;
 inline constexpr Some None = std::nullopt;
 
+// for measuring elapsed time between each call
 class Timer {
    public:
     // returns time between last call in us
@@ -30,6 +31,7 @@ class Timer {
     bool is_first_ = true;
 };
 
+// for doing stuff every interval
 class CooldownTimer {
    public:
     CooldownTimer(float cooldown_ms) : cooldown_ms_(cooldown_ms) {}
@@ -60,15 +62,17 @@ class CooldownTimer {
     bool is_first_ = true;
 };
 
+// for checking if an amount of time has passed
 class TimeoutTimer {
    public:
-    TimeoutTimer(float timeout_ms) : timeout_ms_(timeout_ms) {}
+    TimeoutTimer(float timeout_ms = 1000.0f) : timeout_ms_(timeout_ms) {}
 
     // checks if timer has expired
     bool check_expired() {
+        if (has_expired_ == true) return true;
+
         auto time = get_absolute_time();
         float dt = absolute_time_diff_us(start_time_, time) * 1e-3;
-
         if (dt > timeout_ms_) {
             has_expired_ = true;
             WDBG("timeout: %f\n", dt);
@@ -82,6 +86,9 @@ class TimeoutTimer {
         start_time_ = get_absolute_time();
         has_expired_ = false;
     }
+
+    // change timeout time
+    void set_timeout_ms(float timeout_ms) { timeout_ms_ = timeout_ms; }
 
     bool has_expired() { return has_expired_; };
 

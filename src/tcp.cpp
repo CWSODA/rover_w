@@ -218,15 +218,17 @@ static bool tcp_server_open() {
     return true;
 }
 
-static void run_tcp_server() {
+// starts TCP server, true if successful
+static bool run_tcp_server() {
     if (!tcp_server_open()) {
         tcp_server_result(-1);
         DBG("failed to open tcp server\n");
-        return;
+        return false;
     }
+    return true;
 }
 
-void init_wifi() {
+void init_wifi(bool& has_wifi) {
     if (cyw43_arch_init()) {
         DBG("failed to initialise cyw43 chip!\n");
     }
@@ -237,9 +239,9 @@ void init_wifi() {
     if (cyw43_arch_wifi_connect_timeout_ms(WIFI_SSID, WIFI_PASSWORD,
                                            CYW43_AUTH_WPA2_AES_PSK, 30000)) {
         WDBG("Failed to connect to wifi!\n");
-    } else {
-        WDBG("Connected.\n");
-        // init tcp buffer before starting server
-        run_tcp_server();
+        return;
     }
+
+    WDBG("Connected to WIFI\n");
+    if (run_tcp_server()) has_wifi = true;
 }

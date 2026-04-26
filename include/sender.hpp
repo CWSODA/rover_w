@@ -5,7 +5,7 @@
 #include "settings.hpp"
 
 // initializes any enabled streams
-void init_data_sending();
+void init_data_sending(bool& has_wifi);
 
 // sends byte through ALL enabled streams
 // sending through TCP does not flush!

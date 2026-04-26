@@ -37,6 +37,7 @@ void MotorControl::update_motors() {
     } else if (is_manual) {
         // manual drive
         // check timeout if it has not expired yet
+        // prevents calling steer if it has been set off before
         if (!manual_drive_timer_.has_expired() &&
             manual_drive_timer_.check_expired()) {
             steer(0, 0);  // turn off motors

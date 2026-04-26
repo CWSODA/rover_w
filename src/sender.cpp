@@ -9,7 +9,7 @@
 
 static void init_debug_uart();
 
-void init_data_sending() {
+void init_data_sending(bool& has_wifi) {
 // common setup for serial debug
 #if USB_DEBUG | USB_SEND
     if (!stdio_usb_init()) {
@@ -34,7 +34,7 @@ void init_data_sending() {
 #if NET_DEBUG
     // add in network initializer
     // add in wait for connection if required
-    init_wifi();
+    init_wifi(has_wifi);
 #endif
 }
 

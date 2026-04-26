@@ -27,7 +27,8 @@ int main() {
     LED led;  // init LED first for indicator
     led.set_indicator(LED_INDICATOR::POWER_ON);
 
-    init_data_sending();
+    bool has_wifi = false;
+    init_data_sending(has_wifi);
     sleep_ms(1000);  // allow time for connection
     DBG("Rover Starting...\n");
 
@@ -46,10 +47,14 @@ int main() {
     - tcp parser / buffer
     */
     DBG("Starting loop...\n");
-    led.set_indicator(LED_INDICATOR::START_LOOP);
+    led.set_indicator(has_wifi ? LED_INDICATOR::LOOP_WITH_WIFI
+                               : LED_INDICATOR::LOOP_NO_WIFI);
     while (true) {
         tcp_buffer.parse_tcp_buffer(motor_control);
+        // imu.update();
+        // lidar.update_lidar();
         // motor_control.update_motors();
+        led.update();
         sleep_ms(10);
     }
 }
