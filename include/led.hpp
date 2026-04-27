@@ -23,10 +23,12 @@ struct Color {
 
 class LED {
    public:
+    // initiates pwm channels and turns light red
     LED() {
         pwm_r.enable();
         pwm_g.enable();
         pwm_b.enable();
+        set_indicator(LED_INDICATOR::POWER_ON);
     }
 
     // changes LED duty cycle, (0 -> 100)
