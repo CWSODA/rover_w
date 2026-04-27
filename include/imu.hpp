@@ -39,27 +39,42 @@ constexpr uint8_t G_CFG = (IMU_FREQ << 4) | G_LOWER;
 constexpr float RAD2DEG = 180 / 3.1415f;
 struct Vec3 {
     float x, y, z;
+
+    void operator+=(const Vec3& other) {
+        this->x += other.x;
+        this->y += other.y;
+        this->z += other.z;
+    }
+    void operator/=(const float divisor) {
+        this->x /= divisor;
+        this->y /= divisor;
+        this->z /= divisor;
+    }
+
+    void clear() {
+        x = 0;
+        y = 0;
+        z = 0;
+    }
 };
-
-// forward declarations
-void calc_rot(Vec3& accel, Vec3& gyro);
-
-bool init_imu();
-
-void setup_fifo();
-
-void read_xl();
-
-void read_imu_data();
 
 class IMU {
    public:
     IMU();
+    void calibrate_gyro();
+
     void update();
 
    private:
     void read_imu_data();
-    void calc_rot(Vec3& accel, Vec3& gyro);
+    void calc_rot();
 
-    CooldownTimer imu_cd_timer = CooldownTimer(IMU_SEND_CD_MS);
+    Vec3 accel_;
+    Vec3 gyro_;
+    Vec3 gyro_offset_;
+
+    float pitch, roll, yaw;
+
+    Timer timer_;
+    CooldownTimer imu_cd_timer_ = CooldownTimer(IMU_SEND_CD_MS);
 };

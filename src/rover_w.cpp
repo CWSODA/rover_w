@@ -23,8 +23,11 @@
 bool is_motor_fine = true;
 TCP_Buffer tcp_buffer;  // init TCP buffer here since it is global
 
+// INIT ORDER:
+// LED for indication
+//
 int main() {
-    LED led;  // init LED first for indicator
+    LED led;
     led.set_indicator(LED_INDICATOR::POWER_ON);
 
     bool has_wifi = false;
@@ -37,7 +40,8 @@ int main() {
 
     MotorControl motor_control;
     // Lidar lidar;
-    // IMU imu;
+    IMU imu;
+    imu.calibrate_gyro();
 
     /*
     things that have seperate update loops:

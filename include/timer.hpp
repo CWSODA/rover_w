@@ -65,6 +65,7 @@ class CooldownTimer {
 // for checking if an amount of time has passed
 class TimeoutTimer {
    public:
+    // creates timeout timer given timeout in ms
     TimeoutTimer(float timeout_ms = 1000.0f) : timeout_ms_(timeout_ms) {}
 
     // checks if timer has expired
