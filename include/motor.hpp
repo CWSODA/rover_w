@@ -64,6 +64,15 @@ class MotorControl {
         is_manual = false;
     }
 
+    void test() {
+        motorBL_.drive(30);
+        motorBR_.drive(60);
+    }
+    // FL now BL
+    // FR now FL
+    // BL now FR
+    // BR now BR
+
    private:
     // preinitialize all motor pins
     Motor motorFL_ = Motor(MOTOR_FL_PWM_PIN, MOTOR_FL_DIR_PIN, ENCODER_FL_PIN);
