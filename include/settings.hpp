@@ -70,12 +70,27 @@ constexpr uint LIDAR_RX_PIN = 5;
 constexpr int DATA_THROTTLE_COUNT = 1;
 
 /* ----------------------- Motors ----------------------- */
-constexpr uint MOTOR_FL_PWM_PIN = 6;
-constexpr uint MOTOR_FL_DIR_PIN = 7;
-constexpr uint MOTOR_FR_PWM_PIN = 8;
-constexpr uint MOTOR_FR_DIR_PIN = 9;
-constexpr uint MOTOR_BL_PWM_PIN = 10;
-constexpr uint MOTOR_BL_DIR_PIN = 11;
+// old ones
+// constexpr uint MOTOR_FL_PWM_PIN = 6;
+// constexpr uint MOTOR_FL_DIR_PIN = 7;
+// constexpr uint MOTOR_FR_PWM_PIN = 8;
+// constexpr uint MOTOR_FR_DIR_PIN = 9;
+// constexpr uint MOTOR_BL_PWM_PIN = 10;
+// constexpr uint MOTOR_BL_DIR_PIN = 11;
+// constexpr uint MOTOR_BR_PWM_PIN = 12;
+// constexpr uint MOTOR_BR_DIR_PIN = 13;
+
+// change of pins
+// FL now BL
+// FR now FL
+// BL now FR
+// BR now BR
+constexpr uint MOTOR_FL_PWM_PIN = 8;
+constexpr uint MOTOR_FL_DIR_PIN = 9;
+constexpr uint MOTOR_FR_PWM_PIN = 10;
+constexpr uint MOTOR_FR_DIR_PIN = 11;
+constexpr uint MOTOR_BL_PWM_PIN = 6;
+constexpr uint MOTOR_BL_DIR_PIN = 7;
 constexpr uint MOTOR_BR_PWM_PIN = 12;
 constexpr uint MOTOR_BR_DIR_PIN = 13;
 
@@ -84,7 +99,7 @@ constexpr float MOTOR_P = 1.0f;
 constexpr float MOTOR_I = 1.0f;
 constexpr float MOTOR_D = 1.0f;
 
-constexpr float MANUAL_DRIVE_TIMEOUT_MS = 1000.0f;
+constexpr float MANUAL_DRIVE_TIMEOUT_MS = 100.0f;
 
 #define DEBUG_PWM false
 

@@ -141,7 +141,7 @@ static err_t tcp_server_recv(void* arg, struct tcp_pcb* tpcb, struct pbuf* p,
 
 // should not be called since there should be something sent within 5 seconds
 static err_t tcp_server_poll(void* arg, struct tcp_pcb* tpcb) {
-    WDBG("Pinging server\n");
+    // WDBG("Pinging server\n");
     uint8_t buffer[] = {'$', 'H'};
     tcp_write_data(buffer, sizeof(buffer));
     // return tcp_server_result(arg, -1);  // no response is an error?
