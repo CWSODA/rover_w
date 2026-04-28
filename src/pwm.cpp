@@ -10,6 +10,8 @@ PWM_Channel::PWM_Channel(uint pin) : pin_(pin) {
     slice_ = pwm_gpio_to_slice_num(pin_);  // get slice
     channel_ = pwm_gpio_to_channel(pin_);  // get channel
 
+    top_ = 6000;
+
     pwm_set_wrap(slice_, top_);
     pwm_set_chan_level(slice_, channel_, 0);
 
@@ -17,6 +19,7 @@ PWM_Channel::PWM_Channel(uint pin) : pin_(pin) {
     // clock speed of about 120 MHz
     // 120e6 / 2^16 / 64 = 28 Hz
     // 120e6 / 2^16 = 1831 Hz
+    // to get 20kHz, set top to 6000
     pwm_set_clkdiv(slice_, 1.0f);
 }
 
