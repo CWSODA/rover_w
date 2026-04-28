@@ -28,5 +28,5 @@ class PWM_Channel {
     uint channel_;
 
     float prescaler_ = 1.0f;
-    const uint16_t top_ = UINT16_MAX;
+    uint16_t top_ = UINT16_MAX;
 };
