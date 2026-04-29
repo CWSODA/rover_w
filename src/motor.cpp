@@ -75,7 +75,7 @@ void MotorControl::steer(float speed, float turn_strength) {
     float right = 1.0f;
 
     // remap from 1.0 to -1.0, turn factor between 0 and 2
-    float turn_factor = 2 * turn_strength / 100.0f;
+    float turn_factor = 2 * abs(turn_strength) / 100.0f;
     if (turn_strength < 0) {  // left turn, reduce left motors
         left -= turn_factor;
     } else {  // right turn, reduce left motors
