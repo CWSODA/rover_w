@@ -2,11 +2,13 @@
 #include "pico/stdlib.h"
 #include "hardware/pwm.h"
 #include <math.h>
+#include <queue>
 
 #include "settings.hpp"
 #include "pwm.hpp"
 #include "encoder.hpp"
 #include "timer.hpp"
+#include "lidar_parser.hpp"
 
 // Motor Pins:
 // assuming we are driving the motors at the same frequency
@@ -55,7 +57,9 @@ class MotorControl {
     // linear
     void steer(float speed, float turn_strength);
 
-    void update_motors();
+    // motor update
+    // runs encoders, runs algorithm (lidar data required) runs motor PID
+    void update_motors(std::queue<DataPoint>& lidar_data);
 
     // TCP controls
     void steer_with_timeout(float speed, float turn_strength);

@@ -1,5 +1,7 @@
 #include "motor.hpp"
 
+#include "algo.cpp"
+
 /* ------------------------------------------------------ */
 /*                         MOTORS                         */
 /* ------------------------------------------------------ */
@@ -31,9 +33,11 @@ void Motor::update_motor_pid() {
 /* ------------------------------------------------------ */
 /*                      MOTOR CONTROL                     */
 /* ------------------------------------------------------ */
-void MotorControl::update_motors() {
+void MotorControl::update_motors(std::queue<DataPoint>& lidar_data) {
     if (is_algo_on) {
         // run algorithm
+        DBG("Running algorithm!");
+        run_algorithm(lidar_data, *this);
     } else if (is_manual) {
         // manual drive
         // check timeout if it has not expired yet

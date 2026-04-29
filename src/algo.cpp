@@ -63,6 +63,7 @@ void run_algorithm(std::queue<DataPoint>& lidar_data,
 
             update_motor_ctrl(calc_vec, motor_ctrl);
             last_angle = -1.0f;  // -1 ensures no angle will be smaller
+            return;              // only do one rotation
         } else {
             last_angle = data.angle;  // update angle
         }
@@ -73,8 +74,7 @@ void run_algorithm(std::queue<DataPoint>& lidar_data,
 // clears vector afterwards
 void update_motor_ctrl(Vec2& vec, MotorControl& motor_ctrl) {
     // add target vector
-    // straight for testing
-    vec += Vec2(0.0f, 1.0f);
+    // vec += Vec2(0.0f, 1.0f);
 
     // convert back to length + angle (rad)
     float length = sqrtf(vec.x * vec.x + vec.y * vec.y);
