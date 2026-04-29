@@ -65,6 +65,10 @@ class IMU {
 
     void update();
 
+    float get_pitch() { return pitch_; }
+    float get_roll() { return roll_; }
+    float get_yaw() { return yaw_; }
+
    private:
     void read_imu_data();
     void calc_rot();
@@ -73,7 +77,7 @@ class IMU {
     Vec3 gyro_;
     Vec3 gyro_offset_;
 
-    float pitch, roll, yaw;
+    float pitch_ = 0, roll_ = 0, yaw_ = 0;
 
     Timer timer_;
     CooldownTimer imu_cd_timer_ = CooldownTimer(IMU_SEND_CD_MS);

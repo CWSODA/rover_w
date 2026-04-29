@@ -93,9 +93,9 @@ void IMU::calc_rot() {
     if (delta_time_us != None) {
         float delta_time = delta_time_us.value() * 1e-6;  // convert to s
 
-        pitch += gyro_.x * delta_time;
-        roll += gyro_.y * delta_time;
-        yaw += gyro_.z * delta_time;
+        pitch_ += gyro_.x * delta_time;
+        roll_ += gyro_.y * delta_time;
+        yaw_ += gyro_.z * delta_time;
     }
 
 #if SEND_IMU_DATA
@@ -103,9 +103,9 @@ void IMU::calc_rot() {
         uint8_t msg[1 + 1 + 4 + 4 + 4];
         msg[0] = '$';
         msg[1] = 'R';
-        memcpy(&msg[2], &pitch, 4);
-        memcpy(&msg[2 + 4], &roll, 4);
-        memcpy(&msg[2 + 4 + 4], &yaw, 4);
+        memcpy(&msg[2], &pitch_, 4);
+        memcpy(&msg[2 + 4], &roll_, 4);
+        memcpy(&msg[2 + 4 + 4], &yaw_, 4);
         send_bytes(msg, sizeof(msg));
     }
 #endif
