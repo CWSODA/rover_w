@@ -86,42 +86,6 @@ void tcp_buffer_data(const uint8_t* buf, uint16_t len) {
         tcp_write_buffer.push_back(buf[x]);
     }
 }
-void flush_tcp_write_buffer() {
-    tcp_write_data(tcp_write_buffer.data(), tcp_write_buffer.size());
-    WDBG("TCP BUF SIZE: %zu\n", tcp_write_buffer.size());
-    tcp_write_buffer.clear();
-}
-void tcp_write_data(const uint8_t* buf, uint16_t len) {
-    if (state.client_pcb == NULL) return;  // no connection yet
-    cyw43_arch_lwip_begin();  // lock lwip state since it is not thread safe.
-                              // MUST USE!!!
-    uint16_t free = tcp_sndbuf(state.client_pcb);
-    uint16_t queued = tcp_sndqueuelen(state.client_pcb);
-    // use WDBG here so it does not trigger more TCP outputs
-#if DEBUG_TCP_WRITE
-    WDBG("Free %zu, Len %zu, Queue: %zu/%zu\n", free, len, queued,
-         TCP_SND_QUEUELEN);
-#endif
-    if (len > free) {
-        // drop or skip send
-        WDBG("Dropped data, mem overflow\n");
-        cyw43_arch_lwip_end();
-        return;
-    }
-    if (queued >= TCP_SND_QUEUELEN) {
-        // drop or skip send
-        WDBG("Dropped data, queue length overflow\n");
-        cyw43_arch_lwip_end();
-        return;
-    }
-    err_t err = tcp_write(state.client_pcb, buf, len, TCP_WRITE_FLAG_COPY);
-    if (err != ERR_OK) {
-        WDBG("Failed to queue data %d\n", err);
-        // tcp_server_result(-1);
-    }
-    tcp_output(state.client_pcb);  // flush
-    cyw43_arch_lwip_end();         // release lock
-}
 
 // on pico receive data from client
 static err_t tcp_server_recv(void* arg, struct tcp_pcb* tpcb, struct pbuf* p,
@@ -243,6 +207,47 @@ static bool run_tcp_server() {
     return true;
 }
 
+/* ------------------------------------------------------ */
+/*                  PUBLIC API FUNCTIONS                  */
+/* ------------------------------------------------------ */
+#if NET_DEBUG  // guard against calling tcp functions when not enabled
+void flush_tcp_write_buffer() {
+    tcp_write_data(tcp_write_buffer.data(), tcp_write_buffer.size());
+    WDBG("TCP BUF SIZE: %zu\n", tcp_write_buffer.size());
+    tcp_write_buffer.clear();
+}
+void tcp_write_data(const uint8_t* buf, uint16_t len) {
+    if (state.client_pcb == NULL) return;  // no connection yet
+    cyw43_arch_lwip_begin();  // lock lwip state since it is not thread safe.
+                              // MUST USE!!!
+    uint16_t free = tcp_sndbuf(state.client_pcb);
+    uint16_t queued = tcp_sndqueuelen(state.client_pcb);
+    // use WDBG here so it does not trigger more TCP outputs
+#if DEBUG_TCP_WRITE
+    WDBG("Free %zu, Len %zu, Queue: %zu/%zu\n", free, len, queued,
+         TCP_SND_QUEUELEN);
+#endif
+    if (len > free) {
+        // drop or skip send
+        WDBG("Dropped data, mem overflow\n");
+        cyw43_arch_lwip_end();
+        return;
+    }
+    if (queued >= TCP_SND_QUEUELEN) {
+        // drop or skip send
+        WDBG("Dropped data, queue length overflow\n");
+        cyw43_arch_lwip_end();
+        return;
+    }
+    err_t err = tcp_write(state.client_pcb, buf, len, TCP_WRITE_FLAG_COPY);
+    if (err != ERR_OK) {
+        WDBG("Failed to queue data %d\n", err);
+        // tcp_server_result(-1);
+    }
+    tcp_output(state.client_pcb);  // flush
+    cyw43_arch_lwip_end();         // release lock
+}
+
 void init_wifi(bool& has_wifi) {
     if (cyw43_arch_init()) {
         DBG("failed to initialise cyw43 chip!\n");
@@ -260,3 +265,9 @@ void init_wifi(bool& has_wifi) {
     WDBG("Connected to WIFI\n");
     if (run_tcp_server()) has_wifi = true;
 }
+#else  // empty functions
+void init_wifi(bool& has_wifi) {}
+void tcp_buffer_data(const uint8_t* buf, uint16_t len) {}
+void tcp_write_data(const uint8_t* buf, uint16_t len) {}
+void flush_tcp_write_buffer() {}
+#endif
