@@ -166,18 +166,33 @@ bool LidarParser::parse_data(uint8_t byte) {
             // increments of 0.25mm = 0.00025 m
             temp_point.distance = dist_buf.val() * 0.25E-3f;
 
-            // STORE DATA
+            // STORE DATA, check for oversize first
+            if (data_queue_p->size() > LIDAR_QUEUE_MAX_LEN) {
+                data_queue_p->pop();
+            }
             data_queue_p->push(temp_point);
 #if SEND_LIDAR_DATA
             // send opcode L (lidar)
             // send sig_str, dist, angle
-            // only send every 5th data point to avoid overloading uart
-            static unsigned int count = 0;
-            if (count % DATA_THROTTLE_COUNT == 0) {
-                // sends 11 bytes total per sample
-                // inputs approximately 3 bytes per sample excluding headers
-                // output baudrate must be 4x faster
-                // at least 460,800
+            // throttle data if needed
+            if constexpr (DATA_THROTTLE_COUNT > 1) {
+                static unsigned int count = 0;
+                if (count % DATA_THROTTLE_COUNT == 0) {
+                    // sends 11 bytes total per sample
+                    // inputs approximately 3 bytes per sample excluding headers
+                    // output baudrate must be 4x faster
+                    // at least 460,800
+                    uint8_t msg[1 + 1 + 1 + 4 + 4];
+                    msg[0] = '$';
+                    msg[1] = 'L';
+                    msg[2] = temp_point.sig_strength;
+                    memcpy(&msg[3], &temp_point.distance, 4);
+                    memcpy(&msg[7], &temp_point.angle, 4);
+                    send_bytes(msg, sizeof(msg));
+                }
+                count++;
+            } else {
+                // sends data normally
                 uint8_t msg[1 + 1 + 1 + 4 + 4];
                 msg[0] = '$';
                 msg[1] = 'L';
@@ -186,7 +201,6 @@ bool LidarParser::parse_data(uint8_t byte) {
                 memcpy(&msg[7], &temp_point.angle, 4);
                 send_bytes(msg, sizeof(msg));
             }
-            count++;
 #endif
 
             // increment angle for next insert
