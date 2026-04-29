@@ -27,6 +27,9 @@ void IMU::calibrate_gyro() {
     }
     // get average
     gyro_offset_ /= count;
+    // DBG("Count: %d\n", count);
+    // DBG("Offset: (%f) (%f) (%f)\n", gyro_offset_.x, gyro_offset_.y,
+    //     gyro_offset_.z);
 }
 
 void IMU::update() {
@@ -87,6 +90,9 @@ void IMU::calc_rot() {
     // tilt.x = acosf(accel_.x / length) * RAD2DEG;
     // tilt.y = acosf(accel_.y / length) * RAD2DEG;
     // tilt.z = acosf(accel_.z / length) * RAD2DEG;  // tilt from ground plane
+
+    // remove offset
+    gyro_ -= gyro_offset_;
 
     // use gyroscope to estimate pitch, roll, yaw
     auto delta_time_us = timer_.clock_us();

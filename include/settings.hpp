@@ -51,7 +51,7 @@ constexpr uint I2C1_SCL_PIN = 3;
 #define DEBUG_IMU false
 
 #define SEND_IMU_DATA true
-constexpr float IMU_SEND_CD_MS = 1000.0f / 100.0f;  // 100 Hz
+constexpr float IMU_SEND_CD_MS = 1000.0f / 30.0f;  // 30 Hz
 
 constexpr float IMU_GYRO_CALIBRATION_TIME_MS = 1000.0f;
 

@@ -38,8 +38,18 @@ constexpr uint8_t G_CFG = (IMU_FREQ << 4) | G_LOWER;
 // helpers
 constexpr float RAD2DEG = 180 / 3.1415f;
 struct Vec3 {
-    float x, y, z;
+    float x = 0, y = 0, z = 0;
+    Vec3(float x, float y, float z) : x(x), y(y), z(z) {}
+    Vec3() {}
 
+    Vec3 operator-(const Vec3& other) {
+        return Vec3(this->x - other.x, this->y - other.y, this->z - other.z);
+    }
+    void operator-=(const Vec3& other) {
+        this->x -= other.x;
+        this->y -= other.y;
+        this->z -= other.z;
+    }
     void operator+=(const Vec3& other) {
         this->x += other.x;
         this->y += other.y;
@@ -73,8 +83,8 @@ class IMU {
     void read_imu_data();
     void calc_rot();
 
-    Vec3 accel_;
-    Vec3 gyro_;
+    Vec3 accel_;  // raw float values
+    Vec3 gyro_;   // raw float values
     Vec3 gyro_offset_;
 
     float pitch_ = 0, roll_ = 0, yaw_ = 0;
