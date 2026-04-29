@@ -104,6 +104,12 @@ void tcp_write_data(const uint8_t* buf, uint16_t len) {
         WDBG("Failed to queue data %d\n", err);
         // tcp_server_result(-1);
     }
+    // tcp_output(state.client_pcb);  // flush
+    cyw43_arch_lwip_end();  // release lock
+}
+
+void flush_tcp() {
+    cyw43_arch_lwip_begin();
     tcp_output(state.client_pcb);  // flush
     cyw43_arch_lwip_end();         // release lock
 }
