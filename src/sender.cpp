@@ -44,7 +44,8 @@ void send_byte(const uint8_t byte) {
 #endif
 #if NET_DEBUG
     // send through net
-    tcp_write_data(&byte, 1);
+    // tcp_write_data(&byte, 1);
+    tcp_buffer_data(&byte, 1);
 #endif
 }
 
@@ -53,7 +54,8 @@ void send_bytes(const uint8_t* c, size_t len) {
     fwrite(c, 1, len, stdout);
 #endif
 #if NET_DEBUG
-    tcp_write_data(c, len);
+    // tcp_write_data(c, len);
+    tcp_buffer_data(c, len);
 #endif
 }
 

@@ -1,5 +1,7 @@
 //  Copyright (c) 2022 Raspberry Pi (Trading) Ltd.
 //  SPDX-License-Identifier: BSD-3-Clause
+// HEAVILY MODIFIED FROM EXAMPLE FILE
+#include "tcp.hpp"
 
 #include <string.h>
 #include <stdlib.h>
@@ -76,6 +78,19 @@ static err_t tcp_server_sent(void* arg, struct tcp_pcb* tpcb, u16_t len) {
 }
 
 // write to tcp client, flushes output
+std::vector<uint8_t> tcp_write_buffer;
+void tcp_buffer_data(const uint8_t* buf, uint16_t len) {
+    if (tcp_write_buffer.size() > TCP_WRITE_BUFFER_SIZE - len) return;
+
+    for (size_t x = 0; x < len; x++) {
+        tcp_write_buffer.push_back(buf[x]);
+    }
+}
+void flush_tcp_write_buffer() {
+    tcp_write_data(tcp_write_buffer.data(), tcp_write_buffer.size());
+    WDBG("TCP BUF SIZE: %zu\n", tcp_write_buffer.size());
+    tcp_write_buffer.clear();
+}
 void tcp_write_data(const uint8_t* buf, uint16_t len) {
     if (state.client_pcb == NULL) return;  // no connection yet
     cyw43_arch_lwip_begin();  // lock lwip state since it is not thread safe.
@@ -104,12 +119,6 @@ void tcp_write_data(const uint8_t* buf, uint16_t len) {
         WDBG("Failed to queue data %d\n", err);
         // tcp_server_result(-1);
     }
-    // tcp_output(state.client_pcb);  // flush
-    cyw43_arch_lwip_end();  // release lock
-}
-
-void flush_tcp() {
-    cyw43_arch_lwip_begin();
     tcp_output(state.client_pcb);  // flush
     cyw43_arch_lwip_end();         // release lock
 }
