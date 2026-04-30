@@ -44,19 +44,26 @@ class LED {
         switch (opt) {
             case LED_INDICATOR::POWER_ON: {
                 set(Color(100, 0, 0));  // red
+                break;
             }
             case LED_INDICATOR::LOOP_NO_WIFI: {
                 set(Color(0, 100, 0));  // green
+                break;
             }
             case LED_INDICATOR::LOOP_WITH_WIFI: {
                 setup_led_flash(
                     std::vector<Color>{Color(0, 100, 0), Color(0, 0, 100)}, -1,
                     500);
+                break;
             }
             case LED_INDICATOR::MOTORS_OVERCURRENT: {
                 setup_led_flash(
-                    std::vector<Color>{Color(0, 100, 0), Color(0, 0, 0)}, 10,
+                    std::vector<Color>{Color(100, 0, 0), Color(0, 0, 0)}, 10,
                     300);
+                break;
+            }
+            default: {
+                set(Color(100, 0, 100));  // purple
             }
         }
     }

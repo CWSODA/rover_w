@@ -213,7 +213,7 @@ static bool run_tcp_server() {
 #if NET_DEBUG  // guard against calling tcp functions when not enabled
 void flush_tcp_write_buffer() {
     tcp_write_data(tcp_write_buffer.data(), tcp_write_buffer.size());
-    WDBG("TCP BUF SIZE: %zu\n", tcp_write_buffer.size());
+    // WDBG("TCP BUF SIZE: %zu\n", tcp_write_buffer.size());
     tcp_write_buffer.clear();
 }
 void tcp_write_data(const uint8_t* buf, uint16_t len) {

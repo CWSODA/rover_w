@@ -1,14 +1,12 @@
 #include "motor.hpp"
 
-#include "algo.cpp"
+#include "algo.hpp"
 
 /* ------------------------------------------------------ */
 /*                         MOTORS                         */
 /* ------------------------------------------------------ */
-Motor::Motor(uint pwm_pin, uint dir_pin, uint encoder_pin)
-    : dir_pin_(dir_pin),
-      pwm_channel_(PWM_Channel(pwm_pin)),
-      encoder_(Encoder(encoder_pin)) {
+Motor::Motor(uint pwm_pin, uint dir_pin)
+    : dir_pin_(dir_pin), pwm_channel_(PWM_Channel(pwm_pin)) {
     // init dir pin as output I/O pin
     gpio_set_function(dir_pin, GPIO_FUNC_SIO);
     gpio_set_dir(dir_pin, true);
@@ -24,11 +22,11 @@ void Motor::drive(float val) {
     pwm_channel_.set_duty(std::abs(val));
 }
 
-void Motor::update_motor_pid() {
-    float error = tgt_speed_ - encoder_.get_speed();
+// void Motor::update_motor_pid() {
+//     float error = tgt_speed_ - encoder_.get_speed();
 
-    float output = tgt_speed_ + error * MOTOR_P;
-}
+//     float output = tgt_speed_ + error * MOTOR_P;
+// }
 
 /* ------------------------------------------------------ */
 /*                      MOTOR CONTROL                     */
@@ -36,8 +34,8 @@ void Motor::update_motor_pid() {
 void MotorControl::update_motors(std::queue<DataPoint>& lidar_data) {
     if (is_algo_on) {
         // run algorithm
-        DBG("Running algorithm!");
-        run_algorithm(lidar_data, *this);
+        // DBG("Running algorithm!");
+        // run_algorithm(lidar_data, *this);
     } else if (is_manual) {
         // manual drive
         // check timeout if it has not expired yet
@@ -54,17 +52,17 @@ void MotorControl::update_motors(std::queue<DataPoint>& lidar_data) {
     // }
 }
 
-void MotorControl::update_encoders() {
-    auto delta_time_us = timer_.clock_us();
-    if (delta_time_us == None) return;  // ignore first call
+// void MotorControl::update_encoders() {
+//     auto delta_time_us = timer_.clock_us();
+//     if (delta_time_us == None) return;  // ignore first call
 
-    // unwrap and convert to seconds
-    float delta_time = delta_time_us.value() * 1e-6;
+//     // unwrap and convert to seconds
+//     float delta_time = delta_time_us.value() * 1e-6;
 
-    for (auto motor : motor_vec_) {
-        motor->get_encoder().update_speed(delta_time);
-    }
-}
+//     for (auto motor : motor_vec_) {
+//         motor->get_encoder().update_speed(delta_time);
+//     }
+// }
 
 // speed of each motor from 0 to speed
 // negative speed is backwards

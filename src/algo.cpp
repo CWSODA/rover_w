@@ -1,29 +1,11 @@
+#include "algo.hpp"
+
 #include <vector>
 #include <math.h>
 
 #include "settings.hpp"
 #include "lidar_parser.hpp"
 #include "motor.hpp"
-
-struct Vec2 {
-    float x, y;
-
-    Vec2(float x, float y) : x(x), y(y) {}
-    Vec2 operator+(const Vec2& other) { return Vec2(x + other.x, y + other.y); }
-    void operator+=(const Vec2& other) {
-        this->x += other.x;
-        this->y += other.y;
-    }
-    void operator-=(const Vec2& other) {
-        this->x -= other.x;
-        this->y -= other.y;
-    }
-    Vec2 operator*(const float factor) { return Vec2(x * factor, y * factor); }
-    void operator*=(const float factor) {
-        this->x *= factor;
-        this->y *= factor;
-    }
-};
 
 void update_motor_ctrl(Vec2& vec, MotorControl& motor_ctrl);
 
@@ -46,8 +28,10 @@ void run_algorithm(std::queue<DataPoint>& lidar_data,
         bool is_fov = data.angle <= FOV && data.angle >= (360 - FOV);
         if (is_dist && is_str && is_fov) {
             // convert to vector form for summing
+            // 0° is y positive axis (up)
+            // 90° is x positive (right)
             float angle_in_rad = data.angle * 3.1415f / 180.0f;
-            Vec2 data_vec(cosf(angle_in_rad), sinf(angle_in_rad));
+            Vec2 data_vec(sinf(angle_in_rad), cosf(angle_in_rad));
 
             // attenuate effect based on distance
             // negative to repel
@@ -73,12 +57,15 @@ void run_algorithm(std::queue<DataPoint>& lidar_data,
 // updates motor control with calculated vector
 // clears vector afterwards
 void update_motor_ctrl(Vec2& vec, MotorControl& motor_ctrl) {
-    // add target vector
-    // vec += Vec2(0.0f, 1.0f);
-
     // convert back to length + angle (rad)
     float length = sqrtf(vec.x * vec.x + vec.y * vec.y);
     float angle = atan2f(vec.y, vec.x);  // range of -PI to + PI
+
+    // add target vector IF no immediate threat
+    float LENGTH_THRESHOLD = 10.0;
+    if (length < LENGTH_THRESHOLD) {
+        vec += Vec2(0.0f, 1.0f);  // go straight
+    }
 
     float speed = length * SPEED_MULTIPLIER;
     float turn_val = angle * TURN_MULTIPLIER;

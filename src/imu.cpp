@@ -113,6 +113,7 @@ void IMU::calc_rot() {
         memcpy(&msg[2 + 4], &roll_, 4);
         memcpy(&msg[2 + 4 + 4], &yaw_, 4);
         send_bytes(msg, sizeof(msg));
+        // WDBG("IMU: (%f) (%f) (%f)\n", pitch_, roll_, yaw_);
     }
 #endif
 }

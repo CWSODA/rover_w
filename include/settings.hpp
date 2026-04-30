@@ -35,6 +35,8 @@ constexpr uint16_t TCP_PORT = 4242;
 constexpr uint8_t TCP_POLL_TIME_S = 1;
 constexpr uint TCP_BUFFER_SIZE = 2048;
 
+constexpr uint TCP_WRITE_BUFFER_SIZE = 2048;
+
 // #define WIFI_SSID "VM24B898"
 // #define WIFI_PASSWORD "xVqtbjdqwyy4"
 #define WIFI_SSID "Nada"
@@ -67,7 +69,8 @@ constexpr uint LIDAR_RX_PIN = 5;
 #define DEBUG_OFFSET_ANGLE false
 
 // one lidar sample per throttle count
-constexpr int DATA_THROTTLE_COUNT = 1;
+constexpr uint DATA_THROTTLE_COUNT = 1;
+constexpr uint LIDAR_QUEUE_MAX_LEN = 2048;
 
 /* ----------------------- Motors ----------------------- */
 // old ones
@@ -99,7 +102,7 @@ constexpr float MOTOR_P = 1.0f;
 constexpr float MOTOR_I = 1.0f;
 constexpr float MOTOR_D = 1.0f;
 
-constexpr float MANUAL_DRIVE_TIMEOUT_MS = 100.0f;
+constexpr float MANUAL_DRIVE_TIMEOUT_MS = 500.0f;
 
 #define DEBUG_PWM false
 
@@ -120,8 +123,8 @@ constexpr float TURN_MULTIPLIER = 10.0f;
 constexpr float SPEED_MULTIPLIER = 10.0f;
 
 /* ------------------------ LEDS ------------------------ */
-constexpr uint LED_R_PIN = 27;
-constexpr uint LED_G_PIN = 26;
-constexpr uint LED_B_PIN = 22;
+constexpr uint LED_R_PIN = 20;
+constexpr uint LED_G_PIN = 19;
+constexpr uint LED_B_PIN = 18;
 
 #include "sender.hpp"

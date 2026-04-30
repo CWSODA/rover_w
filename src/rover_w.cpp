@@ -10,6 +10,7 @@
 #include "encoder.hpp"
 #include "imu.hpp"
 #include "led.hpp"
+#include "tcp.hpp"
 
 // UART debug
 // screen /dev/tty.usbserial-FTU7C2WR 115200
@@ -32,17 +33,17 @@ TCP_Buffer tcp_buffer;  // init TCP buffer here since it is global
 
 /* ---------------------- MAIN LOOP --------------------- */
 int main() {
-    LED led;  // turns light red on constructor
+    LED led;
 
     bool has_wifi = false;
     init_data_sending(has_wifi);
-    sleep_ms(1000);  // allow time for connection
+    // sleep_ms(1000);  // allow time for connection
     DBG("Rover Starting...\n");
 
-    // init_i2c1(); // I2C1 for IMU and encoders
+    init_i2c1();  // I2C1 for IMU and encoders
 
     MotorControl motor_control;
-    // Lidar lidar;
+    Lidar lidar;
     IMU imu;
     imu.calibrate_gyro();
 
@@ -59,10 +60,12 @@ int main() {
     while (true) {
         tcp_buffer.parse_tcp_buffer(motor_control);
 
-        // imu.update();
-        // lidar.update_lidar();
-        // motor_control.update_motors();
+        imu.update();
+        lidar.update_lidar();
+        motor_control.update_motors(lidar.get_data_queue());
         led.update();
+
+        flush_tcp_write_buffer();
 
         sleep_ms(10);  // set as low as possible
     }

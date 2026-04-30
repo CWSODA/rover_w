@@ -78,7 +78,7 @@ class TimeoutTimer {
         float dt = absolute_time_diff_us(start_time_, time) * 1e-3;
         if (dt > timeout_ms_) {
             has_expired_ = true;
-            WDBG("timeout: %f\n", dt);
+            // WDBG("timeout: %f\n", dt);
             return true;
         }
         return false;

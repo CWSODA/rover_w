@@ -6,7 +6,7 @@
 
 #include "settings.hpp"
 #include "pwm.hpp"
-#include "encoder.hpp"
+// #include "encoder.hpp"
 #include "timer.hpp"
 #include "lidar_parser.hpp"
 
@@ -17,7 +17,8 @@
 // Front L/R, Back L/R pins
 class Motor {
    public:
-    Motor(uint pwm_pin, uint dir_pin, uint encoder_pin);
+    // Motor(uint pwm_pin, uint dir_pin, uint encoder_pin);
+    Motor(uint pwm_pin, uint dir_pin);
 
     // sets pwm duty cycle for the motor (0 to ±100)
     // negative values represent reverse
@@ -33,12 +34,12 @@ class Motor {
     void update_motor_pid();
 
     // prevents reassigning encoder
-    Encoder& get_encoder() { return encoder_; }
+    // Encoder& get_encoder() { return encoder_; }
 
    private:
     PWM_Channel pwm_channel_;
     const uint dir_pin_;
-    Encoder encoder_;
+    // Encoder encoder_;
 
     // target speed
     float tgt_speed_ = 0.0f;
@@ -49,7 +50,8 @@ class Motor {
 class MotorControl {
    public:
     // initializes controller, related pins are set via defaults
-    MotorControl() { init_encoder_pins(); }
+    // MotorControl() { init_encoder_pins(); }
+    MotorControl() {}
 
     // turns the rover (0 to ±100)
     // negative is left, positive is right
@@ -79,10 +81,16 @@ class MotorControl {
 
    private:
     // preinitialize all motor pins
-    Motor motorFL_ = Motor(MOTOR_FL_PWM_PIN, MOTOR_FL_DIR_PIN, ENCODER_FL_PIN);
-    Motor motorFR_ = Motor(MOTOR_FR_PWM_PIN, MOTOR_FR_DIR_PIN, ENCODER_FR_PIN);
-    Motor motorBL_ = Motor(MOTOR_BL_PWM_PIN, MOTOR_BL_DIR_PIN, ENCODER_BL_PIN);
-    Motor motorBR_ = Motor(MOTOR_BR_PWM_PIN, MOTOR_BR_DIR_PIN, ENCODER_BR_PIN);
+    // Motor motorFL_ = Motor(MOTOR_FL_PWM_PIN, MOTOR_FL_DIR_PIN,
+    // ENCODER_FL_PIN); Motor motorFR_ = Motor(MOTOR_FR_PWM_PIN,
+    // MOTOR_FR_DIR_PIN, ENCODER_FR_PIN); Motor motorBL_ =
+    // Motor(MOTOR_BL_PWM_PIN, MOTOR_BL_DIR_PIN, ENCODER_BL_PIN);
+    // Motor motorBR_ = Motor(MOTOR_BR_PWM_PIN, MOTOR_BR_DIR_PIN,
+    // ENCODER_BR_PIN);
+    Motor motorFL_ = Motor(MOTOR_FL_PWM_PIN, MOTOR_FL_DIR_PIN);
+    Motor motorFR_ = Motor(MOTOR_FR_PWM_PIN, MOTOR_FR_DIR_PIN);
+    Motor motorBL_ = Motor(MOTOR_BL_PWM_PIN, MOTOR_BL_DIR_PIN);
+    Motor motorBR_ = Motor(MOTOR_BR_PWM_PIN, MOTOR_BR_DIR_PIN);
 
     // array of motors for looping
     Motor* motor_vec_[4] = {&motorFL_, &motorFR_, &motorBL_, &motorBR_};
@@ -90,7 +98,7 @@ class MotorControl {
     Timer timer_;            // timer used for calculating encoder speed
     void update_encoders();  // updates the speed for all encoders
 
-    bool is_algo_on = true;
+    bool is_algo_on = false;
     bool is_manual = false;
 
     // timer used for control timeout
