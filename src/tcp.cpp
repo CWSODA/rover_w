@@ -164,7 +164,6 @@ static err_t tcp_server_accept(void* arg, struct tcp_pcb* client_pcb,
 }
 
 static bool tcp_server_open() {
-    // TCP_SERVER_T* state = (TCP_SERVER_T*)arg;
     DBG("Starting server at %s on port %u\n",
         ip4addr_ntoa(netif_ip4_addr(netif_list)), TCP_PORT);
 
@@ -256,11 +255,19 @@ void init_wifi(bool& has_wifi) {
     cyw43_arch_enable_sta_mode();
 
     DBG("Connecting to Wi-Fi...\n");
+#if WAIT_FOR_NET
+    int err = cyw43_arch_wifi_connect_blocking(WIFI_SSID, WIFI_PASSWORD,
+                                               CYW43_AUTH_WPA2_AES_PSK);
+    if (err) {  // 0 for success
+        WDBG("Failed to connect to wifi. Code: %d\n", err);
+    }
+#else  // attempt connect with timeout
     if (cyw43_arch_wifi_connect_timeout_ms(WIFI_SSID, WIFI_PASSWORD,
                                            CYW43_AUTH_WPA2_AES_PSK, 30000)) {
         WDBG("Failed to connect to wifi!\n");
         return;
     }
+#endif
 
     WDBG("Connected to WIFI\n");
     if (run_tcp_server()) has_wifi = true;

@@ -106,7 +106,10 @@ void MotorControl::steer_with_timeout(float speed, float turn_strength) {
 
     static Timer t;
     float dt = t.clock_us().value_or(0) * 1e-3;
+
+#if DEBUG_MOTOR_LATENCY
     if (dt > 30) {
-        WDBG("elapsed: %fms\n", dt);
+        WDBG("manual drive elapsed: %fms\n", dt);
     }
+#endif
 }

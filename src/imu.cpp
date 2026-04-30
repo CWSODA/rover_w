@@ -41,11 +41,11 @@ void IMU::update(MotorControl& motor_ctrl) {
         gyro_offset_ += gyro_;  // sum
         calib_count_++;         // increase count for average
 
-        if (calib_timeout_.check_expired()) {              // check timeout
-            WDBG("IMU calib count: %zu\n", calib_count_);  // debug count
-            gyro_offset_ /= calib_count_;                  // calculate average
-            is_calib_ = false;                             // reset
-            motor_ctrl.enable();                           // re-enable motors
+        if (calib_timeout_.check_expired()) {  // check timeout
+            // WDBG("IMU calib count: %zu\n", calib_count_);  // debug count
+            gyro_offset_ /= calib_count_;  // calculate average
+            is_calib_ = false;             // reset
+            motor_ctrl.enable();           // re-enable motors
         }
         return;  // dont update rotation
     }
@@ -55,6 +55,7 @@ void IMU::update(MotorControl& motor_ctrl) {
 
     // check if another calibration is needed
     if (calib_interval_timer_.check()) {
+        WDBG("Starting calibration\n");
         is_calib_ = true;        // trigger calibration on next loop
         gyro_offset_.clear();    // reset offset
         calib_count_ = 0;        // reset count

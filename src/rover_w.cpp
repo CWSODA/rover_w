@@ -53,8 +53,11 @@ int main() {
     // - LED flash control
 
     DBG("Starting loop...\n");
-    led.set_indicator(has_wifi ? LED_INDICATOR::LOOP_WITH_WIFI
-                               : LED_INDICATOR::LOOP_NO_WIFI);
+    if (has_wifi) {
+        led.set_indicator(LED_INDICATOR::LOOP_WITH_WIFI);
+    } else {
+        led.set_indicator(LED_INDICATOR::LOOP_NO_WIFI);
+    }
     while (true) {
         tcp_buffer.parse_tcp_buffer(motor_control);
 

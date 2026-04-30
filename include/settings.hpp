@@ -18,13 +18,14 @@
 /*                        SETTINGS                        */
 /* ------------------------------------------------------ */
 
-/* ---------------------- debugging --------------------- */
+/* ---------------------- Debugging Serial -------------- */
 #define DEBUG_LOG true
 #define UART_DEBUG false
 #define USB_DEBUG true  // set true for easy flashing
 #define USB_SEND false  // send byte data to USB, disable to only use printf/DBG
-#define USB_WAIT false  // configures whether to wait for usb connection
+#define USB_WAIT true   // configures whether to wait for usb connection
 #define NET_DEBUG true
+#define WAIT_FOR_NET true  // IF NO NET, ALGORITHM IS ALWAYS ON!
 
 constexpr int DEBUG_TX_PIN = 0;
 constexpr int DEBUG_RX_PIN = 1;
@@ -56,7 +57,7 @@ constexpr uint I2C1_SCL_PIN = 3;
 constexpr float IMU_SEND_CD_MS = 1000.0f / 30.0f;  // 30 Hz
 
 constexpr float IMU_GYRO_CALIBRATION_INTERVAL_MS = 5000.0f;
-constexpr float IMU_GYRO_CALIBRATION_TIME = 100.0f;
+constexpr float IMU_GYRO_CALIBRATION_TIME = 50.0f;
 
 /* ------------------------ LiDAR ----------------------- */
 constexpr uint LIDAR_RX_PIN = 5;
@@ -74,21 +75,6 @@ constexpr uint DATA_THROTTLE_COUNT = 1;
 constexpr uint LIDAR_QUEUE_MAX_LEN = 2048;
 
 /* ----------------------- Motors ----------------------- */
-// old ones
-// constexpr uint MOTOR_FL_PWM_PIN = 6;
-// constexpr uint MOTOR_FL_DIR_PIN = 7;
-// constexpr uint MOTOR_FR_PWM_PIN = 8;
-// constexpr uint MOTOR_FR_DIR_PIN = 9;
-// constexpr uint MOTOR_BL_PWM_PIN = 10;
-// constexpr uint MOTOR_BL_DIR_PIN = 11;
-// constexpr uint MOTOR_BR_PWM_PIN = 12;
-// constexpr uint MOTOR_BR_DIR_PIN = 13;
-
-// change of pins
-// FL now BL
-// FR now FL
-// BL now FR
-// BR now BR
 constexpr uint MOTOR_FL_PWM_PIN = 8;
 constexpr uint MOTOR_FL_DIR_PIN = 9;
 constexpr uint MOTOR_FR_PWM_PIN = 10;
@@ -106,6 +92,7 @@ constexpr float MOTOR_D = 1.0f;
 constexpr float MANUAL_DRIVE_TIMEOUT_MS = 500.0f;
 
 #define DEBUG_PWM false
+#define DEBUG_MOTOR_LATENCY false
 
 /* ---------------------- Algorithm --------------------- */
 constexpr float DIST_THRESHOLD = 1.0f;     // ignore if above in meters

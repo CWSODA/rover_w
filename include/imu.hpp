@@ -80,13 +80,17 @@ class IMU {
     float get_roll() { return roll_; }
     float get_yaw() { return yaw_; }
 
+    // clang-format off
+    void reset() {pitch_ = 0; roll_ = 0; yaw_ = 0;}
+    // clang-format on
+
    private:
     void read_imu_data();
     void calc_rot();
 
-    Vec3 accel_;  // raw float values
-    Vec3 gyro_;   // raw float values
-    Vec3 gyro_offset_;
+    Vec3 accel_;        // raw float values
+    Vec3 gyro_;         // raw float values
+    Vec3 gyro_offset_;  // offset values for gyroscope
 
     float pitch_ = 0, roll_ = 0, yaw_ = 0;
 

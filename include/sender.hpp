@@ -4,7 +4,7 @@
 // through serial and/or network protocols
 #include "settings.hpp"
 
-// initializes any enabled streams
+// initializes any enabled streams, sets has_wifi if successful
 void init_data_sending(bool& has_wifi);
 
 // sends byte through ALL enabled streams
