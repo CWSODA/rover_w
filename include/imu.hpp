@@ -72,7 +72,6 @@ struct Vec3 {
 class IMU {
    public:
     IMU();
-    void calibrate_gyro(float time_ms);
 
     void update(MotorControl& motor_ctrl);
 
@@ -81,7 +80,7 @@ class IMU {
     float get_yaw() { return yaw_; }
 
     // clang-format off
-    void reset() {pitch_ = 0; roll_ = 0; yaw_ = 0;}
+    void reset_gyro() {pitch_ = 0; roll_ = 0; yaw_ = 0;}
     // clang-format on
 
    private:
@@ -100,7 +99,7 @@ class IMU {
     // calibration related
     CooldownTimer calib_interval_timer_ =
         CooldownTimer(IMU_GYRO_CALIBRATION_INTERVAL_MS);
-    TimeoutTimer calib_timeout_ = TimeoutTimer();
+    TimeoutTimer calib_timeout_ = TimeoutTimer(IMU_GYRO_CALIBRATION_TIME_MS);
     bool is_calib_ = false;
     uint calib_count_ = 0;
 };

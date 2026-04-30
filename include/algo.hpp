@@ -26,10 +26,13 @@ struct Vec2 {
     }
 };
 
-void update_motor_ctrl(Vec2& vec, MotorControl& motor_ctrl);
+class Algo {
+   public:
+    bool is_algo_on_;
 
-void run_algorithm(std::queue<DataPoint>& lidar_data, MotorControl& motor_ctrl);
+    void update(std::queue<DataPoint>& lidar_data, float yaw,
+                MotorControl& motor_ctrl);
 
-// updates motor control with calculated vector
-// clears vector afterwards
-void update_motor_ctrl(Vec2& vec, MotorControl& motor_ctrl);
+   private:
+    void update_motor_ctrl(Vec2& vec, MotorControl& motor_ctrl);
+};

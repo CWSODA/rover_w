@@ -1,8 +1,9 @@
-#include "pwm.hpp"
+#pragma once
 
 #include <vector>
 
 #include "settings.hpp"
+#include "pwm.hpp"
 #include "timer.hpp"
 
 enum class LED_INDICATOR {

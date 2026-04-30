@@ -4,13 +4,18 @@
 #include <pico/critical_section.h>
 #include <deque>
 
+// required for control
 #include "motor.hpp"
+#include "algo.hpp"
+#include "imu.hpp"
+#include "led.hpp"
 
 class TCP_Buffer {
    public:
     TCP_Buffer() { critical_section_init(&lock_); }
 
-    void parse_tcp_buffer(MotorControl& motor_ctrl);
+    void parse_tcp_buffer(MotorControl& motor_ctrl, Algo& algo, IMU& imu,
+                          LED& led);
 
     void push_byte(uint8_t byte);
 

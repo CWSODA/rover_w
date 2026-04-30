@@ -13,25 +13,6 @@ IMU::IMU() {
     i2c_write_blocking(IMU_I2C, IMU_ADDR, src, sizeof(src), false);
 }
 
-// averages gyroscope samples to get the offset
-// rover must be still during this time!
-void IMU::calibrate_gyro(float time_ms) {
-    TimeoutTimer timer(time_ms);
-    gyro_offset_.clear();
-    int count = 0;
-    while (!timer.check_expired()) {  // loop until time
-        read_imu_data();
-        gyro_offset_ += gyro_;  // sum
-        count++;
-        sleep_ms(1);
-    }
-    // get average
-    gyro_offset_ /= count;
-    // DBG("Count: %d\n", count);
-    // DBG("Offset: (%f) (%f) (%f)\n", gyro_offset_.x, gyro_offset_.y,
-    //     gyro_offset_.z);
-}
-
 // updates IMU and determines if calibration is needed
 void IMU::update(MotorControl& motor_ctrl) {
     read_imu_data();  // always get data

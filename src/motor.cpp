@@ -1,6 +1,6 @@
 #include "motor.hpp"
 
-#include "algo.hpp"
+#include <math.h>
 
 /* ------------------------------------------------------ */
 /*                         MOTORS                         */
@@ -25,13 +25,9 @@ void Motor::drive(float val) {
 /* ------------------------------------------------------ */
 /*                      MOTOR CONTROL                     */
 /* ------------------------------------------------------ */
-void MotorControl::update_motors(std::queue<DataPoint>& lidar_data) {
+void MotorControl::update_motors(float yaw) {
     if (is_disabled_) return;  // ignore if motors disabled
-    if (is_algo_on_) {
-        // DBG("Running algorithm!");
-        // run_algorithm(lidar_data, *this);
-    } else if (is_manual_) {
-        // manual drive
+    if (is_manual_) {          // manual drive
         // check timeout if it has not expired yet
         // prevents calling steer if it has been set off before
         if (!manual_drive_timer_.has_expired() &&
@@ -39,9 +35,28 @@ void MotorControl::update_motors(std::queue<DataPoint>& lidar_data) {
             steer(0, 0);  // turn off motors
         }
     }
+
+    // correct for straightness if driving straight
+    if (fwd_spd_ != 0.0f) {
+        float yaw_err = yaw - tgt_yaw_;  //
+        float left;
+        float right;
+    }
 }
 
-/* -------------------- NEW FUNCTIONS ------------------- */
+// drive forward at given speed (0 to 100)
+// enables IMU yaw adjusting to drive straight
+void MotorControl::drive_forward(float speed, float yaw) {
+    if (is_disabled_) return;  // ignore if motors disabled
+    fwd_spd_ = speed;
+    tgt_yaw_ = yaw;
+
+    motorFL_.drive(fwd_spd_);
+    motorBL_.drive(fwd_spd_);
+    motorFR_.drive(fwd_spd_);
+    motorBR_.drive(fwd_spd_);
+}
+
 // turns rover in place with given speed
 // left = +turn_speed, right = -turn_speed
 void MotorControl::turn_in_place(float turn_speed) {
@@ -54,16 +69,6 @@ void MotorControl::turn_in_place(float turn_speed) {
     motorBR_.drive(right);
 
     fwd_spd_ = 0.0f;  // disables forward adjusting
-}
-
-// set duty cycle of all motors (0 to 100)
-void MotorControl::drive_forward(float speed) {
-    if (is_disabled_) return;  // ignore if motors disabled
-    fwd_spd_ = speed;
-    motorFL_.drive(fwd_spd_);
-    motorBL_.drive(fwd_spd_);
-    motorFR_.drive(fwd_spd_);
-    motorBR_.drive(fwd_spd_);
 }
 
 // speed of each motor from 0 to speed
@@ -96,9 +101,9 @@ void MotorControl::steer(float speed, float turn_strength) {
 }
 
 // steers but has timeout to turn off the motors
+// sets "is_manual"
 void MotorControl::steer_with_timeout(float speed, float turn_strength) {
     if (is_disabled_) return;  // ignore if motors disabled
-    is_algo_on_ = false;
     is_manual_ = true;
 
     steer(speed, turn_strength);

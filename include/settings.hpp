@@ -56,8 +56,8 @@ constexpr uint I2C1_SCL_PIN = 3;
 #define SEND_IMU_DATA true
 constexpr float IMU_SEND_CD_MS = 1000.0f / 30.0f;  // 30 Hz
 
-constexpr float IMU_GYRO_CALIBRATION_INTERVAL_MS = 5000.0f;
-constexpr float IMU_GYRO_CALIBRATION_TIME = 50.0f;
+constexpr float IMU_GYRO_CALIBRATION_INTERVAL_MS = 1'000.0f * 30;
+constexpr float IMU_GYRO_CALIBRATION_TIME_MS = 1'000.0f;
 
 /* ------------------------ LiDAR ----------------------- */
 constexpr uint LIDAR_RX_PIN = 5;

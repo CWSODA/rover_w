@@ -1,13 +1,10 @@
 #pragma once
 #include "pico/stdlib.h"
 #include "hardware/pwm.h"
-#include <math.h>
-#include <queue>
 
 #include "settings.hpp"
 #include "pwm.hpp"
 #include "timer.hpp"
-#include "lidar_parser.hpp"
 
 // Motor Pins:
 // assuming we are driving the motors at the same frequency
@@ -36,24 +33,31 @@ class MotorControl {
 
     // allows IMU to disable and enable motors
     void disable() {
-        drive_forward(0);
+        stop_motors();
         is_disabled_ = true;
     }
     void enable() { is_disabled_ = false; }
 
     // new gen functions :>
     void turn_in_place(float turn_speed);
-    void drive_forward(float speed);
+    void drive_forward(float speed, float yaw);
+    void stop_motors() {
+        fwd_spd_ = 0.0f;
+        motorFL_.drive(fwd_spd_);
+        motorBL_.drive(fwd_spd_);
+        motorFR_.drive(fwd_spd_);
+        motorBR_.drive(fwd_spd_);
+    }
 
-    void update_motors(std::queue<DataPoint>& lidar_data);
+    void update_motors(float yaw);
 
     void steer(float speed, float turn_strength);
 
     // TCP controls
     void steer_with_timeout(float speed, float turn_strength);
-    void enable_algo() {
-        is_algo_on_ = true;
+    void disable_manual() {  // disable manual and stops motors
         is_manual_ = false;
+        stop_motors();
     }
 
     void test() {
@@ -71,13 +75,14 @@ class MotorControl {
     // array of motors for looping
     Motor* motor_vec_[4] = {&motorFL_, &motorFR_, &motorBL_, &motorBR_};
 
-    bool is_algo_on_ = false;
-    bool is_manual_ = false;
-    bool is_disabled_ = true;
+    bool is_disabled_ = true;  // disable from IMU and emergency stop
 
-    // timer used for control timeout
+    // manual TCP control
     TimeoutTimer manual_drive_timer_ = TimeoutTimer(MANUAL_DRIVE_TIMEOUT_MS);
+    bool is_manual_ = false;
 
-    // other
-    float fwd_spd_ = 50.0f;  // if zero, dont adjust for straight
+    // algo drive vars
+    TimeoutTimer drive_timer_;  // used to time driving forward and turning
+    float fwd_spd_ = 0.0f;      // if zero, dont adjust for straight
+    float tgt_yaw_ = 0.0f;      // yaw before driving forwards
 };

@@ -5,13 +5,13 @@
 #include <deque>
 
 #include "settings.hpp"
-#include "motor.hpp"
 
 void set_ctrl_from_dir(uint8_t dir, float& speed, float& turn);
 
 // parses TCP buffer
 // can change motor control and toggle algorithm
-void TCP_Buffer::parse_tcp_buffer(MotorControl& motor_ctrl) {
+void TCP_Buffer::parse_tcp_buffer(MotorControl& motor_ctrl, Algo& algo,
+                                  IMU& imu, LED& led) {
     // loop until buffer consumed
     while (buf_size() >= 2) {  // start byte + command
         if (get_byte(0) != '$') {
@@ -23,7 +23,7 @@ void TCP_Buffer::parse_tcp_buffer(MotorControl& motor_ctrl) {
         // return if not full command received, REMEMBER TO EXIT lock
         uint8_t cmd = get_byte(1);
         switch (cmd) {
-            case 'C': {  // drive control, 2 + speed(1) + dir(1) = 4
+            case 'C': {  // drive control, 2 + speed(1) + dir(1) = 4 bytes
                 if (buf_size() < 4) {
                     return;  // wait for all bytes
                 }
@@ -38,15 +38,43 @@ void TCP_Buffer::parse_tcp_buffer(MotorControl& motor_ctrl) {
                 float speed = speed_byte;
                 set_ctrl_from_dir(dir_byte, speed, turn);
 
+                algo.is_algo_on_ = false;  // disables algorithm
                 motor_ctrl.steer_with_timeout(speed, turn);
 
                 break;
             }
-            case 'A': {  // turn on algorithm, 2 + 0 = 2
+            case 'A': {  // turn on algorithm, 2 + 0 = 2 bytes
                 pop_to_idx(2);
-                motor_ctrl.enable_algo();
-                WDBG("toggle algo\n");
+                algo.is_algo_on_ = true;
+                motor_ctrl.disable_manual();
+                WDBG("TCP algo on\n");
                 break;
+            }
+            case 'a': {  // turn off algorithm, 2 + 0 = 2 bytes
+                pop_to_idx(2);
+                algo.is_algo_on_ = false;
+                WDBG("TCP algo off\n");
+                break;
+            }
+            case 'E': {         // emergency halt, 2 + 0 = 2 bytes
+                pop_to_idx(2);  // not really needed since infinate loop :>
+                motor_ctrl.disable();
+                while (true) {
+                    // loop forever, wait for power cycle
+                    led.set(Color(100, 0, 0));
+                    sleep_ms(100);
+                    led.set(Color(30, 0, 0));
+                    sleep_ms(100);
+                }
+                break;
+            }
+            case 'G': {  // reset gyro, 2 + 0 = 2 bytes
+                pop_to_idx(2);
+                imu.reset_gyro();
+                break;
+            }
+            default: {
+                pop_to_idx(2);  // pop invalid command!
             }
         }
     }

@@ -7,8 +7,9 @@
 #include "lidar_parser.hpp"
 #include "motor.hpp"
 
-void run_algorithm(std::queue<DataPoint>& lidar_data,
-                   MotorControl& motor_ctrl) {
+void Algo::update(std::queue<DataPoint>& lidar_data, float yaw,
+                  MotorControl& motor_ctrl) {
+    if (!is_algo_on_) return;
     static Vec2 calc_vec(0, 0);       // vector used for calculation
     static float last_angle = -1.0f;  // -1 ensures no angle will be smaller
 
@@ -51,7 +52,7 @@ void run_algorithm(std::queue<DataPoint>& lidar_data,
 
 // updates motor control with calculated vector
 // clears vector afterwards
-void update_motor_ctrl(Vec2& vec, MotorControl& motor_ctrl) {
+void Algo::update_motor_ctrl(Vec2& vec, MotorControl& motor_ctrl) {
     // convert back to length + angle (rad)
     float length = sqrtf(vec.x * vec.x + vec.y * vec.y);
     float angle = atan2f(vec.y, vec.x);  // range of -PI to + PI

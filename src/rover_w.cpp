@@ -1,13 +1,15 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 
-// self headers
+/* -------------------- self headers -------------------- */
 #include "settings.hpp"
 #include "global_vars.hpp"
-#include "sender.hpp"
+
+// components
 #include "motor.hpp"
 #include "lidar.hpp"
 #include "imu.hpp"
+#include "algo.hpp"
 #include "led.hpp"
 #include "tcp.hpp"
 
@@ -44,6 +46,7 @@ int main() {
     MotorControl motor_control;
     Lidar lidar;
     IMU imu;
+    Algo algo;
 
     /* ------- things that have seperate update loops: ------ */
     // - spinning lidar
@@ -57,15 +60,18 @@ int main() {
         led.set_indicator(LED_INDICATOR::LOOP_WITH_WIFI);
     } else {
         led.set_indicator(LED_INDICATOR::LOOP_NO_WIFI);
+        algo.is_algo_on_ = true;  // default on if no wifi
     }
     while (true) {
-        tcp_buffer.parse_tcp_buffer(motor_control);
+        tcp_buffer.parse_tcp_buffer(motor_control, algo, imu, led);
 
         imu.update(motor_control);
+        float imu_yaw = imu.get_yaw();
 
         lidar.update_lidar();
-        motor_control.update_motors(lidar.get_data_queue());
+        motor_control.update_motors(imu_yaw);
         led.update();
+        algo.update(lidar.get_data_queue(), imu_yaw, motor_control);
 
         flush_tcp_write_buffer();
 
