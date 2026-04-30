@@ -7,7 +7,6 @@
 #include "sender.hpp"
 #include "motor.hpp"
 #include "lidar.hpp"
-#include "encoder.hpp"
 #include "imu.hpp"
 #include "led.hpp"
 #include "tcp.hpp"
@@ -27,7 +26,7 @@ TCP_Buffer tcp_buffer;  // init TCP buffer here since it is global
 /* --------------------- INIT ORDER --------------------- */
 // LED for indication
 // Data sending for messages
-// I2C1 used for IMU and encoders (MUST CALL BEFORE MOTORS!)
+// I2C1 used for IMU
 // MotorControl, Lidar, IMU in any order
 // Recommended to calibrate IMU gyroscope after init
 

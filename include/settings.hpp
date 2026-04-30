@@ -106,14 +106,6 @@ constexpr float MANUAL_DRIVE_TIMEOUT_MS = 500.0f;
 
 #define DEBUG_PWM false
 
-/* ----------------------- Encoder ---------------------- */
-constexpr uint ENCODER_FL_PIN = 18;
-constexpr uint ENCODER_FR_PIN = 19;
-constexpr uint ENCODER_BL_PIN = 20;
-constexpr uint ENCODER_BR_PIN = 21;
-
-#define DEBUG_ENCODER false
-
 /* ---------------------- Algorithm --------------------- */
 constexpr float DIST_THRESHOLD = 1.0f;     // ignore if above in meters
 constexpr uint8_t SIG_STR_THRESHOLD = 10;  // ignore if below in (0 to 255)

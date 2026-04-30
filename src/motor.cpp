@@ -22,18 +22,17 @@ void Motor::drive(float val) {
     pwm_channel_.set_duty(std::abs(val));
 }
 
-// void Motor::update_motor_pid() {
-//     float error = tgt_speed_ - encoder_.get_speed();
+void Motor::update_motor_pid() {
+    // float error = tgt_speed_ - encoder_.get_speed();
 
-//     float output = tgt_speed_ + error * MOTOR_P;
-// }
+    // float output = tgt_speed_ + error * MOTOR_P;
+}
 
 /* ------------------------------------------------------ */
 /*                      MOTOR CONTROL                     */
 /* ------------------------------------------------------ */
 void MotorControl::update_motors(std::queue<DataPoint>& lidar_data) {
     if (is_algo_on) {
-        // run algorithm
         // DBG("Running algorithm!");
         // run_algorithm(lidar_data, *this);
     } else if (is_manual) {
@@ -45,24 +44,7 @@ void MotorControl::update_motors(std::queue<DataPoint>& lidar_data) {
             steer(0, 0);  // turn off motors
         }
     }
-
-    // update_encoders();
-    // for (auto& motor : motor_vec_) {
-    //     motor->update_motor_pid();
-    // }
 }
-
-// void MotorControl::update_encoders() {
-//     auto delta_time_us = timer_.clock_us();
-//     if (delta_time_us == None) return;  // ignore first call
-
-//     // unwrap and convert to seconds
-//     float delta_time = delta_time_us.value() * 1e-6;
-
-//     for (auto motor : motor_vec_) {
-//         motor->get_encoder().update_speed(delta_time);
-//     }
-// }
 
 // speed of each motor from 0 to speed
 // negative speed is backwards
@@ -87,10 +69,10 @@ void MotorControl::steer(float speed, float turn_strength) {
     left *= speed;
     right *= speed;
 
-    motorFL_.set_target_speed(left);
-    motorBL_.set_target_speed(left);
-    motorFR_.set_target_speed(right);
-    motorBR_.set_target_speed(right);
+    motorFL_.drive(left);
+    motorBL_.drive(left);
+    motorFR_.drive(right);
+    motorBR_.drive(right);
 }
 
 void MotorControl::steer_with_timeout(float speed, float turn_strength) {

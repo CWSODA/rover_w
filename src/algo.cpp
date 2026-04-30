@@ -7,11 +7,6 @@
 #include "lidar_parser.hpp"
 #include "motor.hpp"
 
-void update_motor_ctrl(Vec2& vec, MotorControl& motor_ctrl);
-
-OPT;
-// can use queue<list> instead of queue<deque> because FIFO data is always read
-// sequentially
 void run_algorithm(std::queue<DataPoint>& lidar_data,
                    MotorControl& motor_ctrl) {
     static Vec2 calc_vec(0, 0);       // vector used for calculation

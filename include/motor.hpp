@@ -6,7 +6,6 @@
 
 #include "settings.hpp"
 #include "pwm.hpp"
-// #include "encoder.hpp"
 #include "timer.hpp"
 #include "lidar_parser.hpp"
 
@@ -17,32 +16,18 @@
 // Front L/R, Back L/R pins
 class Motor {
    public:
-    // Motor(uint pwm_pin, uint dir_pin, uint encoder_pin);
     Motor(uint pwm_pin, uint dir_pin);
 
     // sets pwm duty cycle for the motor (0 to ±100)
     // negative values represent reverse
     void drive(float val);
 
-    // sets target speed of the motor
-    void set_target_speed(float speed) {
-        tgt_speed_ = speed;
-        drive(tgt_speed_);
-    }
-
     // PID adjust motor duty cycle based on target speed
     void update_motor_pid();
-
-    // prevents reassigning encoder
-    // Encoder& get_encoder() { return encoder_; }
 
    private:
     PWM_Channel pwm_channel_;
     const uint dir_pin_;
-    // Encoder encoder_;
-
-    // target speed
-    float tgt_speed_ = 0.0f;
 };
 
 // handles overall motor controls
@@ -50,18 +35,39 @@ class Motor {
 class MotorControl {
    public:
     // initializes controller, related pins are set via defaults
-    // MotorControl() { init_encoder_pins(); }
     MotorControl() {}
+
+    // turns rover in place with given speed
+    // left = +turn_speed, right = -turn_speed
+    void turn_in_place(float turn_speed) {
+        float left = turn_speed;
+        float right = -turn_speed;
+        motorFL_.drive(left);
+        motorBL_.drive(left);
+        motorFR_.drive(right);
+        motorBR_.drive(right);
+
+        fwd_spd_ = 0.0f;  // disables forward adjusting
+    }
+
+    // drives forward, sets fwd_speed to non_zero value
+    void drive_forward(float speed) {
+        fwd_spd_ = speed;
+        motorFL_.drive(fwd_spd_);
+        motorBL_.drive(fwd_spd_);
+        motorFR_.drive(fwd_spd_);
+        motorBR_.drive(fwd_spd_);
+    }
+
+    // motor update
+    // runs algorithm (lidar data required) runs motor PID
+    void update_motors(std::queue<DataPoint>& lidar_data);
 
     // turns the rover (0 to ±100)
     // negative is left, positive is right
     // 100 would have the motors on either side drive in full reverse
     // linear
     void steer(float speed, float turn_strength);
-
-    // motor update
-    // runs encoders, runs algorithm (lidar data required) runs motor PID
-    void update_motors(std::queue<DataPoint>& lidar_data);
 
     // TCP controls
     void steer_with_timeout(float speed, float turn_strength);
@@ -74,19 +80,9 @@ class MotorControl {
         motorBL_.drive(30);
         motorBR_.drive(60);
     }
-    // FL now BL
-    // FR now FL
-    // BL now FR
-    // BR now BR
 
    private:
     // preinitialize all motor pins
-    // Motor motorFL_ = Motor(MOTOR_FL_PWM_PIN, MOTOR_FL_DIR_PIN,
-    // ENCODER_FL_PIN); Motor motorFR_ = Motor(MOTOR_FR_PWM_PIN,
-    // MOTOR_FR_DIR_PIN, ENCODER_FR_PIN); Motor motorBL_ =
-    // Motor(MOTOR_BL_PWM_PIN, MOTOR_BL_DIR_PIN, ENCODER_BL_PIN);
-    // Motor motorBR_ = Motor(MOTOR_BR_PWM_PIN, MOTOR_BR_DIR_PIN,
-    // ENCODER_BR_PIN);
     Motor motorFL_ = Motor(MOTOR_FL_PWM_PIN, MOTOR_FL_DIR_PIN);
     Motor motorFR_ = Motor(MOTOR_FR_PWM_PIN, MOTOR_FR_DIR_PIN);
     Motor motorBL_ = Motor(MOTOR_BL_PWM_PIN, MOTOR_BL_DIR_PIN);
@@ -95,12 +91,12 @@ class MotorControl {
     // array of motors for looping
     Motor* motor_vec_[4] = {&motorFL_, &motorFR_, &motorBL_, &motorBR_};
 
-    Timer timer_;            // timer used for calculating encoder speed
-    void update_encoders();  // updates the speed for all encoders
-
     bool is_algo_on = false;
     bool is_manual = false;
 
     // timer used for control timeout
     TimeoutTimer manual_drive_timer_ = TimeoutTimer(MANUAL_DRIVE_TIMEOUT_MS);
+
+    // other
+    float fwd_spd_ = 50.0f;  // if zero, dont adjust for straight
 };
