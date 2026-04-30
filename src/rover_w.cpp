@@ -44,7 +44,6 @@ int main() {
     MotorControl motor_control;
     Lidar lidar;
     IMU imu;
-    imu.calibrate_gyro();
 
     /* ------- things that have seperate update loops: ------ */
     // - spinning lidar
@@ -59,7 +58,8 @@ int main() {
     while (true) {
         tcp_buffer.parse_tcp_buffer(motor_control);
 
-        imu.update();
+        imu.update(motor_control);
+
         lidar.update_lidar();
         motor_control.update_motors(lidar.get_data_queue());
         led.update();

@@ -6,6 +6,7 @@
 
 #include "i2c.hpp"
 #include "timer.hpp"
+#include "motor.hpp"
 
 #define IMU_I2C i2c1
 constexpr uint8_t IMU_ADDR = 0x6A;
@@ -71,9 +72,9 @@ struct Vec3 {
 class IMU {
    public:
     IMU();
-    void calibrate_gyro();
+    void calibrate_gyro(float time_ms);
 
-    void update();
+    void update(MotorControl& motor_ctrl);
 
     float get_pitch() { return pitch_; }
     float get_roll() { return roll_; }
@@ -91,4 +92,11 @@ class IMU {
 
     Timer timer_;
     CooldownTimer imu_cd_timer_ = CooldownTimer(IMU_SEND_CD_MS);
+
+    // calibration related
+    CooldownTimer calib_interval_timer_ =
+        CooldownTimer(IMU_GYRO_CALIBRATION_INTERVAL_MS);
+    TimeoutTimer calib_timeout_ = TimeoutTimer();
+    bool is_calib_ = false;
+    uint calib_count_ = 0;
 };

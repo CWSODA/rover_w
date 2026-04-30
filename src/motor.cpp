@@ -22,20 +22,15 @@ void Motor::drive(float val) {
     pwm_channel_.set_duty(std::abs(val));
 }
 
-void Motor::update_motor_pid() {
-    // float error = tgt_speed_ - encoder_.get_speed();
-
-    // float output = tgt_speed_ + error * MOTOR_P;
-}
-
 /* ------------------------------------------------------ */
 /*                      MOTOR CONTROL                     */
 /* ------------------------------------------------------ */
 void MotorControl::update_motors(std::queue<DataPoint>& lidar_data) {
-    if (is_algo_on) {
+    if (is_disabled_) return;  // ignore if motors disabled
+    if (is_algo_on_) {
         // DBG("Running algorithm!");
         // run_algorithm(lidar_data, *this);
-    } else if (is_manual) {
+    } else if (is_manual_) {
         // manual drive
         // check timeout if it has not expired yet
         // prevents calling steer if it has been set off before
@@ -46,13 +41,38 @@ void MotorControl::update_motors(std::queue<DataPoint>& lidar_data) {
     }
 }
 
+/* -------------------- NEW FUNCTIONS ------------------- */
+// turns rover in place with given speed
+// left = +turn_speed, right = -turn_speed
+void MotorControl::turn_in_place(float turn_speed) {
+    if (is_disabled_) return;  // ignore if motors disabled
+    float left = turn_speed;
+    float right = -turn_speed;
+    motorFL_.drive(left);
+    motorBL_.drive(left);
+    motorFR_.drive(right);
+    motorBR_.drive(right);
+
+    fwd_spd_ = 0.0f;  // disables forward adjusting
+}
+
+// set duty cycle of all motors (0 to 100)
+void MotorControl::drive_forward(float speed) {
+    if (is_disabled_) return;  // ignore if motors disabled
+    fwd_spd_ = speed;
+    motorFL_.drive(fwd_spd_);
+    motorBL_.drive(fwd_spd_);
+    motorFR_.drive(fwd_spd_);
+    motorBR_.drive(fwd_spd_);
+}
+
 // speed of each motor from 0 to speed
 // negative speed is backwards
 // turns the rover, strength between (0 to ±100)
 // negative is left, positive is right
 // linear
 void MotorControl::steer(float speed, float turn_strength) {
-    // float speed_abs = abs(speed);
+    if (is_disabled_) return;  // ignore if motors disabled
 
     // left is max for ranges 100 to 0, linear decrease from 0 to -100
     float left = 1.0f;
@@ -75,9 +95,11 @@ void MotorControl::steer(float speed, float turn_strength) {
     motorBR_.drive(right);
 }
 
+// steers but has timeout to turn off the motors
 void MotorControl::steer_with_timeout(float speed, float turn_strength) {
-    is_algo_on = false;
-    is_manual = true;
+    if (is_disabled_) return;  // ignore if motors disabled
+    is_algo_on_ = false;
+    is_manual_ = true;
 
     steer(speed, turn_strength);
     manual_drive_timer_.reset();

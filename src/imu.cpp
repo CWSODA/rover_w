@@ -15,8 +15,8 @@ IMU::IMU() {
 
 // averages gyroscope samples to get the offset
 // rover must be still during this time!
-void IMU::calibrate_gyro() {
-    TimeoutTimer timer(IMU_GYRO_CALIBRATION_TIME_MS);
+void IMU::calibrate_gyro(float time_ms) {
+    TimeoutTimer timer(time_ms);
     gyro_offset_.clear();
     int count = 0;
     while (!timer.check_expired()) {  // loop until time
@@ -32,11 +32,39 @@ void IMU::calibrate_gyro() {
     //     gyro_offset_.z);
 }
 
-void IMU::update() {
-    read_imu_data();
+// updates IMU and determines if calibration is needed
+void IMU::update(MotorControl& motor_ctrl) {
+    read_imu_data();  // always get data
+
+    // calibrating data
+    if (is_calib_) {
+        gyro_offset_ += gyro_;  // sum
+        calib_count_++;         // increase count for average
+
+        if (calib_timeout_.check_expired()) {              // check timeout
+            WDBG("IMU calib count: %zu\n", calib_count_);  // debug count
+            gyro_offset_ /= calib_count_;                  // calculate average
+            is_calib_ = false;                             // reset
+            motor_ctrl.enable();                           // re-enable motors
+        }
+        return;  // dont update rotation
+    }
+
+    // else normal function
     calc_rot();
+
+    // check if another calibration is needed
+    if (calib_interval_timer_.check()) {
+        is_calib_ = true;        // trigger calibration on next loop
+        gyro_offset_.clear();    // reset offset
+        calib_count_ = 0;        // reset count
+        motor_ctrl.disable();    // disable motors
+        calib_timeout_.reset();  // reset timeout
+    }
 }
 
+// reads raw IMU data
+// converts raw 16 byte data into RAW float data (not offset yet!)
 void IMU::read_imu_data() {
     // 16 bit = 2 bytes for all three axes
     uint8_t gyro_data[3 * 2];
@@ -76,6 +104,7 @@ void IMU::read_imu_data() {
 }
 
 // calculates rotation with IMU data
+// applies offset to gyro_ data
 void IMU::calc_rot() {
     // use accelerometer to estimate pitch and roll
     // float x2 = accel_.x * accel_.x;
