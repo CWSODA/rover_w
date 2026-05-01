@@ -53,6 +53,7 @@ void TCP_Buffer::parse_tcp_buffer(MotorControl& motor_ctrl, Algo& algo,
             case 'a': {  // turn off algorithm, 2 + 0 = 2 bytes
                 pop_to_idx(2);
                 algo.is_algo_on_ = false;
+                motor_ctrl.stop_motors();
                 WDBG("TCP algo off\n");
                 break;
             }
