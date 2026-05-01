@@ -23,7 +23,7 @@
 #define UART_DEBUG false
 #define USB_DEBUG true  // set true for easy flashing
 #define USB_SEND false  // send byte data to USB, disable to only use printf/DBG
-#define USB_WAIT true   // configures whether to wait for usb connection
+#define USB_WAIT false  // configures whether to wait for usb connection
 #define NET_DEBUG true
 #define WAIT_FOR_NET true  // IF NO NET, ALGORITHM IS ALWAYS ON!
 
@@ -86,9 +86,7 @@ constexpr uint MOTOR_BR_PWM_PIN = 12;
 constexpr uint MOTOR_BR_DIR_PIN = 13;
 
 // PID
-constexpr float MOTOR_P = 1.0f;
-constexpr float MOTOR_I = 1.0f;
-constexpr float MOTOR_D = 1.0f;
+constexpr float YAW_ERR_P = 1.0f;
 
 constexpr float MANUAL_DRIVE_TIMEOUT_MS = 500.0f;
 

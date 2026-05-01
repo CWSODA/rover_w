@@ -35,3 +35,23 @@ class Algo {
    private:
     void update_motor_ctrl(Vec2& vec, MotorControl& motor_ctrl);
 };
+
+// checks if angle is within range
+// all angles should be clamped from (0 to 359°)
+inline bool in_range(float angle, float from, float to) {
+    if (from < to) {  // normal rotation
+        if (angle > from && angle < to) return true;
+    } else {  // wrapping rotation
+        if (angle > from || angle < to) return true;
+    }
+    return false;
+}
+
+// clamp angle in range (0 to 359°)
+inline float normalize_angle(float angle) {
+    // note floor rounds down negative numbers so ceil() is used for negative
+    // numbers
+    int multiple = (angle > 0.0f) ? std::floorf(angle / 360.0f)
+                                  : std::ceilf(angle / 360.0f);
+    return angle - (multiple * 360.0f);
+}

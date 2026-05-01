@@ -56,12 +56,9 @@ int main() {
     // - LED flash control
 
     DBG("Starting loop...\n");
-    if (has_wifi) {
-        led.set_indicator(LED_INDICATOR::LOOP_WITH_WIFI);
-    } else {
-        led.set_indicator(LED_INDICATOR::LOOP_NO_WIFI);
-        algo.is_algo_on_ = true;  // default on if no wifi
-    }
+    led.has_wifi = has_wifi;
+    algo.is_algo_on_ = !has_wifi;
+    led.set_default();
     while (true) {
         tcp_buffer.parse_tcp_buffer(motor_control, algo, imu, led);
 
@@ -75,6 +72,6 @@ int main() {
 
         flush_tcp_write_buffer();
 
-        sleep_ms(10);  // set as low as possible
+        sleep_ms(1);  // set as low as possible
     }
 }

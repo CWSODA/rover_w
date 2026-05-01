@@ -139,7 +139,7 @@ class LED {
 
     Color rainbow_ = Color(33, 66, 0);
     bool is_rainbow_ = false;
-    CooldownTimer rainbow_cd_ = CooldownTimer(1.0f);
+    CooldownTimer rainbow_cd_ = CooldownTimer(10.0f);
     void setup_led_rainbow(float total_time_ms) {
         flash_cd_.set_cd_ms(total_time_ms);
         is_rainbow_ = true;

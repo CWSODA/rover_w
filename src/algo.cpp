@@ -18,11 +18,25 @@ void Algo::update(RotationBuffer& rot_buf, float yaw,
 
     DataBuffer& data = rot_buf.get_complete_buffer();
 
-    float FRONT_THESHOLD = 0.4f;
-    float FRONT_FOV = 20.0f;
-    float SIDE_FOV = 20.0f;
+    // normalize yaw to range (0 to 359°)
+    yaw = normalize_angle(yaw);
 
-    float front = FRONT_THESHOLD;
+    float DRIVE_DISTANCE_THESHOLD = 0.4f;
+    float FRONT_FOV = 30.0f;  // shared with heading cone
+    float SIDE_FOV = 30.0f;
+    float YAW_THRESHOLD = 10.0f;
+    float HEADING_FOV = 30.0f;
+    float TURN_SPEED = 50.0f;
+
+    // only calculate heading if yaw of 0° is behind the rover
+    // AND if correct heading is off by more than a certain threshold
+    bool is_behind =
+        in_range(yaw, FRONT_FOV + SIDE_FOV, (360.0f - FRONT_FOV - SIDE_FOV));
+    bool is_check_heading = (yaw > YAW_THRESHOLD) && (is_behind);
+    float heading = DRIVE_DISTANCE_THESHOLD;
+    DBG("has heading: %u\n", is_check_heading);
+
+    float front = DRIVE_DISTANCE_THESHOLD;
     float left = 0.0f;
     float right = 0.0f;
     for (size_t idx = 0; idx < data.count; idx++) {
@@ -31,35 +45,47 @@ void Algo::update(RotationBuffer& rot_buf, float yaw,
         // ignore weak signal
         if (p.sig_strength < SIG_STR_THRESHOLD) continue;
 
+        // heading cone
+        if (is_check_heading) {
+            if (in_range(p.angle, yaw - HEADING_FOV, yaw + HEADING_FOV)) {
+                heading = std::min(heading, p.distance);
+            }
+        }
+
         // front cone
-        float fov = 40;
-        if (p.angle < FRONT_FOV || p.angle > (360 - FRONT_FOV)) {
+        if (in_range(p.angle, 360.0f - FRONT_FOV, FRONT_FOV)) {
             front = std::min(front, p.distance);
         }
 
         // right cone
-        if (p.angle > FRONT_FOV && p.angle < FRONT_FOV + SIDE_FOV) {
+        if (in_range(p.angle, FRONT_FOV, FRONT_FOV + SIDE_FOV)) {
             right += p.distance;
         }
 
         // left cone
-        if (p.angle < (360.0f - FRONT_FOV) &&
-            p.angle < (360.0f - FRONT_FOV - SIDE_FOV)) {
+        if (in_range(p.angle, 360.0f - FRONT_FOV - SIDE_FOV,
+                     360.0f - FRONT_FOV)) {
             left += p.distance;
         }
     }
-    if (front < FRONT_THESHOLD) {
-        // turn towards best direction
-        float TURN_SPEED = 50.0f;
-        DBG("(%f)(%f)\n", left, right);
-        if (left > right) {
-            // motor_ctrl.turn_in_place(-TURN_SPEED);
-        } else {
-            // motor_ctrl.turn_in_place(+TURN_SPEED);
-        }
-    } else {
-        DBG("Nothing in front\n");
+    if (heading > DRIVE_DISTANCE_THESHOLD) {
+        // prioritize going to heading if it is open
+        // yaw < 180 ? turn right, or turn left
+        float turn = (yaw < 180.0) ? -TURN_SPEED : TURN_SPEED;
+        motor_ctrl.turn_in_place(turn);
+        return;
+    }
+    if (front > DRIVE_DISTANCE_THESHOLD) {
+        // nothing in front
         motor_ctrl.drive_forward(50.0f, yaw);
+        return;
+    }
+
+    // turn towards best direction if front is blocked
+    if (left > right) {
+        motor_ctrl.turn_in_place(-TURN_SPEED);
+    } else {
+        motor_ctrl.turn_in_place(+TURN_SPEED);
     }
 }
 
