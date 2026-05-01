@@ -17,6 +17,17 @@ IMU::IMU() {
 void IMU::update(MotorControl& motor_ctrl, LED& led) {
     read_imu_data();  // always get data
 
+    // check if another calibration is needed
+    if (calib_interval_timer_.check()) {
+        WDBG("Starting calibration\n");
+        led.set_indicator(LED_INDICATOR::GYRO_CALIBRATION);
+        is_calib_ = true;        // trigger calibration on next loop
+        gyro_offset_.clear();    // reset offset
+        calib_count_ = 0;        // reset count
+        motor_ctrl.disable();    // disable motors
+        calib_timeout_.reset();  // reset timeout
+    }
+
     // calibrating data
     if (is_calib_) {
         gyro_offset_ += gyro_;  // sum
@@ -33,17 +44,6 @@ void IMU::update(MotorControl& motor_ctrl, LED& led) {
 
     // else normal function
     calc_rot();
-
-    // check if another calibration is needed
-    if (calib_interval_timer_.check()) {
-        WDBG("Starting calibration\n");
-        led.set_indicator(LED_INDICATOR::GYRO_CALIBRATION);
-        is_calib_ = true;        // trigger calibration on next loop
-        gyro_offset_.clear();    // reset offset
-        calib_count_ = 0;        // reset count
-        motor_ctrl.disable();    // disable motors
-        calib_timeout_.reset();  // reset timeout
-    }
 }
 
 // reads raw IMU data
