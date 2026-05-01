@@ -13,28 +13,42 @@ IMU::IMU() {
     i2c_write_blocking(IMU_I2C, IMU_ADDR, src, sizeof(src), false);
 }
 
+void IMU::setup_calibration(MotorControl& motor_ctrl, LED& led) {
+    WDBG("Starting calibration\n");
+    led.set_indicator(LED_INDICATOR::GYRO_CALIBRATION);
+    is_calib_ = true;        // trigger calibration on next loop
+    gyro_offset_.clear();    // reset offset
+    calib_count_ = 0;        // reset count
+    motor_ctrl.disable();    // disable motors
+    calib_timeout_.reset();  // reset timeout
+}
+
 // updates IMU and determines if calibration is needed
 void IMU::update(MotorControl& motor_ctrl, LED& led) {
     read_imu_data();  // always get data
 
     // check if another calibration is needed
     if (calib_interval_timer_.check()) {
-        WDBG("Starting calibration\n");
-        led.set_indicator(LED_INDICATOR::GYRO_CALIBRATION);
-        is_calib_ = true;        // trigger calibration on next loop
-        gyro_offset_.clear();    // reset offset
-        calib_count_ = 0;        // reset count
-        motor_ctrl.disable();    // disable motors
-        calib_timeout_.reset();  // reset timeout
+        setup_calibration(motor_ctrl, led);
     }
 
     // calibrating data
+    float GYRO_CALIBRATION_THRESHOLD = 0.1f;
     if (is_calib_) {
-        gyro_offset_ += gyro_;  // sum
-        calib_count_++;         // increase count for average
+        // gyro must be within threshold, or treat as invalid
+        if (gyro_.x < GYRO_CALIBRATION_THRESHOLD &&
+            gyro_.y < GYRO_CALIBRATION_THRESHOLD &&
+            gyro_.z < GYRO_CALIBRATION_THRESHOLD) {
+            gyro_offset_ += gyro_;  // sum
+            calib_count_++;         // increase count for average
+        }
 
         if (calib_timeout_.check_expired()) {  // check timeout
             // WDBG("IMU calib count: %zu\n", calib_count_);  // debug count
+            if (calib_count_ == 0) {  // retry if no valid samples
+                setup_calibration(motor_ctrl, led);
+                return;  // dont update
+            }
             gyro_offset_ /= calib_count_;  // calculate average
             is_calib_ = false;             // reset
             motor_ctrl.enable();           // re-enable motors
@@ -101,7 +115,8 @@ void IMU::calc_rot() {
     // Vec3 tilt;
     // tilt.x = acosf(accel_.x / length) * RAD2DEG;
     // tilt.y = acosf(accel_.y / length) * RAD2DEG;
-    // tilt.z = acosf(accel_.z / length) * RAD2DEG;  // tilt from ground plane
+    // tilt.z = acosf(accel_.z / length) * RAD2DEG;  // tilt from ground
+    // plane
 
     // remove offset
     gyro_ -= gyro_offset_;

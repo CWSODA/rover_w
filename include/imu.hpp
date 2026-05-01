@@ -88,6 +88,8 @@ class IMU {
     void read_imu_data();
     void calc_rot();
 
+    void setup_calibration(MotorControl& motor_ctrl, LED& led);
+
     Vec3 accel_;        // raw float values
     Vec3 gyro_;         // raw float values
     Vec3 gyro_offset_;  // offset values for gyroscope
