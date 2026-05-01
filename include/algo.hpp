@@ -1,6 +1,6 @@
 #pragma once
 
-#include <queue>
+#include <math.h>
 
 #include "settings.hpp"
 #include "lidar_parser.hpp"

@@ -33,6 +33,7 @@ void Algo::update(RotationBuffer& rot_buf, float yaw,
     bool is_behind =
         in_range(yaw, FRONT_FOV + SIDE_FOV, (360.0f - FRONT_FOV - SIDE_FOV));
     bool is_check_heading = (yaw > YAW_THRESHOLD) && (is_behind);
+    is_check_heading = false;
     float heading = DRIVE_DISTANCE_THESHOLD;
     DBG("has heading: %u\n", is_check_heading);
 
@@ -68,14 +69,15 @@ void Algo::update(RotationBuffer& rot_buf, float yaw,
             left += p.distance;
         }
     }
-    if (heading > DRIVE_DISTANCE_THESHOLD) {
+    if (is_check_heading && heading >= DRIVE_DISTANCE_THESHOLD) {
         // prioritize going to heading if it is open
         // yaw < 180 ? turn right, or turn left
         float turn = (yaw < 180.0) ? -TURN_SPEED : TURN_SPEED;
         motor_ctrl.turn_in_place(turn);
         return;
     }
-    if (front > DRIVE_DISTANCE_THESHOLD) {
+    WDBG("F(%f), L(%f), R(%f)\n", front, left, right);
+    if (front >= DRIVE_DISTANCE_THESHOLD) {
         // nothing in front
         motor_ctrl.drive_forward(50.0f, yaw);
         return;
