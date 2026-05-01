@@ -37,11 +37,19 @@ void MotorControl::update_motors(float yaw) {
     }
 
     // correct for straightness if driving straight
-    if (fwd_spd_ != 0.0f) {
-        float yaw_err = yaw - tgt_yaw_;  //
-        float left;
-        float right;
+    if (fwd_spd_ == 0.0f) return;
+
+    // calculate yaw error
+    float left = fwd_spd_;
+    float right = fwd_spd_;
+    float yaw_err = yaw - tgt_yaw_;
+    yaw_err *= YAW_ERR_P;
+    if (yaw_err > 0) {
+        left += yaw_err;
+    } else {
+        right -= yaw_err;
     }
+    drive_side(left, right);
 }
 
 // drive forward at given speed (0 to 100)
