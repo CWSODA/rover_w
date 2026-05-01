@@ -36,6 +36,11 @@
 // where n is measurement index from 1 -> N
 // delta angle = 22.5 * 1/N
 
+inline void wrap_angle(float& angle) {
+    // wrap if above 360°
+    if (angle > 360.0f) angle -= 360.0f;
+}
+
 class LidarParser {
    public:
     LidarParser() {}

@@ -130,7 +130,10 @@ bool LidarParser::parse_data(uint8_t byte, RotationBuffer& rot_buf) {
             float offset_angle = offset_angle_buf.val() * 0.01f;
             float start_angle = start_angle_buf.val() * 0.01f;
             // temp_point.angle = start_angle - offset_angle;
-            temp_point.angle = start_angle;
+
+            // for some reason angle 0 is 90 degrees to the right
+            temp_point.angle = start_angle + 90.0f;
+            wrap_angle(temp_point.angle);
 
             // data length includes 1+2+2 header for rot speed and angles
             // each data point has 1+2 bytes for strength(1) and distance(2)
@@ -209,6 +212,7 @@ bool LidarParser::parse_data(uint8_t byte, RotationBuffer& rot_buf) {
 
             // increment angle for next insert
             temp_point.angle += delta_angle;
+            wrap_angle(temp_point.angle);
 
             // loop back to sig_strength for next measurement
             data_state = DataState::SIG_STRENGTH;
