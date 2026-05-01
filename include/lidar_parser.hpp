@@ -1,7 +1,8 @@
 #pragma once
 
 #include "pico/stdlib.h"  // used for type definitions uint16 etc
-#include <queue>
+
+#include "lidar_objects.hpp"
 
 // code for the delta-2D lidar
 
@@ -35,53 +36,11 @@
 // where n is measurement index from 1 -> N
 // delta angle = 22.5 * 1/N
 
-// output struct of LiDAR
-struct DataPoint {
-    uint8_t sig_strength;  // strength from 0 to 255
-    float distance;        // distance in meters
-    float angle;           // angle in degrees
-
-    DataPoint() {}
-    DataPoint(float dist, float angle, uint8_t sig_str)
-        : distance(dist), angle(angle), sig_strength(sig_str) {}
-};
-
-// helper class to buffer 2 byte / 16-bit data
-class TwoByteBuffer {
-   public:
-    // inserts byte into buffer
-    // returns true if buffer is full
-    // RESETS count if full
-    bool insert(uint8_t byte) {
-        if (is_first_byte) {
-            data_ = byte << 8;  // MSB
-            is_first_byte = false;
-            return false;
-        }
-
-        // otherwise on second byte
-        data_ += byte;
-        is_first_byte = true;  // reset for next cycle
-
-        return true;
-    }
-
-    uint16_t val() { return data_; }
-
-    void reset() { is_first_byte = true; }
-
-   private:
-    bool is_first_byte = true;
-    uint16_t data_;
-};
-
 class LidarParser {
    public:
-    LidarParser(std::queue<DataPoint>* data_queue) {
-        data_queue_p = data_queue;
-    }
+    LidarParser() {}
 
-    void parse_byte(uint8_t byte);
+    void parse_byte(uint8_t byte, RotationBuffer& rot_buf);
 
    private:
     enum class State {
@@ -110,7 +69,7 @@ class LidarParser {
     void reset_state();
 
     // returns true once all data bytes have been parsed
-    bool parse_data(uint8_t byte);
+    bool parse_data(uint8_t byte, RotationBuffer& rot_buf);
 
     // state vars
     State state = State::START;
@@ -134,6 +93,4 @@ class LidarParser {
     float rotation_speed = 0.0f;  // in 0.05 rotation/s increments
     float delta_angle;            // calc from parser, in degrees
     DataPoint temp_point;         // temporary cache
-
-    std::queue<DataPoint>* data_queue_p;
 };

@@ -240,7 +240,7 @@ void tcp_write_data(const uint8_t* buf, uint16_t len) {
     }
     err_t err = tcp_write(state.client_pcb, buf, len, TCP_WRITE_FLAG_COPY);
     if (err != ERR_OK) {
-        WDBG("Failed to queue data %d\n", err);
+        // WDBG("Failed to queue data %d\n", err);
         // tcp_server_result(-1);
     }
     tcp_output(state.client_pcb);  // flush

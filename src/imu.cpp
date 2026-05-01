@@ -14,7 +14,7 @@ IMU::IMU() {
 }
 
 // updates IMU and determines if calibration is needed
-void IMU::update(MotorControl& motor_ctrl) {
+void IMU::update(MotorControl& motor_ctrl, LED& led) {
     read_imu_data();  // always get data
 
     // calibrating data
@@ -37,6 +37,7 @@ void IMU::update(MotorControl& motor_ctrl) {
     // check if another calibration is needed
     if (calib_interval_timer_.check()) {
         WDBG("Starting calibration\n");
+        led.set_indicator(LED_INDICATOR::GYRO_CALIBRATION);
         is_calib_ = true;        // trigger calibration on next loop
         gyro_offset_.clear();    // reset offset
         calib_count_ = 0;        // reset count

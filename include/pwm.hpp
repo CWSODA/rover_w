@@ -8,7 +8,7 @@ class PWM_Channel {
     // PWM channel / slice are hardware defined and CANNOT change
     // choose correct pins if seperate channels are desired
     // default duty cycle of 0%
-    PWM_Channel(uint pin);
+    PWM_Channel(uint pin, uint16_t top = 6000);
 
     // DISABLES SLICE IF FALSE (NOT CHANNEL)
     // To disable channel, set duty to 0
@@ -17,6 +17,10 @@ class PWM_Channel {
     // sets duty cycle
     // make sure duty is between 0 and 100
     void set_duty(float duty);
+    void set_top(uint16_t top) {
+        top_ = top;
+        pwm_set_wrap(slice_, top_);
+    }
 
     // debug
     uint get_slice() { return slice_; }

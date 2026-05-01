@@ -4,48 +4,30 @@
 #include <math.h>
 
 #include "settings.hpp"
-#include "lidar_parser.hpp"
+#include "lidar_objects.hpp"
 #include "motor.hpp"
 
-void Algo::update(std::queue<DataPoint>& lidar_data, float yaw,
+// lidar data is DataPoint from one rotation
+// yaw used to calculate target heading
+// algorithm needs to control motors
+void Algo::update(RotationBuffer& rot_buf, float yaw,
                   MotorControl& motor_ctrl) {
-    if (!is_algo_on_) return;
-    static Vec2 calc_vec(0, 0);       // vector used for calculation
-    static float last_angle = -1.0f;  // -1 ensures no angle will be smaller
+    if (!is_algo_on_) return;            // algo not on
+    if (!rot_buf.has_new_buf()) return;  // no new data
 
-    // empty all vectors
-    while (!lidar_data.empty()) {
-        DataPoint data = lidar_data.front();  // get oldest
-        lidar_data.pop();                     // and pop to remove
+    DataBuffer& data = rot_buf.get_complete_buffer();
 
-        // check for within threshold
-        bool is_dist = data.distance < DIST_THRESHOLD;
-        bool is_str = data.sig_strength > SIG_STR_THRESHOLD;
-        bool is_fov = data.angle <= FOV && data.angle >= (360 - FOV);
-        if (is_dist && is_str && is_fov) {
-            // convert to vector form for summing
-            // 0° is y positive axis (up)
-            // 90° is x positive (right)
-            float angle_in_rad = data.angle * 3.1415f / 180.0f;
-            Vec2 data_vec(sinf(angle_in_rad), cosf(angle_in_rad));
+    for (size_t idx = 0; idx < data.count; idx++) {
+        auto& p = data.buf[idx];
 
-            // attenuate effect based on distance
-            // negative to repel
-            calc_vec -= data_vec * (1.0f / (data.distance + 1.0f));
-        }
+        // ignore invalid data
+        if (p.distance > DIST_THRESHOLD || p.sig_strength < SIG_STR_THRESHOLD)
+            continue;
 
-        // check if angle has wrapped back to 0, indicating full rotation
-        if (data.angle < last_angle) {
-            /* if multiple rotations within same update loop, only
-            calculate the later one. Although this should be pretty rare
-            since update loop should be much faster than the LiDAR */
-            OPT;
-
-            update_motor_ctrl(calc_vec, motor_ctrl);
-            last_angle = -1.0f;  // -1 ensures no angle will be smaller
-            return;              // only do one rotation
-        } else {
-            last_angle = data.angle;  // update angle
+        // if within a cone
+        float fov = 10;
+        if (p.angle < fov || p.angle > 360 - fov) {
+            // motor_ctrl.drive_forward();
         }
     }
 }

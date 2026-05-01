@@ -10,7 +10,8 @@ enum class LED_INDICATOR {
     POWER_ON,
     LOOP_NO_WIFI,
     LOOP_WITH_WIFI,
-    MOTORS_OVERCURRENT,
+    MOTOR_ERR,
+    GYRO_CALIBRATION,
 };
 
 struct Color {
@@ -19,6 +20,15 @@ struct Color {
         r = red;
         g = green;
         b = blue;
+    }
+
+    void rainbow_update() {
+        r += 1;
+        g += 1;
+        b += 1;
+        if (r > 100) r = 0;
+        if (g > 100) g = 0;
+        if (b > 100) b = 0;
     }
 };
 
@@ -57,10 +67,14 @@ class LED {
                     500);
                 break;
             }
-            case LED_INDICATOR::MOTORS_OVERCURRENT: {
+            case LED_INDICATOR::MOTOR_ERR: {
                 setup_led_flash(
                     std::vector<Color>{Color(100, 0, 0), Color(0, 0, 0)}, 10,
                     300);
+                break;
+            }
+            case LED_INDICATOR::GYRO_CALIBRATION: {
+                setup_led_rainbow(IMU_GYRO_CALIBRATION_TIME_MS);
                 break;
             }
             default: {
@@ -71,8 +85,20 @@ class LED {
 
     bool has_wifi = false;
     void update() {
-        if (count_ == 0) return;                    // dont change LEDs
-        if (!flash_timer_.check_expired()) return;  // wait more
+        if (is_rainbow_) {
+            if (flash_cd_.check()) {
+                is_rainbow_ = false;
+                set_indicator(has_wifi ? LED_INDICATOR::LOOP_WITH_WIFI
+                                       : LED_INDICATOR::LOOP_NO_WIFI);
+            }
+            // do the rainbow :3
+            if (!rainbow_cd_.check()) return;  // not yet
+            rainbow_.rainbow_update();
+            set(rainbow_);
+            return;
+        }
+        if (count_ == 0) return;         // dont change LEDs
+        if (!flash_cd_.check()) return;  // wait more
 
         // switch to next color
         idx_++;
@@ -80,17 +106,15 @@ class LED {
             idx_ = 0;                  // wrap around to zero
             if (count_ > 0) count_--;  // decrement count if not infinite
             if (count_ == 0) {
-                has_wifi ? set_indicator(LED_INDICATOR::LOOP_WITH_WIFI)
-                         : set_indicator(LED_INDICATOR::LOOP_NO_WIFI);
+                set_indicator(has_wifi ? LED_INDICATOR::LOOP_WITH_WIFI
+                                       : LED_INDICATOR::LOOP_NO_WIFI);
             }
         }
         set(colors_[idx_]);
-
-        flash_timer_.reset();
     }
 
    private:
-    TimeoutTimer flash_timer_;
+    CooldownTimer flash_cd_ = CooldownTimer(1.0f);
     std::vector<Color> colors_;
     size_t idx_ = 0;
     int count_ = 0;
@@ -100,11 +124,19 @@ class LED {
     void setup_led_flash(std::vector<Color> colors, int n, float interval_ms) {
         colors_ = std::move(colors);  // dont copy vector, move it
         count_ = n;
-        flash_timer_.set_timeout_ms(interval_ms);
-        flash_timer_.reset();
+        flash_cd_.set_cd_ms(interval_ms);
 
         set(colors_[0]);
         idx_ = 0;
+    }
+
+    Color rainbow_ = Color(33, 66, 0);
+    bool is_rainbow_ = false;
+    CooldownTimer rainbow_cd_ = CooldownTimer(1.0f);
+    void setup_led_rainbow(float total_time_ms) {
+        flash_cd_.set_cd_ms(total_time_ms);
+        is_rainbow_ = true;
+        rainbow_ = Color(33, 66, 0);
     }
 
     PWM_Channel pwm_r = PWM_Channel(LED_R_PIN);

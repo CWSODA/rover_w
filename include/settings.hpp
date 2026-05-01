@@ -73,6 +73,7 @@ constexpr uint LIDAR_RX_PIN = 5;
 // one lidar sample per throttle count
 constexpr uint DATA_THROTTLE_COUNT = 1;
 constexpr uint LIDAR_QUEUE_MAX_LEN = 2048;
+constexpr uint LIDAR_ROTATION_BUFFER_MAX_POINTS = 2048;  // shouldnt be over 500
 
 /* ----------------------- Motors ----------------------- */
 constexpr uint MOTOR_FL_PWM_PIN = 8;

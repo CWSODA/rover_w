@@ -7,6 +7,7 @@
 #include "i2c.hpp"
 #include "timer.hpp"
 #include "motor.hpp"
+#include "led.hpp"
 
 #define IMU_I2C i2c1
 constexpr uint8_t IMU_ADDR = 0x6A;
@@ -73,7 +74,7 @@ class IMU {
    public:
     IMU();
 
-    void update(MotorControl& motor_ctrl);
+    void update(MotorControl& motor_ctrl, LED& led);
 
     float get_pitch() { return pitch_; }
     float get_roll() { return roll_; }

@@ -30,8 +30,7 @@ class Algo {
    public:
     bool is_algo_on_;
 
-    void update(std::queue<DataPoint>& lidar_data, float yaw,
-                MotorControl& motor_ctrl);
+    void update(RotationBuffer& rot_buf, float yaw, MotorControl& motor_ctrl);
 
    private:
     void update_motor_ctrl(Vec2& vec, MotorControl& motor_ctrl);

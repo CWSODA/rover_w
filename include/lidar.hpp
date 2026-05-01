@@ -4,15 +4,17 @@
 #include <queue>
 
 #include "lidar_parser.hpp"
+#include "lidar_objects.hpp"
 
 class Lidar {
    public:
     Lidar();
     void update_lidar();
 
-    std::queue<DataPoint>& get_data_queue() { return data_queue_; }
+    RotationBuffer& get_rotation_buffer() { return rot_buf_; }
 
    private:
-    std::queue<DataPoint> data_queue_;
-    LidarParser parser_ = LidarParser(&data_queue_);
+    LidarParser parser_;
+
+    RotationBuffer rot_buf_;
 };

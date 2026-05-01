@@ -7,7 +7,7 @@
 
 constexpr float LIDAR_ANGLE_CONST = 22.5f;
 
-void LidarParser::parse_byte(uint8_t byte) {
+void LidarParser::parse_byte(uint8_t byte, RotationBuffer& rot_buf) {
     // ignore if checksum bytes
     if (state != State::CHECKSUM) {
         checksum_total += byte;
@@ -86,7 +86,7 @@ void LidarParser::parse_byte(uint8_t byte) {
             break;
         }
         case (State::DATA): {
-            if (parse_data(byte)) state = State::CHECKSUM;
+            if (parse_data(byte, rot_buf)) state = State::CHECKSUM;
             break;
         }
         case (State::HEALTH): {
@@ -110,7 +110,7 @@ void LidarParser::parse_byte(uint8_t byte) {
     }
 }
 
-bool LidarParser::parse_data(uint8_t byte) {
+bool LidarParser::parse_data(uint8_t byte, RotationBuffer& rot_buf) {
     ++data_byte_count;
     switch (data_state) {
         case (DataState::ROT_SPEED): {
@@ -166,11 +166,15 @@ bool LidarParser::parse_data(uint8_t byte) {
             // increments of 0.25mm = 0.00025 m
             temp_point.distance = dist_buf.val() * 0.25E-3f;
 
-            // STORE DATA, check for oversize first
-            if (data_queue_p->size() > LIDAR_QUEUE_MAX_LEN) {
-                data_queue_p->pop();
+            /* ----------------- STORE DATA HERE!!! ----------------- */
+            // check for rotation to set flag
+            static float last_angle = -1.0f;  // ensures no angle is smaller
+            if (temp_point.angle < last_angle) {
+                // angle is smaller than last ==> new rotation
+                rot_buf.swap_buffer();
             }
-            data_queue_p->push(temp_point);
+            rot_buf.push(temp_point);       // add to buffer
+            last_angle = temp_point.angle;  // update last angle
 #if SEND_LIDAR_DATA
             // send opcode L (lidar)
             // send sig_str, dist, angle
@@ -179,9 +183,9 @@ bool LidarParser::parse_data(uint8_t byte) {
                 static unsigned int count = 0;
                 if (count % DATA_THROTTLE_COUNT == 0) {
                     // sends 11 bytes total per sample
-                    // inputs approximately 3 bytes per sample excluding headers
-                    // output baudrate must be 4x faster
-                    // at least 460,800
+                    // inputs approximately 3 bytes per sample excluding
+                    // headers output baudrate must be 4x faster at least
+                    // 460,800
                     uint8_t msg[1 + 1 + 1 + 4 + 4];
                     msg[0] = '$';
                     msg[1] = 'L';

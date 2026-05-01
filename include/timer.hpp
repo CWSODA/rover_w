@@ -56,6 +56,13 @@ class CooldownTimer {
         return false;
     }
 
+    // set new cooldown interval, resets as well
+    void set_cd_ms(float cd_ms) {
+        cooldown_ms_ = cd_ms;
+        prev_time_ = get_absolute_time();
+        is_first_ = false;
+    }
+
    private:
     absolute_time_t prev_time_;
     float cooldown_ms_;
@@ -93,6 +100,7 @@ class TimeoutTimer {
     // change timeout time
     void set_timeout_ms(float timeout_ms) { timeout_ms_ = timeout_ms; }
 
+    // returns if timer has been confirmed expired with a check before
     bool has_expired() { return has_expired_; };
 
    private:

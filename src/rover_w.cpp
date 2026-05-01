@@ -65,13 +65,13 @@ int main() {
     while (true) {
         tcp_buffer.parse_tcp_buffer(motor_control, algo, imu, led);
 
-        imu.update(motor_control);
+        imu.update(motor_control, led);
         float imu_yaw = imu.get_yaw();
 
         lidar.update_lidar();
         motor_control.update_motors(imu_yaw);
         led.update();
-        algo.update(lidar.get_data_queue(), imu_yaw, motor_control);
+        algo.update(lidar.get_rotation_buffer(), imu_yaw, motor_control);
 
         flush_tcp_write_buffer();
 

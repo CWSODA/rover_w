@@ -18,7 +18,7 @@ void Lidar::update_lidar() {
     uint8_t byte;
     while (ringbuf_pop(&byte)) {
         // send_hex(byte);
-        parser_.parse_byte(byte);
+        parser_.parse_byte(byte, rot_buf_);
     }
 
     uint16_t overflow_count = ringbuf_get_overflow_count();

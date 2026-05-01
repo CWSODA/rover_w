@@ -3,14 +3,12 @@
 #include <cstdio>
 #include <math.h>
 
-PWM_Channel::PWM_Channel(uint pin) : pin_(pin) {
+PWM_Channel::PWM_Channel(uint pin, uint16_t top) : pin_(pin), top_(top) {
     gpio_set_function(pin_, GPIO_FUNC_PWM);  // set pin as PWM function
     gpio_set_dir(pin, true);                 // set pin dir to output
 
     slice_ = pwm_gpio_to_slice_num(pin_);  // get slice
     channel_ = pwm_gpio_to_channel(pin_);  // get channel
-
-    top_ = 6000;
 
     pwm_set_wrap(slice_, top_);
     pwm_set_chan_level(slice_, channel_, 0);
