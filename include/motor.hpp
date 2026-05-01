@@ -38,9 +38,10 @@ class MotorControl {
     }
     void enable() { is_disabled_ = false; }
 
-    // new gen functions :>
     void turn_in_place(float turn_speed);
     void drive_forward(float speed, float yaw);
+
+    // turns all motors off
     void stop_motors() {
         fwd_spd_ = 0.0f;
         motorFL_.drive(fwd_spd_);
@@ -81,7 +82,7 @@ class MotorControl {
     // array of motors for looping
     Motor* motor_vec_[4] = {&motorFL_, &motorFR_, &motorBL_, &motorBR_};
 
-    bool is_disabled_ = true;  // disable from IMU and emergency stop
+    bool is_disabled_ = false;  // disable from IMU and emergency stop
 
     // manual TCP control
     TimeoutTimer manual_drive_timer_ = TimeoutTimer(MANUAL_DRIVE_TIMEOUT_MS);
