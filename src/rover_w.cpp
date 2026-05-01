@@ -66,6 +66,7 @@ int main() {
         float imu_yaw = imu.get_yaw();
 
         lidar.update_lidar();
+        motor_control.disable();
         motor_control.update_motors(imu_yaw);
         led.update();
         algo.update(lidar.get_rotation_buffer(), imu_yaw, motor_control);

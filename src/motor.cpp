@@ -36,17 +36,10 @@ void MotorControl::update_motors(float yaw) {
         }
         return;
     }
+    // JIGGLING
     if (combo_turn_count_ >= 3) {  // 3 consequtive turns
-        jiggle_state_ = 1;
+        DBG("J1\n");
         drive_forward(-JIGGLE_SPEED, yaw);  // drive backwards briefly
-        drive_timer_.set_timeout_ms(JIGGLE_TIMEOUT_MS);
-    } else if (jiggle_state_ = 1 && drive_timer_.check_expired()) {
-        jiggle_state_ = 2;
-        drive_forward(JIGGLE_SPEED, yaw);  // drive forwards briefly
-        drive_timer_.set_timeout_ms(JIGGLE_TIMEOUT_MS);
-    } else if (jiggle_state_ = 2 && drive_timer_.check_expired()) {
-        jiggle_state_ = 0;
-        stop_motors();
     }
 
     // correct for straightness ONLY if driving straight
@@ -68,8 +61,7 @@ void MotorControl::update_motors(float yaw) {
 // drive forward at given speed (0 to 100)
 // enables IMU yaw adjusting to drive straight
 void MotorControl::drive_forward(float speed, float yaw) {
-    if (is_disabled_ && jiggle_state_ != 0)
-        return;  // ignore if motors disabled or jiggling
+    if (is_disabled_) return;  // ignore if motors disabled
     fwd_spd_ = speed;
     tgt_yaw_ = yaw;
 
@@ -78,13 +70,13 @@ void MotorControl::drive_forward(float speed, float yaw) {
     motorFR_.drive(fwd_spd_);
     motorBR_.drive(fwd_spd_);
     combo_turn_count_ = 0;
+    DBG("FWD\n");
 }
 
 // turns rover in place with given speed
-// left = +turn_speed, right = -turn_speed
+// positive turns right, negative turns left
 void MotorControl::turn_in_place(float turn_speed) {
-    if (is_disabled_ && jiggle_state_ != 0)
-        return;  // ignore if motors disabled or jiggling
+    if (is_disabled_) return;  // ignore if motors disabled
     float left = turn_speed;
     float right = -turn_speed;
     motorFL_.drive(left);
@@ -94,6 +86,7 @@ void MotorControl::turn_in_place(float turn_speed) {
 
     fwd_spd_ = 0.0f;  // disables forward adjusting
     combo_turn_count_++;
+    DBG("TURN\n");
 }
 
 // speed of each motor from 0 to speed
@@ -102,8 +95,7 @@ void MotorControl::turn_in_place(float turn_speed) {
 // negative is left, positive is right
 // linear
 void MotorControl::steer(float speed, float turn_strength) {
-    if (is_disabled_ && jiggle_state_ != 0)
-        return;  // ignore if motors disabled or jiggling
+    if (is_disabled_) return;  // ignore if motors disabled
 
     // left is max for ranges 100 to 0, linear decrease from 0 to -100
     float left = 1.0f;
@@ -129,8 +121,7 @@ void MotorControl::steer(float speed, float turn_strength) {
 // steers but has timeout to turn off the motors
 // sets "is_manual"
 void MotorControl::steer_with_timeout(float speed, float turn_strength) {
-    if (is_disabled_ && jiggle_state_ != 0)
-        return;  // ignore if motors disabled or jiggling
+    if (is_disabled_) return;  // ignore if motors disabled
     is_manual_ = true;
 
     steer(speed, turn_strength);

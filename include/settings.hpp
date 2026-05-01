@@ -99,6 +99,7 @@ constexpr float JIGGLE_SPEED = 50.0f;
 /* ---------------------- Algorithm --------------------- */
 constexpr uint8_t SIG_STR_THRESHOLD = 10;  // ignore if below in (0 to 255)
 
+constexpr float MIN_TURNABLE_DIST = 0.3f;
 constexpr float DRIVE_DIST_THESHOLD = 0.4f;   // distance rover must stop
 constexpr float FRONT_FOV = 30.0f;            // FOV for driving forward
 constexpr float SIDE_FOV = 30.0f;             // cone degrees for left and right

@@ -93,6 +93,4 @@ class MotorControl {
     float fwd_spd_ = 0.0f;          // if zero, dont adjust for straight
     float tgt_yaw_ = 0.0f;          // yaw before driving forwards
     uint8_t combo_turn_count_ = 0;  // used to know when to jiggle
-    uint8_t jiggle_state_ = 0;
-    TimeoutTimer drive_timer_;  // used to time jiggle
 };
