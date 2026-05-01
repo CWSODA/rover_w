@@ -90,6 +90,8 @@ constexpr uint MOTOR_BR_DIR_PIN = 13;
 constexpr float YAW_ERR_P = 1.0f;
 
 constexpr float MANUAL_DRIVE_TIMEOUT_MS = 500.0f;
+constexpr float JIGGLE_TIMEOUT_MS = 50.0f;
+constexpr float JIGGLE_SPEED = 50.0f;
 
 #define DEBUG_PWM false
 #define DEBUG_MOTOR_LATENCY false

@@ -50,6 +50,7 @@ class MotorControl {
         motorBR_.drive(fwd_spd_);
     }
     void drive_side(float left, float right) {
+        fwd_spd_ = 0.0f;
         motorFL_.drive(left);
         motorBL_.drive(left);
         motorFR_.drive(right);
@@ -89,7 +90,9 @@ class MotorControl {
     bool is_manual_ = false;
 
     // algo drive vars
-    TimeoutTimer drive_timer_;  // used to time driving forward and turning
-    float fwd_spd_ = 0.0f;      // if zero, dont adjust for straight
-    float tgt_yaw_ = 0.0f;      // yaw before driving forwards
+    float fwd_spd_ = 0.0f;          // if zero, dont adjust for straight
+    float tgt_yaw_ = 0.0f;          // yaw before driving forwards
+    uint8_t combo_turn_count_ = 0;  // used to know when to jiggle
+    uint8_t jiggle_state_ = 0;
+    TimeoutTimer drive_timer_;  // used to time jiggle
 };

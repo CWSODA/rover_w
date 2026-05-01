@@ -35,32 +35,23 @@ void Algo::update(RotationBuffer& rot_buf, float yaw,
     float right = 0.0f;
     for (size_t idx = 0; idx < data.count; idx++) {
         auto& p = data.buf[idx];
+        if (p.sig_strength < SIG_STR_THRESHOLD) continue;  // ignore weak signal
 
-        // ignore weak signal
-        if (p.sig_strength < SIG_STR_THRESHOLD) continue;
-
-        // heading cone
-        if (is_check_heading) {
-            if (in_range(p.angle, yaw - HEADING_FOV, yaw + HEADING_FOV)) {
+        /* -------------------- HEADING CONE -------------------- */
+        if (is_check_heading)
+            if (in_range(p.angle, yaw - HEADING_FOV, yaw + HEADING_FOV))
                 heading = std::min(heading, p.distance);
-            }
-        }
-
-        // front cone
+        /* --------------------- FRONT CONE --------------------- */
         if (in_range(p.angle, 360.0f - FRONT_FOV, FRONT_FOV)) {
             front = std::min(front, p.distance);
         }
-
-        // right cone
-        if (in_range(p.angle, FRONT_FOV, FRONT_FOV + SIDE_FOV)) {
+        /* --------------------- RIGHT CONE --------------------- */
+        if (in_range(p.angle, FRONT_FOV, FRONT_FOV + SIDE_FOV))
             right += p.distance;
-        }
-
-        // left cone
+        /* ---------------------- LEFT CONE --------------------- */
         if (in_range(p.angle, 360.0f - FRONT_FOV - SIDE_FOV,
-                     360.0f - FRONT_FOV)) {
+                     360.0f - FRONT_FOV))
             left += p.distance;
-        }
     }
     if (is_check_heading && heading >= DRIVE_DIST_THESHOLD) {
         // prioritize going to heading if it is open
@@ -69,13 +60,10 @@ void Algo::update(RotationBuffer& rot_buf, float yaw,
         motor_ctrl.turn_in_place(turn);
         return;
     }
-    WDBG("F(%f), L(%f), R(%f)\n", front, left, right);
-    if (front >= DRIVE_DIST_THESHOLD) {
-        // nothing in front
+    if (front >= DRIVE_DIST_THESHOLD) {  // nothing in front
         motor_ctrl.drive_forward(DRIVE_FORWARD_SPEED, yaw);
         return;
     }
-
     // turn towards best direction if front is blocked
     if (left > right) {
         motor_ctrl.turn_in_place(-TURN_SPEED);
