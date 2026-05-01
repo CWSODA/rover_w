@@ -14,21 +14,52 @@ void Algo::update(RotationBuffer& rot_buf, float yaw,
                   MotorControl& motor_ctrl) {
     if (!is_algo_on_) return;            // algo not on
     if (!rot_buf.has_new_buf()) return;  // no new data
+    DBG("Running Algorithm\n");
 
     DataBuffer& data = rot_buf.get_complete_buffer();
 
+    float FRONT_THESHOLD = 0.4f;
+    float FRONT_FOV = 20.0f;
+    float SIDE_FOV = 20.0f;
+
+    float front = FRONT_THESHOLD;
+    float left = 0.0f;
+    float right = 0.0f;
     for (size_t idx = 0; idx < data.count; idx++) {
         auto& p = data.buf[idx];
 
-        // ignore invalid data
-        if (p.distance > DIST_THRESHOLD || p.sig_strength < SIG_STR_THRESHOLD)
-            continue;
+        // ignore weak signal
+        if (p.sig_strength < SIG_STR_THRESHOLD) continue;
 
-        // if within a cone
-        float fov = 10;
-        if (p.angle < fov || p.angle > 360 - fov) {
-            // motor_ctrl.drive_forward();
+        // front cone
+        float fov = 40;
+        if (p.angle < FRONT_FOV || p.angle > (360 - FRONT_FOV)) {
+            front = std::min(front, p.distance);
         }
+
+        // right cone
+        if (p.angle > FRONT_FOV && p.angle < FRONT_FOV + SIDE_FOV) {
+            right += p.distance;
+        }
+
+        // left cone
+        if (p.angle < (360.0f - FRONT_FOV) &&
+            p.angle < (360.0f - FRONT_FOV - SIDE_FOV)) {
+            left += p.distance;
+        }
+    }
+    if (front < FRONT_THESHOLD) {
+        // turn towards best direction
+        float TURN_SPEED = 50.0f;
+        DBG("(%f)(%f)\n", left, right);
+        if (left > right) {
+            // motor_ctrl.turn_in_place(-TURN_SPEED);
+        } else {
+            // motor_ctrl.turn_in_place(+TURN_SPEED);
+        }
+    } else {
+        DBG("Nothing in front\n");
+        motor_ctrl.drive_forward(50.0f, yaw);
     }
 }
 
