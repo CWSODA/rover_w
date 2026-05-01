@@ -21,23 +21,16 @@ void Algo::update(RotationBuffer& rot_buf, float yaw,
     // normalize yaw to range (0 to 359°)
     yaw = normalize_angle(yaw);
 
-    float DRIVE_DISTANCE_THESHOLD = 0.4f;
-    float FRONT_FOV = 30.0f;  // shared with heading cone
-    float SIDE_FOV = 30.0f;
-    float YAW_THRESHOLD = 10.0f;
-    float HEADING_FOV = 30.0f;
-    float TURN_SPEED = 50.0f;
-
     // only calculate heading if yaw of 0° is behind the rover
     // AND if correct heading is off by more than a certain threshold
     bool is_behind =
         in_range(yaw, FRONT_FOV + SIDE_FOV, (360.0f - FRONT_FOV - SIDE_FOV));
     bool is_check_heading = (yaw > YAW_THRESHOLD) && (is_behind);
     is_check_heading = false;
-    float heading = DRIVE_DISTANCE_THESHOLD;
+    float heading = DRIVE_DIST_THESHOLD;
     DBG("has heading: %u\n", is_check_heading);
 
-    float front = DRIVE_DISTANCE_THESHOLD;
+    float front = DRIVE_DIST_THESHOLD;
     float left = 0.0f;
     float right = 0.0f;
     for (size_t idx = 0; idx < data.count; idx++) {
@@ -69,7 +62,7 @@ void Algo::update(RotationBuffer& rot_buf, float yaw,
             left += p.distance;
         }
     }
-    if (is_check_heading && heading >= DRIVE_DISTANCE_THESHOLD) {
+    if (is_check_heading && heading >= DRIVE_DIST_THESHOLD) {
         // prioritize going to heading if it is open
         // yaw < 180 ? turn right, or turn left
         float turn = (yaw < 180.0) ? -TURN_SPEED : TURN_SPEED;
@@ -77,9 +70,9 @@ void Algo::update(RotationBuffer& rot_buf, float yaw,
         return;
     }
     WDBG("F(%f), L(%f), R(%f)\n", front, left, right);
-    if (front >= DRIVE_DISTANCE_THESHOLD) {
+    if (front >= DRIVE_DIST_THESHOLD) {
         // nothing in front
-        motor_ctrl.drive_forward(50.0f, yaw);
+        motor_ctrl.drive_forward(DRIVE_FORWARD_SPEED, yaw);
         return;
     }
 
@@ -89,26 +82,4 @@ void Algo::update(RotationBuffer& rot_buf, float yaw,
     } else {
         motor_ctrl.turn_in_place(+TURN_SPEED);
     }
-}
-
-// updates motor control with calculated vector
-// clears vector afterwards
-void Algo::update_motor_ctrl(Vec2& vec, MotorControl& motor_ctrl) {
-    // convert back to length + angle (rad)
-    float length = sqrtf(vec.x * vec.x + vec.y * vec.y);
-    float angle = atan2f(vec.y, vec.x);  // range of -PI to + PI
-
-    // add target vector IF no immediate threat
-    float LENGTH_THRESHOLD = 10.0;
-    if (length < LENGTH_THRESHOLD) {
-        vec += Vec2(0.0f, 1.0f);  // go straight
-    }
-
-    float speed = length * SPEED_MULTIPLIER;
-    float turn_val = angle * TURN_MULTIPLIER;
-
-    // motor_ctrl.set_speed();
-    motor_ctrl.steer(speed, turn_val);
-
-    vec = Vec2(0, 0);  // reset vector
 }

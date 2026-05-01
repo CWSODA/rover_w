@@ -33,7 +33,6 @@ class Algo {
     void update(RotationBuffer& rot_buf, float yaw, MotorControl& motor_ctrl);
 
    private:
-    void update_motor_ctrl(Vec2& vec, MotorControl& motor_ctrl);
 };
 
 // checks if angle is within range

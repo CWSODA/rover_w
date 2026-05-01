@@ -58,6 +58,7 @@ constexpr float IMU_SEND_CD_MS = 1000.0f / 30.0f;  // 30 Hz
 
 constexpr float IMU_GYRO_CALIBRATION_INTERVAL_MS = 1'000.0f * 30;
 constexpr float IMU_GYRO_CALIBRATION_TIME_MS = 1'000.0f;
+constexpr float GYRO_CALIBRATION_THRESHOLD = 0.6f;
 
 /* ------------------------ LiDAR ----------------------- */
 constexpr uint LIDAR_RX_PIN = 5;
@@ -94,12 +95,15 @@ constexpr float MANUAL_DRIVE_TIMEOUT_MS = 500.0f;
 #define DEBUG_MOTOR_LATENCY false
 
 /* ---------------------- Algorithm --------------------- */
-constexpr float DIST_THRESHOLD = 1.0f;     // ignore if above in meters
 constexpr uint8_t SIG_STR_THRESHOLD = 10;  // ignore if below in (0 to 255)
-constexpr float FOV = 180.0f;              // ignore if above in degrees
 
-constexpr float TURN_MULTIPLIER = 10.0f;
-constexpr float SPEED_MULTIPLIER = 10.0f;
+constexpr float DRIVE_DIST_THESHOLD = 0.4f;   // distance rover must stop
+constexpr float FRONT_FOV = 30.0f;            // FOV for driving forward
+constexpr float SIDE_FOV = 30.0f;             // cone degrees for left and right
+constexpr float YAW_THRESHOLD = 10.0f;        // theshold for yaw adjustment
+constexpr float HEADING_FOV = 30.0f;          // FOV for checking valid heading
+constexpr float DRIVE_FORWARD_SPEED = 50.0f;  // speed when driving forwards
+constexpr float TURN_SPEED = 50.0f;           // speed for turning
 
 /* ------------------------ LEDS ------------------------ */
 constexpr uint LED_R_PIN = 20;

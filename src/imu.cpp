@@ -33,18 +33,18 @@ void IMU::update(MotorControl& motor_ctrl, LED& led) {
     }
 
     // calibrating data
-    float GYRO_CALIBRATION_THRESHOLD = 0.1f;
     if (is_calib_) {
         // gyro must be within threshold, or treat as invalid
-        if (gyro_.x < GYRO_CALIBRATION_THRESHOLD &&
-            gyro_.y < GYRO_CALIBRATION_THRESHOLD &&
-            gyro_.z < GYRO_CALIBRATION_THRESHOLD) {
+        // WDBG("%f,%f,%f\n", gyro_.x, gyro_.y, gyro_.z);
+        if (std::abs(gyro_.x) < GYRO_CALIBRATION_THRESHOLD &&
+            std::abs(gyro_.y) < GYRO_CALIBRATION_THRESHOLD &&
+            std::abs(gyro_.z) < GYRO_CALIBRATION_THRESHOLD) {
             gyro_offset_ += gyro_;  // sum
             calib_count_++;         // increase count for average
         }
 
-        if (calib_timeout_.check_expired()) {  // check timeout
-            // WDBG("IMU calib count: %zu\n", calib_count_);  // debug count
+        if (calib_timeout_.check_expired()) {              // check timeout
+            WDBG("IMU calib count: %zu\n", calib_count_);  // debug count
             if (calib_count_ == 0) {  // retry if no valid samples
                 setup_calibration(motor_ctrl, led);
                 return;  // dont update
