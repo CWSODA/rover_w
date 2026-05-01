@@ -12,7 +12,7 @@
 // algorithm needs to control motors
 void Algo::update(RotationBuffer& rot_buf, float yaw,
                   MotorControl& motor_ctrl) {
-    // if (!is_algo_on_) return;            // algo not on
+    if (!is_algo_on) return;             // algo not on
     if (!rot_buf.has_new_buf()) return;  // no new data
     DBG("ALGO\n");
 
@@ -26,8 +26,9 @@ void Algo::update(RotationBuffer& rot_buf, float yaw,
     bool is_behind =
         in_range(yaw, FRONT_FOV + SIDE_FOV, (360.0f - FRONT_FOV - SIDE_FOV));
     bool is_check_heading = (yaw > YAW_THRESHOLD) && (is_behind);
-    is_check_heading = false;
     float heading = DRIVE_DIST_THESHOLD;
+
+    if (!is_heading) is_check_heading = false;  // turn off heading
     // DBG("has heading: %u\n", is_check_heading);
 
     float front_closest = DRIVE_DIST_THESHOLD;
@@ -46,6 +47,7 @@ void Algo::update(RotationBuffer& rot_buf, float yaw,
         /* --------------------- FRONT CONE --------------------- */
         if (in_range(p.angle, 360.0f - FRONT_FOV, FRONT_FOV)) {
             front_closest = std::min(front_closest, p.distance);
+            DBG("%u, %f, %f\n", p.sig_strength, p.angle, p.distance);
         }
         /* --------------------- RIGHT CONE --------------------- */
         if (in_range(p.angle, FRONT_FOV, FRONT_FOV + SIDE_FOV)) {

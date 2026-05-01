@@ -38,21 +38,21 @@ void TCP_Buffer::parse_tcp_buffer(MotorControl& motor_ctrl, Algo& algo,
                 float speed = speed_byte;
                 set_ctrl_from_dir(dir_byte, speed, turn);
 
-                algo.is_algo_on_ = false;  // disables algorithm
+                algo.is_algo_on = false;  // disables algorithm
                 motor_ctrl.steer_with_timeout(speed, turn);
 
                 break;
             }
             case 'A': {  // turn on algorithm, 2 + 0 = 2 bytes
                 pop_to_idx(2);
-                algo.is_algo_on_ = true;
+                algo.is_algo_on = true;
                 motor_ctrl.disable_manual();
                 WDBG("TCP algo on\n");
                 break;
             }
             case 'a': {  // turn off algorithm, 2 + 0 = 2 bytes
                 pop_to_idx(2);
-                algo.is_algo_on_ = false;
+                algo.is_algo_on = false;
                 motor_ctrl.stop_motors();
                 WDBG("TCP algo off\n");
                 break;
@@ -72,6 +72,14 @@ void TCP_Buffer::parse_tcp_buffer(MotorControl& motor_ctrl, Algo& algo,
             case 'G': {  // reset gyro, 2 + 0 = 2 bytes
                 pop_to_idx(2);
                 imu.reset_gyro();
+                break;
+            }
+            case 'H': {
+                algo.is_heading = true;
+                break;
+            }
+            case 'h': {
+                algo.is_heading = false;
                 break;
             }
             default: {

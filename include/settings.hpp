@@ -86,6 +86,8 @@ constexpr uint MOTOR_BL_DIR_PIN = 7;
 constexpr uint MOTOR_BR_PWM_PIN = 12;
 constexpr uint MOTOR_BR_DIR_PIN = 13;
 
+constexpr float BIG_MULT = 0.24f;
+
 // PID
 constexpr float YAW_ERR_P = 1.0f;
 
@@ -97,16 +99,16 @@ constexpr float JIGGLE_SPEED = 50.0f;
 #define DEBUG_MOTOR_LATENCY false
 
 /* ---------------------- Algorithm --------------------- */
-constexpr uint8_t SIG_STR_THRESHOLD = 10;  // ignore if below in (0 to 255)
+constexpr uint8_t SIG_STR_THRESHOLD = 100;  // ignore if below in (0 to 255)
 
-constexpr float MIN_TURNABLE_DIST = 0.3f;
-constexpr float DRIVE_DIST_THESHOLD = 0.4f;   // distance rover must stop
-constexpr float FRONT_FOV = 30.0f;            // FOV for driving forward
+constexpr float MIN_TURNABLE_DIST = 0.4f;
+constexpr float DRIVE_DIST_THESHOLD = 0.45f;  // distance rover must stop
+constexpr float FRONT_FOV = 40.0f;            // FOV for driving forward
 constexpr float SIDE_FOV = 30.0f;             // cone degrees for left and right
 constexpr float YAW_THRESHOLD = 10.0f;        // theshold for yaw adjustment
 constexpr float HEADING_FOV = 30.0f;          // FOV for checking valid heading
-constexpr float DRIVE_FORWARD_SPEED = 50.0f;  // speed when driving forwards
-constexpr float TURN_SPEED = 50.0f;           // speed for turning
+constexpr float DRIVE_FORWARD_SPEED = 70.0f;  // speed when driving forwards
+constexpr float TURN_SPEED = 70.0f;           // speed for turning
 
 /* ------------------------ LEDS ------------------------ */
 constexpr uint LED_R_PIN = 20;

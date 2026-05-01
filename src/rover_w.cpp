@@ -57,7 +57,7 @@ int main() {
 
     DBG("Starting loop...\n");
     led.has_wifi = has_wifi;
-    algo.is_algo_on_ = !has_wifi;
+    algo.is_algo_on = !has_wifi;
     led.set_default();
     while (true) {
         tcp_buffer.parse_tcp_buffer(motor_control, algo, imu, led);
@@ -66,7 +66,7 @@ int main() {
         float imu_yaw = imu.get_yaw();
 
         lidar.update_lidar();
-        motor_control.disable();
+        // motor_control.disable();
         motor_control.update_motors(imu_yaw);
         led.update();
         algo.update(lidar.get_rotation_buffer(), imu_yaw, motor_control);

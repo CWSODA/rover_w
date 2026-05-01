@@ -19,6 +19,8 @@ class Motor {
     // negative values represent reverse
     void drive(float val);
 
+    bool is_big = false;
+
    private:
     PWM_Channel pwm_channel_;
     const uint dir_pin_;
@@ -29,7 +31,7 @@ class Motor {
 class MotorControl {
    public:
     // initializes controller, related pins are set via defaults
-    MotorControl() {}
+    MotorControl() { motorBL_.is_big = true; }
 
     // allows IMU to disable and enable motors
     void disable() {

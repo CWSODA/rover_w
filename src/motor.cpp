@@ -17,6 +17,12 @@ Motor::Motor(uint pwm_pin, uint dir_pin)
 constexpr bool MOTOR_FORWARD = false;
 constexpr bool MOTOR_BACKWARD = true;
 void Motor::drive(float val) {
+    if (is_big) {
+        val *= BIG_MULT;
+        gpio_put(dir_pin_, (val < 0) ? MOTOR_FORWARD : MOTOR_BACKWARD);
+        pwm_channel_.set_duty(std::abs(val));
+        return;
+    }
     // set direction depending on val sign
     gpio_put(dir_pin_, (val > 0) ? MOTOR_FORWARD : MOTOR_BACKWARD);
     pwm_channel_.set_duty(std::abs(val));
@@ -79,6 +85,10 @@ void MotorControl::turn_in_place(float turn_speed) {
     if (is_disabled_) return;  // ignore if motors disabled
     float left = turn_speed;
     float right = -turn_speed;
+    if (turn_speed > 0)
+        DBG("R\n");
+    else
+        DBG("L\n");
     motorFL_.drive(left);
     motorBL_.drive(left);
     motorFR_.drive(right);
@@ -86,7 +96,6 @@ void MotorControl::turn_in_place(float turn_speed) {
 
     fwd_spd_ = 0.0f;  // disables forward adjusting
     combo_turn_count_++;
-    DBG("TURN\n");
 }
 
 // speed of each motor from 0 to speed
