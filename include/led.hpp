@@ -34,6 +34,9 @@ struct Color {
 
 class LED {
    public:
+    // sets default indicator
+    bool has_wifi = false;
+
     // initiates pwm channels and turns light red
     LED() {
         pwm_r.enable();
@@ -47,6 +50,12 @@ class LED {
         pwm_r.set_duty(color.r);
         pwm_g.set_duty(color.g);
         pwm_b.set_duty(color.b);
+    }
+
+    // sets default loop indicators depending on if there is wifi
+    void set_default() {
+        set_indicator(has_wifi ? LED_INDICATOR::LOOP_WITH_WIFI
+                               : LED_INDICATOR::LOOP_NO_WIFI);
     }
 
     // changes LED with given indicator
@@ -83,13 +92,12 @@ class LED {
         }
     }
 
-    bool has_wifi = false;
     void update() {
         if (is_rainbow_) {
             if (flash_cd_.check()) {
                 is_rainbow_ = false;
-                set_indicator(has_wifi ? LED_INDICATOR::LOOP_WITH_WIFI
-                                       : LED_INDICATOR::LOOP_NO_WIFI);
+                set_default();
+                return;
             }
             // do the rainbow :3
             if (!rainbow_cd_.check()) return;  // not yet
@@ -106,8 +114,7 @@ class LED {
             idx_ = 0;                  // wrap around to zero
             if (count_ > 0) count_--;  // decrement count if not infinite
             if (count_ == 0) {
-                set_indicator(has_wifi ? LED_INDICATOR::LOOP_WITH_WIFI
-                                       : LED_INDICATOR::LOOP_NO_WIFI);
+                set_default();
             }
         }
         set(colors_[idx_]);
