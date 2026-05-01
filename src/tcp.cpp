@@ -77,16 +77,6 @@ static err_t tcp_server_sent(void* arg, struct tcp_pcb* tpcb, u16_t len) {
     return ERR_OK;
 }
 
-// write to tcp client, flushes output
-std::vector<uint8_t> tcp_write_buffer;
-void tcp_buffer_data(const uint8_t* buf, uint16_t len) {
-    if (tcp_write_buffer.size() > TCP_WRITE_BUFFER_SIZE - len) return;
-
-    for (size_t x = 0; x < len; x++) {
-        tcp_write_buffer.push_back(buf[x]);
-    }
-}
-
 // on pico receive data from client
 static err_t tcp_server_recv(void* arg, struct tcp_pcb* tpcb, struct pbuf* p,
                              err_t err) {
@@ -210,6 +200,15 @@ static bool run_tcp_server() {
 /*                  PUBLIC API FUNCTIONS                  */
 /* ------------------------------------------------------ */
 #if NET_DEBUG  // guard against calling tcp functions when not enabled
+// write to tcp client, flushes output
+std::vector<uint8_t> tcp_write_buffer;
+void tcp_buffer_data(const uint8_t* buf, uint16_t len) {
+    if (tcp_write_buffer.size() > TCP_WRITE_BUFFER_SIZE - len) return;
+
+    for (size_t x = 0; x < len; x++) {
+        tcp_write_buffer.push_back(buf[x]);
+    }
+}
 void flush_tcp_write_buffer() {
     tcp_write_data(tcp_write_buffer.data(), tcp_write_buffer.size());
     // WDBG("TCP BUF SIZE: %zu\n", tcp_write_buffer.size());
