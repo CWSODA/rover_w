@@ -18,6 +18,7 @@ static inline bool ringbuf_push(const uint8_t byte) {
 
     if (next == rb_tail) {
         ++rb_overflow_count;
+        WDBG("LIDAR OVERFLOW!\n");
         return false;  // ringbuffer is full
     }
 
