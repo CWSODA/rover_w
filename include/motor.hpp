@@ -48,6 +48,12 @@ class MotorControl {
         motorFR_.drive(fwd_spd_);
         motorBR_.drive(fwd_spd_);
     }
+    void drive_side(float left, float right) {
+        motorFL_.drive(left);
+        motorBL_.drive(left);
+        motorFR_.drive(right);
+        motorBR_.drive(right);
+    }
 
     void update_motors(float yaw);
 
