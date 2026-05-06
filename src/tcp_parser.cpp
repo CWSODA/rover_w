@@ -74,11 +74,13 @@ void TCP_Buffer::parse_tcp_buffer(MotorControl& motor_ctrl, Algo& algo,
                 imu.reset_gyro();
                 break;
             }
-            case 'H': {
+            case 'H': {  // toggle heading algo on, 2 + 0 = 2 bytes
+                pop_to_idx(2);
                 algo.is_heading = true;
                 break;
             }
-            case 'h': {
+            case 'h': {  // toggle heading algo off, 2 + 0 = 2 bytes
+                pop_to_idx(2);
                 algo.is_heading = false;
                 break;
             }
