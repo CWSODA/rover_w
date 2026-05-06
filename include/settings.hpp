@@ -81,12 +81,13 @@ constexpr uint MOTOR_FL_PWM_PIN = 8;
 constexpr uint MOTOR_FL_DIR_PIN = 9;
 constexpr uint MOTOR_FR_PWM_PIN = 10;
 constexpr uint MOTOR_FR_DIR_PIN = 11;
-constexpr uint MOTOR_BL_PWM_PIN = 6;
+constexpr uint MOTOR_BL_PWM_PIN = 6;  // 50:1 motor
 constexpr uint MOTOR_BL_DIR_PIN = 7;
-constexpr uint MOTOR_BR_PWM_PIN = 12;
+constexpr uint MOTOR_BR_PWM_PIN = 12;  // 100:1 motor
 constexpr uint MOTOR_BR_DIR_PIN = 13;
 
-constexpr float BIG_MULT = 0.24f;
+constexpr float MOTOR_50_MULT = 0.24f;
+constexpr float MOTOR_100_MULT = 0.48f;
 
 // PID
 constexpr float YAW_ERR_P = 1.0f;

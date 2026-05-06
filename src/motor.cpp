@@ -17,12 +17,12 @@ Motor::Motor(uint pwm_pin, uint dir_pin)
 constexpr bool MOTOR_FORWARD = false;
 constexpr bool MOTOR_BACKWARD = true;
 void Motor::drive(float val) {
-    if (is_big) {
-        val *= BIG_MULT;
-        gpio_put(dir_pin_, (val < 0) ? MOTOR_FORWARD : MOTOR_BACKWARD);
-        pwm_channel_.set_duty(std::abs(val));
-        return;
+    if (is_50) {  // mult and reverse
+        val *= MOTOR_50_MULT;
+        val = -val;
     }
+    if (is_100) val *= MOTOR_100_MULT;  // mult
+
     // set direction depending on val sign
     gpio_put(dir_pin_, (val > 0) ? MOTOR_FORWARD : MOTOR_BACKWARD);
     pwm_channel_.set_duty(std::abs(val));
